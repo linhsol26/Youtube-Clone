@@ -1,0 +1,7 @@
+<div id="login-wrapper" *ngIf="isGuest(); then login; else user"></div>
+<ng-template #login>
+  <button mat-raised-button>Sign in</button>
+</ng-template>
+<ng-template #user>
+  <p>User Avatar</p>
+</ng-template>

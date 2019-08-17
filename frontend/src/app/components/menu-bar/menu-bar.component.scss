@@ -11,13 +11,22 @@ a {
 }
 
 mat-toolbar {
+  font-family: "Righteous", cursive;
+  user-select: none;
   position: fixed;
   top: 0;
 
   color: white;
   background-color: $green;
 
-  box-shadow: 0px 1px 15px rgba(134, 134, 134, 0.5);
+  justify-content: space-between;
+
+  box-shadow: 0px 1px 10px rgba(134, 134, 134, 0.5);
+}
+
+// left side
+#left-side {
+  display: flex;
 }
 
 button {
@@ -43,10 +52,17 @@ button:hover {
 }
 
 #logo p {
-  font-family: 'Righteous', cursive;
   letter-spacing: 5px;
   font-size: 35px;
   color: white;
   font-weight: bold;
   text-shadow: 4px 4px 2px $dark-green;
+}
+
+//right side
+#right-side {
+  display: flex;
+  width: 150px;
+
+  justify-content: space-between;
 }
