@@ -1,10 +1,30 @@
+#login-wrapper {
+  height: 60px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #avatar {
+  box-sizing: border-box;
   min-width: 50px;
+  width: 50px;
   height: 50px;
   padding: 0;
+  border-radius: 25px;
+  border: 1px solid white;
+  transition: 0.3s;
+}
+
+#avatar:hover {
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
 }
 
 #avatar img {
-	width: 50px;
-  height: 50px;
+	width: 100%;
+  height: 100%;
+  border-radius: 25px;
 }

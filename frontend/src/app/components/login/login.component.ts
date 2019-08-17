@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: "app-login",
@@ -6,10 +7,15 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  menus: [{ name: "Profile"; do: 1 }];
+
+  constructor(public user: UserService) {}
 
   ngOnInit() {}
+
   isGuest() {
-    return false;
+    return true;
   }
+
+  toProFile = () => {};
 }

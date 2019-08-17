@@ -71,7 +71,7 @@ mat-sidenav {
   width: 280px;
   align-items: center;
 
-  font-size: 15px;
+  font-size: 17px;
   color: black;
 
   border-top-right-radius: 25px;
@@ -81,7 +81,6 @@ mat-sidenav {
 @mixin active {
   color: $dark-green;
   background-color: $light-green;
-  font-weight: bold;
 }
 
 .function-btn:hover {

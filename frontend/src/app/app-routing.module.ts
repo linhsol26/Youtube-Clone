@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./components/home/home.component";
 import { UploadComponent } from "./components/upload/upload.component";
 import { WatchComponent } from "./components/watch/watch.component";
+import { MatVideoModule } from "mat-video";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -13,7 +14,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [HomeComponent, UploadComponent, WatchComponent],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), MatVideoModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

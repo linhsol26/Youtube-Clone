@@ -1,13 +1,14 @@
-<div id="login-wrapper" *ngIf="isGuest(); then login; else user"></div>
-<ng-template #login>
-  <button mat-raised-button>Sign in</button>
-</ng-template>
-<ng-template #user>
-  <button mat-button [matMenuTriggerFor]="menu" id="avatar">
-    <img src="../../../assets/avatar.png" />
-  </button>
-  <mat-menu #menu="matMenu" xPosition="before">
-    <button mat-menu-item>Item 1</button>
-    <button mat-menu-item>Item 2</button>
-  </mat-menu>
-</ng-template>
+<div id="login-wrapper">
+  <div *ngIf="isGuest()">
+    <button mat-raised-button (click)="user.loginGoogle()">Sign in</button>
+  </div>
+  <div *ngIf="!isGuest()">
+    <button mat-button [matMenuTriggerFor]="menu" id="avatar">
+      <img src="../../../assets/avatar.png" />
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+  </div>
+</div>

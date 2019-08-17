@@ -11,7 +11,7 @@ export class SideBarComponent {
 
   menus = [
     { name: "Home", matIcon: "home", url: "/" },
-    { name: "Upload", matIcon: "cloud_upload", url: "/upload" },
+    { name: "Upload", matIcon: "video_call", url: "/upload" },
     { name: "Setting", matIcon: "settings", url: "/" },
     { name: "Help", matIcon: "help_outline", url: "/" }
   ];
