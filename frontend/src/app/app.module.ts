@@ -4,7 +4,8 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { MaterialComponentsModule } from "./modules/material-components.module";
-import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
+
+import { MenuBarComponent } from "./components/menu-bar/menu-bar.component";
 
 @NgModule({
   declarations: [AppComponent, MenuBarComponent],
