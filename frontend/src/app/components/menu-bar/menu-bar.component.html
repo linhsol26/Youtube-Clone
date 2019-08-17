@@ -1,6 +1,20 @@
 <mat-toolbar>
-  <button mat-raised-button color="basic" (click)="showSideBar()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span id="logo">BAMBOO</span>
+  <div id="left-side">
+    <button mat-flat-button color="basic" (click)="showSideBar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div id="logo">
+      <img src="../../../assets/bamboo-flat.png" alt="" />
+      <p>Bamboo</p>
+    </div>
+  </div>
+
+  <div id="right-side">
+    <button mat-flat-button color="basic" routerLink="/upload">
+      <mat-icon>video_call</mat-icon>
+    </button>
+
+    <app-login></app-login>
+  </div>
 </mat-toolbar>

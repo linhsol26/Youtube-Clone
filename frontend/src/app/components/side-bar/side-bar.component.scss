@@ -15,6 +15,7 @@ a {
   top: 0;
   right: 0;
   bottom: 0;
+  user-select: none;
 }
 
 mat-sidenav-content {
@@ -23,6 +24,7 @@ mat-sidenav-content {
 
 mat-sidenav {
   width: 300px;
+  font-family: "Righteous", cursive;
 }
 
 #content {
@@ -44,6 +46,7 @@ mat-sidenav {
 }
 
 #logo p {
+  font-family: "Righteous", cursive;
   letter-spacing: 3px;
   padding-left: 10px;
   font-size: 40px;

@@ -1,17 +1,68 @@
 $green: rgb(95, 143, 56);
+$light-green: #eef7ec;
+$dark-green: #1b4400;
+
+p {
+  margin: 0;
+}
+
+a {
+  margin: 0;
+}
 
 mat-toolbar {
+  font-family: "Righteous", cursive;
+  user-select: none;
   position: fixed;
   top: 0;
 
   color: white;
   background-color: $green;
 
-  box-shadow: 0px 1px 15px rgba(134, 134, 134, 0.5);
+  justify-content: space-between;
+
+  box-shadow: 0px 1px 10px rgba(134, 134, 134, 0.5);
+}
+
+// left side
+#left-side {
+  display: flex;
+}
+
+button {
+  color: white;
+  background-color: $green;
+  transition: 0.5s;
+}
+
+button:hover {
+  background-color: $dark-green;
 }
 
 #logo {
-	margin-left: 20px;
+  display: flex;
+  align-items: center;
 }
 
+#logo img {
+  height: 35px;
+  position: relative;
+  right: 2px;
+  padding-left: 10px;
+}
 
+#logo p {
+  letter-spacing: 5px;
+  font-size: 35px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 4px 4px 2px $dark-green;
+}
+
+//right side
+#right-side {
+  display: flex;
+  width: 150px;
+
+  justify-content: space-between;
+}
