@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ViewChild, Input } from "@angular/core";
 import { MatSidenav } from "@angular/material/sidenav";
 
 @Component({
@@ -6,12 +6,19 @@ import { MatSidenav } from "@angular/material/sidenav";
   templateUrl: "./side-bar.component.html",
   styleUrls: ["./side-bar.component.scss"]
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent {
   @ViewChild("sidenav", { static: false }) sidenav: MatSidenav;
 
-  constructor() {}
+  menus = [
+    { name: "Home", matIcon: "home", url: "/" },
+    { name: "Upload", matIcon: "cloud_upload", url: "/upload" },
+    { name: "Setting", matIcon: "settings", url: "/" },
+    { name: "Help", matIcon: "help_outline", url: "/" }
+  ];
 
-  ngOnInit() {}
+  @Input("active") activeMenu: string = "Home";
+
+  constructor() {}
 
   close() {
     this.sidenav.close();
