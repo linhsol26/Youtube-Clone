@@ -11,17 +11,15 @@ a {
 }
 
 mat-toolbar {
-  font-family: "Righteous", cursive;
   user-select: none;
   position: fixed;
   top: 0;
 
   color: white;
   background-color: $green;
-
   justify-content: space-between;
-
-  box-shadow: 0px 1px 10px rgba(134, 134, 134, 0.5);
+  box-shadow: 0px 2px 10px grey;
+  font-family: "Righteous", cursive;
 }
 
 // left side

@@ -2,10 +2,12 @@
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
-@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500";
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+$dark-green: #1b4400;
+
 body {
   margin: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 p {
@@ -17,4 +19,17 @@ a {
   margin: 0;
   padding: 0;
   text-decoration: none;
+}
+
+// menu user
+.mat-menu-panel {
+  width: 250px;
+}
+.mat-menu-item {
+  font-size: 17px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.mat-menu-item .mat-icon {
+  color: $dark-green;
 }
