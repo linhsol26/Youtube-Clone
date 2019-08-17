@@ -1,11 +1,24 @@
 <mat-sidenav-container class="container" (backdropClick)="close()">
   <mat-sidenav #sidenav (keydown.escape)="close()">
-    <p>BAMBOO logo</p>
-    <div>
-      <a routerLink="/" (click)="close()">Home</a>
+    <div id="logo">
+      <img src="../../../assets/bamboo.png" alt="" />
+      <p>Bamb<span>oo</span></p>
     </div>
-    <div>
-      <a routerLink="/upload" (click)="close()">Upload</a>
+    <div id="function-div">
+      <div
+        *ngFor="let menu of menus; let i = index"
+        [class.last]="i == menus.length - 1"
+      >
+        <a
+          routerLink="{{ menu.url }}"
+          (click)="close()"
+          class="function-btn"
+          [class.active]="menu.name == activeMenu"
+        >
+          <mat-icon>{{ menu.matIcon }}</mat-icon>
+          <p>{{ menu.name }}</p>
+        </a>
+      </div>
     </div>
   </mat-sidenav>
 

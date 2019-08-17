@@ -1,3 +1,14 @@
+$light-green: #eef7ec;
+$dark-green: #1b4400;
+
+p {
+  margin: 0;
+}
+
+a {
+  margin: 0;
+}
+
 .container {
   position: absolute;
   left: 0;
@@ -6,20 +17,85 @@
   bottom: 0;
 }
 
-p {
-  margin: 0;
-}
-
 mat-sidenav-content {
   background-color: white;
 }
 
 mat-sidenav {
-  width: 200px;
-  padding: 15px;
+  width: 300px;
 }
 
 #content {
   margin: 20px;
   padding-top: 50px;
+}
+
+// logo
+#logo {
+  height: 100px;
+  display: flex;
+  align-items: center;
+
+  padding-left: 20px;
+}
+
+#logo img {
+  height: 50px;
+}
+
+#logo p {
+  letter-spacing: 3px;
+  padding-left: 10px;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 3px 3px 1px $dark-green;
+}
+
+// function area
+#function-div {
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+
+  justify-content: space-evenly;
+}
+
+.function-btn {
+  display: flex;
+
+  height: 50px;
+  width: 280px;
+  align-items: center;
+
+  font-size: 15px;
+  color: black;
+
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+@mixin active {
+  color: $dark-green;
+  background-color: $light-green;
+  font-weight: bold;
+}
+
+.function-btn:hover {
+  @include active();
+  transition: 0.2s;
+}
+
+.function-btn mat-icon {
+  padding-left: 30px;
+  padding-right: 10px;
+}
+
+.active {
+  @include active();
+}
+
+.last {
+  padding-top: 15px;
+  border-top: 4px double $dark-green;
 }

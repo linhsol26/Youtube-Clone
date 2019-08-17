@@ -6,7 +6,7 @@ import { AppComponent } from "./app.component";
 import { MaterialComponentsModule } from "./modules/material-components.module";
 
 import { MenuBarComponent } from "./components/menu-bar/menu-bar.component";
-import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { SideBarComponent } from "./components/side-bar/side-bar.component";
 
 @NgModule({
   declarations: [AppComponent, MenuBarComponent, SideBarComponent],
