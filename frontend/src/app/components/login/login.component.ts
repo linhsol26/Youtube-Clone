@@ -10,6 +10,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
   isGuest() {
-    return true;
+    return false;
   }
 }
