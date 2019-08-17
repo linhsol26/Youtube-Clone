@@ -1,4 +1,14 @@
 $green: rgb(95, 143, 56);
+$light-green: #eef7ec;
+$dark-green: #1b4400;
+
+p {
+  margin: 0;
+}
+
+a {
+  margin: 0;
+}
 
 mat-toolbar {
   position: fixed;
@@ -10,8 +20,33 @@ mat-toolbar {
   box-shadow: 0px 1px 15px rgba(134, 134, 134, 0.5);
 }
 
-#logo {
-	margin-left: 20px;
+button {
+  color: white;
+  background-color: $green;
+  transition: 0.5s;
 }
 
+button:hover {
+  background-color: $dark-green;
+}
 
+#logo {
+  display: flex;
+  align-items: center;
+}
+
+#logo img {
+  height: 35px;
+  position: relative;
+  right: 2px;
+  bottom: 2px;
+  padding-left: 10px;
+}
+
+#logo p {
+  letter-spacing: 5px;
+  font-size: 35px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 4px 4px 2px $dark-green;
+}
