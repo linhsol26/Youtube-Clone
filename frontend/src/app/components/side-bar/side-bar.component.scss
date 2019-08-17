@@ -1,0 +1,25 @@
+.container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+p {
+  margin: 0;
+}
+
+mat-sidenav-content {
+  background-color: white;
+}
+
+mat-sidenav {
+  width: 200px;
+  padding: 15px;
+}
+
+#content {
+  margin: 20px;
+  padding-top: 50px;
+}
