@@ -5,13 +5,16 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
 
+
 @NgModule({
   exports: [
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
-    MatSidenavModule
-  ]
+    MatSidenavModule,
+    
+  ],
+
 })
 export class MaterialComponentsModule {}
