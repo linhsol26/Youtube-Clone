@@ -3,10 +3,11 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { MaterialComponentsModule } from "./material-components.module";
+import { MaterialComponentsModule } from "./modules/material-components.module";
+import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MenuBarComponent],
   imports: [BrowserModule, AppRoutingModule, MaterialComponentsModule],
   providers: [],
   bootstrap: [AppComponent]
