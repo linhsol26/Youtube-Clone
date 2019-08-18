@@ -9,29 +9,46 @@ import { MaterialComponentsModule } from "./modules/material-components.module";
 import { MenuBarComponent } from "./components/menu-bar/menu-bar.component";
 import { SideBarComponent } from "./components/side-bar/side-bar.component";
 import { LoginComponent } from "./components/login/login.component";
+import { Routes, RouterModule } from "@angular/router";
 
 // firebase
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-
 import { environment } from "../environments/environment";
 
 import { UserService } from "./services/user.service";
+import { HomeComponent } from "./components/home/home.component";
+import { UploadComponent } from "./components/upload/upload.component";
+import { WatchComponent } from "./components/watch/watch.component";
+import { MatVideoModule } from "mat-video";
+import { UploadInputComponent } from "./components/upload-input/upload-input.component";
+
+const routes: Routes = [
+  { path: "", component: HomeComponent },
+  { path: "upload", component: UploadComponent },
+  { path: "watch/:vid", component: WatchComponent },
+  { path: "**", redirectTo: "" }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
     SideBarComponent,
-    LoginComponent
+    LoginComponent,
+    UploadInputComponent,
+    HomeComponent,
+    UploadComponent,
+    WatchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule.forRoot(routes),
     MaterialComponentsModule,
     AngularFireAuthModule,
-    AngularFireModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    MatVideoModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
