@@ -8,8 +8,8 @@ import { UserService } from "src/app/services/user.service";
 })
 export class LoginComponent implements OnInit {
   choices = [
-    { name: "Profile", do: this.toProfile, matIcon: "folder_shared" },
-    { name: "Theme", do: this.changeTheme, matIcon: "invert_colors" },
+    { name: "Profile", do: () => this.toProfile(), matIcon: "folder_shared" },
+    { name: "Theme", do: () => this.changeTheme(), matIcon: "invert_colors" },
     {
       name: "Sign out",
       do: () => this.user.signOut(),

@@ -23,13 +23,15 @@ a {
 
 // menu user
 .mat-menu-panel {
-  width: 250px;
+  max-width: 800px !important;
+  min-width: 300px !important;
+  width: auto;
 }
 .mat-menu-item {
-  font-size: 17px;
+  font-size: 16px;
   font-family: "Open Sans", sans-serif;
 }
 
 .mat-menu-item .mat-icon {
-  color: $dark-green;
+  color: grey;
 }

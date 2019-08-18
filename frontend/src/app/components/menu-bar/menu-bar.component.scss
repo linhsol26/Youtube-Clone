@@ -1,4 +1,4 @@
-$green: rgb(95, 143, 56);
+$green: #27a02d;
 $light-green: #eef7ec;
 $dark-green: #1b4400;
 
@@ -22,6 +22,16 @@ mat-toolbar {
   font-family: "Righteous", cursive;
 }
 
+// .home {
+//   box-shadow: none;
+//   background: rgb(105, 105, 105);
+//   background: linear-gradient(
+//     180deg,
+//     rgba(105, 105, 105, 0.4035047895452949) 0%,
+//     rgba(255, 255, 255, 0) 100%
+//   );
+// }
+
 // left side
 #left-side {
   display: flex;
@@ -33,7 +43,7 @@ button {
   height: 50px;
   padding: 0;
   color: white;
-  background-color: $green;
+  background-color: transparent;
   transition: 0.5s;
 }
 

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter, Input } from "@angular/core";
 
 @Component({
   selector: "app-menu-bar",
@@ -6,6 +6,7 @@ import { Component, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./menu-bar.component.scss"]
 })
 export class MenuBarComponent {
+  @Input() route: string;
   @Output("show-side-bar") showSideNav = new EventEmitter();
 
   constructor() {}
