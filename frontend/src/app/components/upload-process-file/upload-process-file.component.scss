@@ -13,8 +13,7 @@ $dark-green: #1b4400;
 // upload section
 #upload-bar {
   display: flex;
-  width: 100%;
-  margin: 15px 0;
+  margin: 20px 10px;
   display: flex;
   align-items: center;
 }
@@ -38,7 +37,6 @@ mat-progress-bar {
 }
 
 #function-btn {
-  margin: 0 2px;
   width: 25%;
   display: flex;
   justify-content: flex-end;
@@ -60,14 +58,26 @@ button {
 }
 
 #update-btn {
+  font-size: 17px;
+  font-weight: bold;
   width: 100px;
   color: white;
-  background-color: $dark-green;
+  background-color: $green;
 }
 
 // info form thumbnail section
 #info-bar {
   display: flex;
   width: 100%;
-  background-color: steelblue;
+}
+
+#thumbnails {
+  display: flex;
+  width: 30%;
+  min-width: 300px;
+  background-color: white;
+}
+
+app-video-info-form {
+  width: 70%;
 }

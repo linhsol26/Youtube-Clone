@@ -8,9 +8,9 @@
     <div id="process-bar">
       <p>
         {{ file.name | truncate }} - {{ file.size | diskSize }}
-        <span *ngIf="!uploaded" id="percentage"
-          >{{ progress | number: "1.0-0" }}%</span
-        >
+        <span *ngIf="!uploaded" id="percentage">
+          {{ progress | number: "1.0-0" }}%
+        </span>
       </p>
     </div>
 
@@ -31,5 +31,9 @@
       <button id="update-btn" *ngIf="uploaded" mat-raised-button>Update</button>
     </div>
   </div>
-  <div id="info-bar">C</div>
+
+  <div id="info-bar">
+    <div id="thumbnails"></div>
+    <app-video-info-form></app-video-info-form>
+  </div>
 </mat-card>

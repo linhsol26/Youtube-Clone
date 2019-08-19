@@ -1,0 +1,46 @@
+<div class="container">
+  <div id="line1">
+    <mat-form-field id="title" aappearance="standard">
+      <input matInput placeholder="Title" value="A video of Hieu" />
+    </mat-form-field>
+
+    <mat-form-field id="privacy" appearance="fill">
+      <mat-select placeholder="Privacy" [value]="'private'">
+        <mat-option *ngFor="let choice of privacyChoices" [value]="choice.key">
+          {{ choice.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="chip-list" appearance="outline">
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let tag of tags"
+        [selectable]="false"
+        [removable]="removable"
+        (removed)="remove(tag)"
+      >
+        {{ tag }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Tags"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <textarea
+      matInput
+      placeholder="Description"
+      mat-autosize="true"
+      matAutosizeMaxRows="20"
+      matAutosizeMinRows="10"
+    ></textarea>
+  </mat-form-field>
+</div>

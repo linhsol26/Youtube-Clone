@@ -29,6 +29,7 @@ import { UploadProcessComponent } from './components/upload-process/upload-proce
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DiskSizePipe } from './pipes/disk-size.pipe';
 import { UploadProcessFileComponent } from './components/upload-process-file/upload-process-file.component';
+import { VideoInfoFormComponent } from './components/video-info-form/video-info-form.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -51,7 +52,8 @@ const routes: Routes = [
     UploadProcessComponent,
     TruncatePipe,
     DiskSizePipe,
-    UploadProcessFileComponent
+    UploadProcessFileComponent,
+    VideoInfoFormComponent
   ],
   imports: [
     BrowserModule,
