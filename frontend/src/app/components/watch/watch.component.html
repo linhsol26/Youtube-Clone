@@ -1,42 +1,70 @@
-
 <div class=content>
     <div class="videomain">
-        <mat-video [preload]="true" [autoplay]="true" [quality]="true" [spinner] = "dot" [overlay] = "true" [keyboard]="true" [download]="true">
+        <!-- <mat-video [preload]="true" [autoplay]="true" [quality]="true" [spinner] = "dot" [overlay] = "true" [keyboard]="true" [download]="true">
             <source src="https://firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c" type="video/mp4">
 
-        </mat-video>
-        
+        </mat-video> -->
+        <video controls="true"
+            src="https://firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c"></video>
+
+
     </div>
     <div class=main>
         <div class=info-main>
             <mat-grid-list cols='10'>
-                <mat-grid-tile class = "tile" rowspan='1'>xin chào</mat-grid-tile>
-                <mat-grid-tile rowspan='1' colspan='7'>title</mat-grid-tile>
-                <mat-grid-tile rowspan='2' colspan='2'>
-                    <div class = "div-button" >
-                        <mat-grid-list cols='1' rowHeight = 33%>
+                <mat-grid-tile class="tile" rowspan='1' colspan=1>
+                    <div class=owner-video-div>
+                        <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"
+                            alt="" />
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile rowspan='1' colspan='7'>
+                    <div class="tiltle-div">
+                        <h1>Ironman in the infinity war</h1>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="grid-button" rowspan='2' colspan='2'>
+                    <div class="div-button">
+                        <mat-grid-list cols='1' rowHeight=33%>
                             <mat-grid-tile colspan='1' rowspan='1'>
-                                <button class = button-info-main mat-raised-button>Nhúng</button>
+                                <button class=button-info-main mat-raised-button>Light OFF</button>
                             </mat-grid-tile>
                             <mat-grid-tile colspan='1' rowspan='1'>
-                                <button class = button-info-main mat-raised-button color = "primary">Share</button>
+                                <button class=button-info-main mat-raised-button color="primary">Share</button>
                             </mat-grid-tile>
                             <mat-grid-tile colspan='1' rowspan='1'>
-                                <button class = button-info-main mat-raised-button color = "warn">Báo Lỗi</button>
+                                <button class=button-info-main mat-raised-button color="warn">Báo Lỗi</button>
                             </mat-grid-tile>
                         </mat-grid-list>
                     </div>
                 </mat-grid-tile>
+                <mat-grid-tile rowspan='1'>
+                    <div class="div-like-dislike">
+                        <mat-grid-list cols='2' colWidth=50% rowHeight=100%>
+                            <mat-grid-tile colspan='1'>
+                                <mat-icon class = "button-like-dislike">thumb_up</mat-icon>
+                            </mat-grid-tile>
+                            <mat-grid-tile colspan='1'>
+                                <mat-icon class = "button-like-dislike">thumb_down</mat-icon>
+                            </mat-grid-tile>
 
-                <mat-grid-tile rowspan='1'>like dislike</mat-grid-tile>
-                <mat-grid-tile rowspan = '1' colspan = 7> <p style="overflow-y: scroll">Setting the gutter size
-                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units are specified, px units are assumed. By default the gutter size is 1px.
-                        
-                        Adding tiles that span multiple rows or columns
-                        It is possible to set the rowspan and colspan of each mat-grid-tile individually, using the rowspan and colspan properties. If not set, they both default to 1. The colspan must not exceed the number of cols in the mat-grid-list. There is no such restriction on the rowspan however, more rows will simply be added for it the tile to fill.
-                        
-                       
-                        </p></mat-grid-tile>
+                        </mat-grid-list>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile rowspan='1' colspan=7>
+                    <p class="des">Setting the gutter size
+                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
+                        are specified, px units are assumed. By default the gutter size is 1px.
+                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
+                        are specified, px units are assumed. By default the gutter size is 1px.
+                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
+                        are specified, px units are assumed. By default the gutter size is 1px.
+                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
+                        are specified, px units are assumed. By default the gutter size is 1px.
+
+
+                    </p>
+                </mat-grid-tile>
             </mat-grid-list>
         </div>
         <div class=commentmain></div>

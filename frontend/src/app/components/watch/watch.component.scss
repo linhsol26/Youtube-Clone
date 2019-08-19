@@ -1,3 +1,6 @@
+.mat-slider{
+  height: 15px !important;
+}
 .content {
   width: 70%;
   height: auto;
@@ -7,6 +10,10 @@
   width: 100%;
   height: 70%;
 }
+.videomain video{
+  height: 100%;
+  width: 100%;
+}
 .main {
   margin-top: 3%;
 }
@@ -15,12 +22,50 @@
   border-top-color: rgba($color: #1d1d1d, $alpha: 1);
   padding-top: 1%;
 }
+.owner-video-div{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+  padding: 25px;
+}
+.owner-video-div img{
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+}
+.grid-button{
+  margin-top: 25px !important;
+}
 .div-button {
   width: 100%;
   height: 100%;
+  
 }
-.tile {
-  padding-bottom: 20px;
+.tiltle-div{
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  text-align: left;
+}
+.div-like-dislike{
+  width: 100%;
+  height: 100%;
+}
+.button-like-dislike:hover{
+  border-radius: 2px;
+  background: rgba(84, 118, 231, 0.2);
+  cursor: pointer;
+}
+.des{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.des:hover{
+  overflow: visible;
+  width: 120%;
 }
 .button-info-main {
   width: 80%;
