@@ -16,12 +16,13 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "../environments/environment";
 
-import { UserService } from "./services/user.service";
+import { UserGoogleService } from "./services/user-google.service";
 import { HomeComponent } from "./components/home/home.component";
 import { UploadComponent } from "./components/upload/upload.component";
 import { WatchComponent } from "./components/watch/watch.component";
 import { MatVideoModule } from "mat-video";
 import { UploadInputComponent } from "./components/upload-input/upload-input.component";
+import { UserService } from "./services/user.service";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -50,7 +51,7 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     MatVideoModule
   ],
-  providers: [UserService],
+  providers: [UserService, UserGoogleService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

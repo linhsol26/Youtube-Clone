@@ -4,15 +4,14 @@
 
 export const environment = {
   production: false,
-  firebase:{
-    //dán key của fire tại đây
-    apiKey: "AIzaSyAATDWsw5UAvA8Q4pzBWzsF5WPEJXHPokI",
-    authDomain: "auth-test-d5848.firebaseapp.com",
-    databaseURL: "https://auth-test-d5848.firebaseio.com",
-    projectId: "auth-test-d5848",
-    storageBucket: "",
-    messagingSenderId: "916765010526",
-    appId: "1:916765010526:web:d950508dea0dbd68"
+  firebase: {
+    apiKey: "AIzaSyADQMecFrLeUMQqGxPLhB_BWyowO_BDcg0",
+    authDomain: "fir-demo-5413c.firebaseapp.com",
+    databaseURL: "https://fir-demo-5413c.firebaseio.com",
+    projectId: "fir-demo-5413c",
+    storageBucket: "fir-demo-5413c.appspot.com",
+    messagingSenderId: "676506254038",
+    appId: "1:676506254038:web:a705e3db918b6ef1"
   }
 };
 

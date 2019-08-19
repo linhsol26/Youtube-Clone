@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "src/app/services/user.service";
+import { UserGoogleService } from "src/app/services/user-google.service";
 
 @Component({
   selector: "app-login",
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     }
   ];
 
-  constructor(public user: UserService) {}
+  constructor(public user: UserGoogleService) {}
   ngOnInit() {}
 
   toProfile() {}
