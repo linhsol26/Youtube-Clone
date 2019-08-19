@@ -21,7 +21,7 @@
 </button>
 
 <div class="file-list" *ngFor="let file of files; let i = index">
-  <p>{{ file }}</p>
+  <p>{{ file.name | truncate }} - {{ file.size | diskSize }}</p>
   <button class="delete-file" (click)="deleteFile(i)">
     <mat-icon>delete_outline</mat-icon>
   </button>

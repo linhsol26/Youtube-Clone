@@ -3,4 +3,7 @@
   (start-uploading)="startUploading($event)"
 ></app-upload-input>
 
-<app-upload-process *ngIf="files.length !== 0"></app-upload-process>
+<app-upload-process
+  *ngIf="files.length !== 0"
+  [files]="files"
+></app-upload-process>

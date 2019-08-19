@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
   selector: "app-upload-process",
@@ -6,6 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./upload-process.component.scss"]
 })
 export class UploadProcessComponent implements OnInit {
+  @Input() files: any;
   constructor() {}
 
   ngOnInit() {}

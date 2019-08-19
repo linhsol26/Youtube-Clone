@@ -36,7 +36,10 @@ $dark-green: #1b4400;
 
 #container-content p:first-of-type {
   font-weight: bold;
-  font-size: 22px;
+  font-size: 21px;
+}
+#container-content p:last-of-type {
+  font-size: 17px;
 }
 
 .file-list {

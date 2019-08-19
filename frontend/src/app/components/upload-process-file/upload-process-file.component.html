@@ -1,0 +1,21 @@
+<mat-card id="container">
+  <mat-progress-bar
+    mode="determinate"
+    value="{{ progress }}"
+  ></mat-progress-bar>
+  <div id="upload-bar">
+    <div id="process-bar">
+      <p>
+        {{ file.name | truncate }} - {{ file.size | diskSize }}
+        <span *ngIf="!uploaded" id="percentage">{{ progress | number: "1.0-0" }}%</span>
+      </p>
+    </div>
+
+    <div id="function-btn">
+      <button *ngIf="!uploaded" mat-raised-button>Pause</button>
+			<button *ngIf="!uploaded" mat-raised-button>Cancel</button>
+			<button *ngIf="uploaded" mat-raised-button>Save</button>
+    </div>
+  </div>
+  <div id="info-bar">C</div>
+</mat-card>

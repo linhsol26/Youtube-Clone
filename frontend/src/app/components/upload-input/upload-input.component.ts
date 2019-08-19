@@ -1,3 +1,5 @@
+// Bug: After deleting a video, I can not add that video again via click input
+
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
@@ -19,7 +21,7 @@ export class UploadInputComponent implements OnInit {
   getFiles(files: any) {
     for (let file of files) {
       if (this.fileTypes.includes(file.type)) {
-        this.files.push(file.name);
+        this.files.push(file);
       } else {
         this.openSnackBar("Invalid files!", "Close");
         this.files = [];

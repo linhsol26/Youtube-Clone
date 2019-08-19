@@ -13,7 +13,7 @@ export class UploadComponent implements OnInit {
   files: any[];
 
   constructor(private _userGG: UserGoogleService, private db: DatabaseService) {
-    this.files = [];
+    this.files = [1];
   }
 
   ngOnInit() {}
