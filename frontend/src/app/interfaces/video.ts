@@ -16,6 +16,10 @@ export interface IVideo {
   date: number;
 }
 
+export interface IVideoForm {
+  
+}
+
 export function getVideoTemplate(user: User, url: string) {
   let video: IVideo = {
     vid: user.uid + "-" + Date.now(),

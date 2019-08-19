@@ -1,2 +1,6 @@
-<app-upload-input></app-upload-input>
-<button mat-raised-button (click)="upload()">Click</button>
+<app-upload-input
+  *ngIf="files.length === 0"
+  (start-uploading)="startUploading($event)"
+></app-upload-input>
+
+<app-upload-process *ngIf="files.length !== 0"></app-upload-process>

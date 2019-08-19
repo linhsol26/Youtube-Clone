@@ -24,6 +24,8 @@ import { WatchComponent } from "./components/watch/watch.component";
 import { UploadInputComponent } from "./components/upload-input/upload-input.component";
 import { UserService } from "./services/user.service";
 import { DatabaseService } from "./services/database.service";
+import { DragAndDropDirective } from "./directives/drag-and-drop.directive";
+import { UploadProcessComponent } from './components/upload-process/upload-process.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -41,7 +43,9 @@ const routes: Routes = [
     UploadInputComponent,
     HomeComponent,
     UploadComponent,
-    WatchComponent
+    WatchComponent,
+    DragAndDropDirective,
+    UploadProcessComponent
   ],
   imports: [
     BrowserModule,

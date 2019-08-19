@@ -1,4 +1,34 @@
-<div id="drag-drop-area">
-  <mat-icon>cloud_upload</mat-icon>
+<button
+  class="container"
+  (click)="fileInput.click()"
+  appDragDrop
+  (onFileDropped)="getFiles($event)"
+  mat-button
+>
+  <input
+    hidden
+    type="file"
+    accept="video/*"
+    #fileInput
+    (change)="getFiles($event.target.files)"
+    multiple
+  />
+  <div id="container-content">
+    <mat-icon>cloud_upload</mat-icon>
+    <p>Select files to upload</p>
+    <p>or drag and drop video files</p>
+  </div>
+</button>
+
+<div class="file-list" *ngFor="let file of files; let i = index">
+  <p>{{ file }}</p>
+  <button class="delete-file" (click)="deleteFile(i)">
+    <mat-icon>delete_outline</mat-icon>
+  </button>
 </div>
-    
+
+<div *ngIf="files.length !== 0" id="function-bar">
+  <button id="upload-btn" mat-raised-button (click)="startUploading()">
+    Upload
+  </button>
+</div>

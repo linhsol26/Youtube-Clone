@@ -3,6 +3,7 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 
+$green: #27a02d;
 $dark-green: #1b4400;
 
 body {
@@ -34,4 +35,17 @@ a {
 
 .mat-menu-item .mat-icon {
   color: grey;
+}
+
+.mat-snack-bar-container {
+  background-color: $dark-green;
+}
+
+.mat-simple-snackbar > span {
+  color: white;
+}
+
+.mat-simple-snackbar div button {
+  background-color: white;
+  color: $dark-green;
 }

@@ -4,7 +4,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument
 } from "@angular/fire/firestore";
-import { IVideo } from "../interfaces/video";
+import { IVideo, IVideoForm } from "../interfaces/video";
 
 @Injectable({
   providedIn: "root"
@@ -27,10 +27,12 @@ export class DatabaseService {
     return false;
   }
 
-  async setVideoInfo(v: IVideo) {
+  async setVideoInfo(video: IVideo) {
     await this._afs
       .collection("videos")
-      .doc(v.vid)
-      .set(v);
+      .doc(video.vid)
+      .set(video);
   }
+
+  updateVideoInfo(data: IVideoForm) {}
 }

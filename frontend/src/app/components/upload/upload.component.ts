@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Video } from "src/app/interfaces/video";
+import { getVideoTemplate } from "src/app/interfaces/video";
 import { UserService } from "src/app/services/user.service";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { DatabaseService } from "src/app/services/database.service";
@@ -10,17 +10,15 @@ import { DatabaseService } from "src/app/services/database.service";
   styleUrls: ["./upload.component.scss"]
 })
 export class UploadComponent implements OnInit {
-  videos: any[];
-  constructor(
-    private _userGG: UserGoogleService,
-    private db: DatabaseService
-  ) {}
+  files: any[];
+
+  constructor(private _userGG: UserGoogleService, private db: DatabaseService) {
+    this.files = [];
+  }
 
   ngOnInit() {}
 
-  upload() {
-  //   console.log(v);
-
-  //   this.db.setVideoInfo(v);
+  startUploading(files) {
+    this.files = files;
   }
 }
