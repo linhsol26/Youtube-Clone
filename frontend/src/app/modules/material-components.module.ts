@@ -6,9 +6,12 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatVideoModule } from "mat-video";
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatCardModule } from "@angular/material/card";
 import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
+
 @NgModule({
   exports: [
     BrowserAnimationsModule,
@@ -19,8 +22,10 @@ import {MatCardModule} from '@angular/material/card';
     MatMenuModule,
     MatVideoModule,
     MatGridListModule,
-    MatInputModule,
-    MatCardModule
+    MatSnackBarModule,
+    MatProgressBarModule,
+    MatCardModule,
+    MatInputModule
   ]
 })
 export class MaterialComponentsModule {}

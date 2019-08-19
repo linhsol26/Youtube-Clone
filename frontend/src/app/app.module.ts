@@ -24,8 +24,12 @@ import { WatchComponent } from "./components/watch/watch.component";
 import { UploadInputComponent } from "./components/upload-input/upload-input.component";
 import { UserService } from "./services/user.service";
 import { DatabaseService } from "./services/database.service";
+import { DragAndDropDirective } from "./directives/drag-and-drop.directive";
+import { UploadProcessComponent } from './components/upload-process/upload-process.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { DiskSizePipe } from './pipes/disk-size.pipe';
+import { UploadProcessFileComponent } from './components/upload-process-file/upload-process-file.component';
 import { ListCommentComponent } from './components/list-comment/list-comment.component';
-
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "upload", component: UploadComponent },
@@ -43,6 +47,11 @@ const routes: Routes = [
     HomeComponent,
     UploadComponent,
     WatchComponent,
+    DragAndDropDirective,
+    UploadProcessComponent,
+    TruncatePipe,
+    DiskSizePipe,
+    UploadProcessFileComponent,
     ListCommentComponent
   ],
   imports: [

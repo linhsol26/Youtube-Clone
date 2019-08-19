@@ -1,0 +1,93 @@
+$green: #27a02d;
+$light-green: #eef7ec;
+$dark-green: #1b4400;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 300px;
+  width: 70%;
+  margin: 30px auto;
+  border: 2px dashed $dark-green;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: $light-green !important;
+}
+
+.container mat-icon {
+  font-size: 100px;
+  height: auto;
+  width: auto;
+  color: $dark-green;
+}
+
+#container-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#container-content p:first-of-type {
+  font-weight: bold;
+  font-size: 21px;
+}
+#container-content p:last-of-type {
+  font-size: 17px;
+}
+
+.file-list {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 10px auto;
+  border: 1px dashed;
+  border-radius: 12px;
+  padding: 5px 10px;
+  color: $dark-green;
+}
+
+.file-list .delete-file {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.file-list .delete-file {
+  width: 30px;
+}
+
+.file-list button {
+  color: $dark-green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#function-bar {
+  width: 70%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+}
+
+#upload-btn {
+  height: 60px;
+  width: 160px;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  background-color: $dark-green;
+  transition: 0.3s;
+}
+
+#upload-btn:hover {
+  background-color: $green;
+}

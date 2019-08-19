@@ -1,0 +1,17 @@
+$min-width: 600px;
+
+.container {
+  width: 80%;
+  height: auto;
+  margin: 30px auto;
+  min-width: $min-width;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+app-upload-process-file {
+  width: 100%;
+  min-width: $min-width;
+}
