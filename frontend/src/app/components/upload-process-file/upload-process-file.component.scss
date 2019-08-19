@@ -14,7 +14,7 @@ $dark-green: #1b4400;
 #upload-bar {
   display: flex;
   width: 100%;
-  margin: 10px 0;
+  margin: 15px 0;
   display: flex;
   align-items: center;
 }
@@ -24,15 +24,15 @@ $dark-green: #1b4400;
 }
 
 mat-progress-bar {
-  height: 12px;
-  border-radius: 6px;
+  height: 10px;
+  border-radius: 5px;
 }
 
 #percentage {
   color: white;
-  background-color: $green;
+  background-color: $dark-green;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 20px;
   padding: 5px 12px;
   border-radius: 5px;
 }
@@ -47,6 +47,22 @@ mat-progress-bar {
 
 button {
   margin-left: 15px;
+  padding: 0;
+}
+
+#pause-btn {
+  width: 80px;
+}
+
+#delete-btn {
+  min-width: 0;
+  width: 40px;
+}
+
+#update-btn {
+  width: 100px;
+  color: white;
+  background-color: $dark-green;
 }
 
 // info form thumbnail section
