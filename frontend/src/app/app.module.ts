@@ -13,6 +13,7 @@ import { Routes, RouterModule } from "@angular/router";
 // firebase
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 
 import { UserGoogleService } from "./services/user-google.service";
@@ -22,6 +23,7 @@ import { WatchComponent } from "./components/watch/watch.component";
 
 import { UploadInputComponent } from "./components/upload-input/upload-input.component";
 import { UserService } from "./services/user.service";
+import { DatabaseService } from "./services/database.service";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -48,9 +50,9 @@ const routes: Routes = [
     MaterialComponentsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    
+    AngularFirestoreModule
   ],
-  providers: [UserService, UserGoogleService],
+  providers: [UserService, UserGoogleService, DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -42,7 +42,6 @@ export class UserGoogleService {
     this._userGG = this._afAuth.auth.currentUser;
 
     this.setUser();
-    this.db.checkUser(this.user);
   }
 
   private setUser() {
@@ -51,6 +50,7 @@ export class UserGoogleService {
       type: "google",
       lastTime: new Date().toJSON()
     };
+    this.db.checkUser(this.user);
   }
 
   signOut() {
