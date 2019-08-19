@@ -48,7 +48,10 @@ export class UserGoogleService {
     this.user = {
       uid: this._userGG.uid,
       type: "google",
-      lastTime: new Date().toJSON()
+      lastTime: new Date().toJSON(),
+      name: this._userGG.displayName,
+      email: this._userGG.email,
+      avatarURL: this._userGG.photoURL
     };
     this.db.checkUser(this.user);
   }

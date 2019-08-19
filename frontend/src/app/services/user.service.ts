@@ -4,6 +4,9 @@ export interface User {
   uid: string;
   type: string;
   lastTime: string;
+  name: string;
+  email: string;
+  avatarURL: string;
 }
 
 @Injectable({
