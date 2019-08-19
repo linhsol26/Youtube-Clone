@@ -1,5 +1,6 @@
 import { Component,OnInit, Input, ViewChild } from '@angular/core';
 import { MatVideoComponent } from 'mat-video/app/video/video.component';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-watch',
@@ -17,15 +18,15 @@ export class WatchComponent implements OnInit {
 
   
   videomain: HTMLVideoElement;
-  constructor() {
+  constructor(public user : UserService) {
 
 
    }
   
   
   ngOnInit() {
-    this.videomain = this.matVideo.getVideoTag();
-    this.videomain.src = "video.mp4";
+    //this.videomain = this.matVideo.getVideoTag();
+    //this.videomain.src = "video.mp4";
   }
 
 }
