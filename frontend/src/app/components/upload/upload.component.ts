@@ -19,9 +19,8 @@ export class UploadComponent implements OnInit {
   ngOnInit() {}
 
   upload() {
-    let v = new Video(this._userGG.user, "abc.com");
-    console.log(v);
+  //   console.log(v);
 
-    this.db.setVideoInfo(v);
+  //   this.db.setVideoInfo(v);
   }
 }
