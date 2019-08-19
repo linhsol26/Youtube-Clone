@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { auth } from "firebase";
 import { Router } from "@angular/router";
-import { User } from "./user.service";
+import { User } from "../interfaces/user";
 import { DatabaseService } from "./database.service";
 
 @Injectable({
@@ -48,7 +48,7 @@ export class UserGoogleService {
     this.user = {
       uid: this._userGG.uid,
       type: "google",
-      lastTime: new Date().toJSON(),
+      lastTime: Date.now(),
       name: this._userGG.displayName,
       email: this._userGG.email,
       avatarURL: this._userGG.photoURL
