@@ -1,7 +1,14 @@
+video{
+  border-radius: 2px;
+}
 .mat-slider{
   height: 15px !important;
 }
 .content {
+  min-width: 1021px;
+  min-height: 1200px;
+  max-width: 1021px;
+  max-height: 1200px;;
   width: 70%;
   height: auto;
   margin: 0 auto;
@@ -17,45 +24,75 @@
 .main {
   margin-top: 3%;
 }
-.info-main {
-  border-top-style: double;
-  border-top-color: rgba($color: #1d1d1d, $alpha: 1);
-  padding-top: 1%;
+// .info-main {
+//   border-top-style: double;
+//   border-top-color: rgba($color: #1d1d1d, $alpha: 1);
+//   padding-top: 1%;
+// }
+.main-title{
+  width: 100%;
+  height: 70px;
+  text-align: left;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(82, 82, 82, 0.8);
+  border-bottom-width: 1px;
+}
+.title{
+  margin-bottom: 2%;
 }
 .owner-video-div{
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  margin-top: 10px;
   padding: 25px;
 }
+
 .owner-video-div img{
   width: 100%;
   height: 100%;
   border-radius: 40px;
 }
-.grid-button{
-  margin-top: 25px !important;
-}
-.div-button {
-  width: 100%;
+.owner-video-name{
+  padding-top: 30px;
   height: 100%;
+  width: 100%;
+  text-align: left;
+}
+// .grid-button{
+//   margin-top: 25px !important;
+// }
+// .div-button {
+//   width: 100%;
+//   height: 100%;
   
+// }
+.div-view{
+  height: 100%;
+  width: 100%;
+  margin: 15% 0 0 40%;
 }
 .tiltle-div{
-  width: 100%;
   height: 100%;
-  padding-top: 20px;
+  width: 100%;
   text-align: left;
+
+}
+.tiltle-div h2 {
+  min-height: 43px;
+  margin: 3.5% 0 0 0;
 }
 .div-like-dislike{
   width: 100%;
   height: 100%;
 }
-.button-like-dislike:hover{
-  border-radius: 2px;
-  background: rgba(84, 118, 231, 0.2);
-  cursor: pointer;
+.button-like-dislike{
+  height: 50%;
+  width: 70%;
+  padding: 0;
+}
+.button-like-dislike p {
+  display: inline-block;
+  padding-left: 5px;
 }
 .des{
   height: 100%;
@@ -67,7 +104,37 @@
   overflow: visible;
   width: 120%;
 }
-.button-info-main {
-  width: 80%;
-  height: 70%;
+// .button-info-main {
+//   width: 80%;
+//   height: 70%;
+// }
+
+.comment-main{
+  width: 100%;
+
+}
+.comment-total{
+  width:100%;
+}
+.comment-input img{
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+}
+.comment-form{
+  width: 100%;
+  min-height: 50px;
+}
+.comment-form-field{
+  width: 100%;
+  height: 100%;
+}
+.comment-form-field input {
+  width: 99%;
+}
+.comment-button-cancel-accept{
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin-bottom: 20px;
 }

@@ -24,6 +24,7 @@ import { WatchComponent } from "./components/watch/watch.component";
 import { UploadInputComponent } from "./components/upload-input/upload-input.component";
 import { UserService } from "./services/user.service";
 import { DatabaseService } from "./services/database.service";
+import { ListCommentComponent } from './components/list-comment/list-comment.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -41,7 +42,8 @@ const routes: Routes = [
     UploadInputComponent,
     HomeComponent,
     UploadComponent,
-    WatchComponent
+    WatchComponent,
+    ListCommentComponent
   ],
   imports: [
     BrowserModule,

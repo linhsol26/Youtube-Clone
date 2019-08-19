@@ -1,0 +1,21 @@
+.comment-mat-card{
+    height: 87px;
+    padding: 13px;
+    margin-bottom: 5px;
+}
+.comment-avatar{
+    width: 45px;
+    height: 45px;
+}
+.comment-avatar img{
+    border-radius: 23px;
+    width: 45px;
+    height: 45px;
+    background-size: cover;
+}
+.comment-name{
+    margin-top: 20px;
+}
+.comment-content{
+    word-wrap: break-word;
+}
