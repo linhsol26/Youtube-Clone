@@ -1,9 +1,5 @@
 <div class="container">
   <div id="line1">
-    <mat-form-field id="title" aappearance="standard">
-      <input matInput placeholder="Title" value="A video of Hieu" />
-    </mat-form-field>
-
     <mat-form-field id="privacy" appearance="fill">
       <mat-select placeholder="Privacy" [value]="'private'">
         <mat-option *ngFor="let choice of privacyChoices" [value]="choice.key">
@@ -11,9 +7,12 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field id="title" aappearance="standard">
+      <input matInput placeholder="Title" value="A video of Hieu" />
+    </mat-form-field>
   </div>
 
-  <mat-form-field class="chip-list" appearance="outline">
+  <mat-form-field class="chip-list" appearance="outline" id="tags">
     <mat-chip-list #chipList>
       <mat-chip
         *ngFor="let tag of tags"

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class UploadProcessFileComponent implements OnInit {
   @Input() file: any;
-  uploaded = true;
+  uploaded = false;
   paused = false;
   progress: number = 0;
 
