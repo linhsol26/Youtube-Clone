@@ -11,9 +11,11 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatCardModule } from "@angular/material/card";
 import {MatInputModule} from '@angular/material/input';
-
+import { FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   exports: [
+    FormsModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
@@ -25,7 +27,8 @@ import {MatInputModule} from '@angular/material/input';
     MatSnackBarModule,
     MatProgressBarModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ]
 })
 export class MaterialComponentsModule {}

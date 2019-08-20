@@ -16,6 +16,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 
+import { CommentsService } from "./services/comments.service";
 import { UserGoogleService } from "./services/user-google.service";
 import { HomeComponent } from "./components/home/home.component";
 import { UploadComponent } from "./components/upload/upload.component";
@@ -29,7 +30,13 @@ import { UploadProcessComponent } from './components/upload-process/upload-proce
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DiskSizePipe } from './pipes/disk-size.pipe';
 import { UploadProcessFileComponent } from './components/upload-process-file/upload-process-file.component';
+
+
 import { ListCommentComponent } from './components/list-comment/list-comment.component';
+import { ReportComponent } from './components/report/report.component';
+
+  import { from } from 'rxjs';
+
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "upload", component: UploadComponent },
@@ -52,7 +59,8 @@ const routes: Routes = [
     TruncatePipe,
     DiskSizePipe,
     UploadProcessFileComponent,
-    ListCommentComponent
+    ListCommentComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +71,7 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
-  providers: [UserService, UserGoogleService, DatabaseService],
+  providers: [UserService, UserGoogleService, DatabaseService,CommentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
