@@ -1,21 +1,55 @@
 <mat-card id="container">
   <mat-progress-bar
     mode="determinate"
-    value="{{ progress }}"
+    value="{{ progress | async }}"
   ></mat-progress-bar>
+
   <div id="upload-bar">
     <div id="process-bar">
       <p>
         {{ file.name | truncate }} - {{ file.size | diskSize }}
-        <span *ngIf="!uploaded" id="percentage">{{ progress | number: "1.0-0" }}%</span>
+        <span *ngIf="!uploaded" id="percentage">
+          {{ progress | async | number: "1.0-0" }}%
+        </span>
+
+        <span *ngIf="uploaded" id="percentage">
+          Done
+        </span>
       </p>
     </div>
 
     <div id="function-btn">
-      <button *ngIf="!uploaded" mat-raised-button>Pause</button>
-			<button *ngIf="!uploaded" mat-raised-button>Cancel</button>
-			<button *ngIf="uploaded" mat-raised-button>Save</button>
+      <button
+        id="pause-btn"
+        *ngIf="!uploaded"
+        mat-raised-button
+        (click)="interact()"
+      >
+        {{ paused ? "Continue" : "Pause" }}
+      </button>
+
+      <button id="delete-btn" *ngIf="!uploaded" mat-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button
+        id="update-btn"
+        *ngIf="uploaded"
+        mat-raised-button
+        [disabled]="!formValid"
+        color="primary"
+      >
+        Update
+      </button>
     </div>
   </div>
-  <div id="info-bar">C</div>
+
+  <div id="info-bar">
+    <div id="thumbnails"></div>
+
+    <app-video-info-form
+      [video-data]="videoData"
+      (form-validation)="changeValid($event)"
+    ></app-video-info-form>
+  </div>
 </mat-card>

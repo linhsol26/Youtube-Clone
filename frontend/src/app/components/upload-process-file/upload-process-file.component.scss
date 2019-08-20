@@ -13,8 +13,7 @@ $dark-green: #1b4400;
 // upload section
 #upload-bar {
   display: flex;
-  width: 100%;
-  margin: 10px 0;
+  margin: 20px 10px;
   display: flex;
   align-items: center;
 }
@@ -24,21 +23,20 @@ $dark-green: #1b4400;
 }
 
 mat-progress-bar {
-  height: 12px;
-  border-radius: 6px;
+  height: 10px;
+  border-radius: 5px;
 }
 
 #percentage {
   color: white;
   background-color: $green;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 20px;
   padding: 5px 12px;
   border-radius: 5px;
 }
 
 #function-btn {
-  margin: 0 2px;
   width: 25%;
   display: flex;
   justify-content: flex-end;
@@ -47,11 +45,37 @@ mat-progress-bar {
 
 button {
   margin-left: 15px;
+  padding: 0;
+}
+
+#pause-btn {
+  width: 80px;
+}
+
+#delete-btn {
+  min-width: 0;
+  width: 40px;
+}
+
+#update-btn {
+  font-size: 17px;
+  font-weight: bold;
+  width: 100px;
 }
 
 // info form thumbnail section
 #info-bar {
   display: flex;
   width: 100%;
-  background-color: steelblue;
+}
+
+#thumbnails {
+  display: flex;
+  width: 30%;
+  min-width: 300px;
+  background-color: white;
+}
+
+app-video-info-form {
+  width: 70%;
 }

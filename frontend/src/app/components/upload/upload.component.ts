@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { getVideoTemplate } from "src/app/interfaces/video";
-import { UserService } from "src/app/services/user.service";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { DatabaseService } from "src/app/services/database.service";
 
@@ -10,15 +8,15 @@ import { DatabaseService } from "src/app/services/database.service";
   styleUrls: ["./upload.component.scss"]
 })
 export class UploadComponent implements OnInit {
-  files: any[];
+  files: File[];
 
   constructor(private _userGG: UserGoogleService, private db: DatabaseService) {
-    this.files = [1];
+    this.files = [];
   }
 
   ngOnInit() {}
 
-  startUploading(files) {
+  startUploading(files: File[]) {
     this.files = files;
   }
 }

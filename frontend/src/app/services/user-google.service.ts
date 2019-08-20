@@ -13,24 +13,14 @@ export class UserGoogleService {
   private _userGG: any;
   logged = false;
 
-  get name() {
-    return this._userGG.displayName;
-  }
-  get email() {
-    return this._userGG.email;
-  }
-  get avatar() {
-    return this._userGG.photoURL;
-  }
-
   constructor(
     private _afAuth: AngularFireAuth,
     private _router: Router,
     private db: DatabaseService
   ) {
-    this._afAuth.user.subscribe(user => {
-      if (user != null) {
-        this._userGG = user;
+    this._afAuth.user.subscribe(usr => {
+      if (usr != null) {
+        this._userGG = usr;
         this.logged = true;
         this.setUser();
       } else this.logged = false;

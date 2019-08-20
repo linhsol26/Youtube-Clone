@@ -14,6 +14,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireStorageModule } from "@angular/fire/storage";
 import { environment } from "../environments/environment";
 
 import { CommentsService } from "./services/comments.service";
@@ -26,6 +27,7 @@ import { UploadInputComponent } from "./components/upload-input/upload-input.com
 import { UserService } from "./services/user.service";
 import { DatabaseService } from "./services/database.service";
 import { DragAndDropDirective } from "./directives/drag-and-drop.directive";
+<<<<<<< HEAD
 import { UploadProcessComponent } from './components/upload-process/upload-process.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DiskSizePipe } from './pipes/disk-size.pipe';
@@ -36,6 +38,17 @@ import { ListCommentComponent } from './components/list-comment/list-comment.com
 import { ReportComponent } from './components/report/report.component';
 
   import { from } from 'rxjs';
+=======
+import { UploadProcessComponent } from "./components/upload-process/upload-process.component";
+import { TruncatePipe } from "./pipes/truncate.pipe";
+import { DiskSizePipe } from "./pipes/disk-size.pipe";
+import { UploadProcessFileComponent } from "./components/upload-process-file/upload-process-file.component";
+import { VideoInfoFormComponent } from "./components/video-info-form/video-info-form.component";
+
+import { ListCommentComponent } from "./components/list-comment/list-comment.component";
+
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+>>>>>>> acf6d1227222e777367949e024c569b8255179e8
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -59,8 +72,13 @@ const routes: Routes = [
     TruncatePipe,
     DiskSizePipe,
     UploadProcessFileComponent,
+<<<<<<< HEAD
     ListCommentComponent,
     ReportComponent
+=======
+    VideoInfoFormComponent,
+    ListCommentComponent
+>>>>>>> acf6d1227222e777367949e024c569b8255179e8
   ],
   imports: [
     BrowserModule,
@@ -69,7 +87,10 @@ const routes: Routes = [
     MaterialComponentsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireStorageModule
   ],
   providers: [UserService, UserGoogleService, DatabaseService,CommentsService],
   bootstrap: [AppComponent]

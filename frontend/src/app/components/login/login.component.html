@@ -1,21 +1,21 @@
 <div id="login-wrapper">
-  <div *ngIf="!user.logged">
-    <button mat-raised-button (click)="user.loginGoogle()">
+  <div *ngIf="!userGG.logged">
+    <button mat-raised-button (click)="userGG.loginGoogle()">
       Sign in
     </button>
   </div>
 
-  <div *ngIf="user.logged">
+  <div *ngIf="userGG.logged">
     <button mat-button [matMenuTriggerFor]="menu" id="avatar-btn">
-      <img src="{{ user.avatar }}" alt="" />
+      <img src="{{ userGG.user.avatarURL }}" alt="" />
     </button>
 
     <mat-menu #menu="matMenu" xPosition="before" [class.test]="true">
       <div id="user-info">
-        <img src="{{ user.avatar }}" alt="" />
+        <img src="{{ userGG.user.avatarURL }}" alt="" />
         <div>
-          <p>{{ user.name }}</p>
-          <p>{{ user.email }}</p>
+          <p>{{ userGG.user.name }}</p>
+          <p>{{ userGG.user.email }}</p>
         </div>
       </div>
 
