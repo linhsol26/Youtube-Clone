@@ -95,14 +95,32 @@ video{
   padding-left: 5px;
 }
 .des{
-  height: 100%;
+  height: 62px;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.des:hover{
+.desfull{
   overflow: visible;
-  width: 120%;
+  width: 100%;
+  height: auto;
+  text-overflow: ellipsis;
+}
+  
+.div-view-more{
+  margin-top: 3px;
+  width: 100;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+.view-more{
+ 
+  color: rgb(124, 124, 124);
+  padding-right: 15px;
+}
+.view-more:hover{
+  cursor: pointer;
 }
 // .button-info-main {
 //   width: 80%;
@@ -110,21 +128,20 @@ video{
 // }
 
 .comment-main{
+  margin-top: 30px;
   width: 100%;
 
 }
 .comment-total{
   width:100%;
+  margin-bottom: 5px;
 }
 .comment-input img{
   width: 40px;
   height: 40px;
   border-radius: 25px;
 }
-.comment-form{
-  width: 100%;
-  min-height: 50px;
-}
+
 .comment-form-field{
   width: 100%;
   height: 100%;

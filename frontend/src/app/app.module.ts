@@ -17,6 +17,7 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { environment } from "../environments/environment";
 
+import { CommentsService } from "./services/comments.service";
 import { UserGoogleService } from "./services/user-google.service";
 import { HomeComponent } from "./components/home/home.component";
 import { UploadComponent } from "./components/upload/upload.component";
@@ -31,7 +32,7 @@ import { TruncatePipe } from "./pipes/truncate.pipe";
 import { DiskSizePipe } from "./pipes/disk-size.pipe";
 import { UploadProcessFileComponent } from "./components/upload-process-file/upload-process-file.component";
 import { VideoInfoFormComponent } from "./components/video-info-form/video-info-form.component";
-
+import { from } from 'rxjs';
 import { ListCommentComponent } from "./components/list-comment/list-comment.component";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -75,7 +76,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     AngularFireStorageModule
   ],
-  providers: [UserService, UserGoogleService, DatabaseService],
+  providers: [UserService, UserGoogleService, DatabaseService,CommentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
