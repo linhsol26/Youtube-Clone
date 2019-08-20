@@ -12,12 +12,12 @@ export class LoginComponent implements OnInit {
     { name: "Theme", do: () => this.changeTheme(), matIcon: "invert_colors" },
     {
       name: "Sign out",
-      do: () => this.user.signOut(),
+      do: () => this.userGG.signOut(),
       matIcon: "keyboard_return"
     }
   ];
 
-  constructor(public user: UserGoogleService) {}
+  constructor(public userGG: UserGoogleService) {}
   ngOnInit() {}
 
   toProfile() {}
