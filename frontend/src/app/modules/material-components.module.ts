@@ -14,6 +14,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
 import { MatChipsModule } from "@angular/material/chips";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
   exports: [
@@ -31,7 +33,9 @@ import { MatChipsModule } from "@angular/material/chips";
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonToggleModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialComponentsModule {}

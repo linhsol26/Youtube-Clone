@@ -1,0 +1,39 @@
+<div id="container">
+  <mat-button-toggle-group
+    #group="matButtonToggleGroup"
+    [(ngModel)]="choice"
+    (change)="onSelect(group.value)"
+  >
+    <mat-button-toggle value="1" #toggle1>
+      <div id="thumbnail-spinner" *ngIf="!data.oldImgURL">
+        <mat-spinner [strokeWidth]="5" [diameter]="50"></mat-spinner>
+      </div>
+      <img
+        *ngIf="data.oldImgURL"
+        src="{{ data.oldImgURL }}"
+        alt=""
+        [class.checked]="toggle1.checked"
+      />
+    </mat-button-toggle>
+
+    <button (click)="input.click()" id="upload-thumbnail-btn" mat-raised-button>
+      <input
+        type="file"
+        accept="image/*"
+        #input
+        (change)="getFile($event)"
+        hidden
+      />
+      Upload a thumbnail
+    </button>
+
+    <mat-button-toggle *ngIf="uploaded" value="2" #toggle2>
+      <img
+        *ngIf="imageURL"
+        src="{{ imageURL }}"
+        alt=""
+        [class.checked]="toggle2.checked"
+      />
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

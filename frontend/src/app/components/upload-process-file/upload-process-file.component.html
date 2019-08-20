@@ -1,7 +1,11 @@
-<mat-card id="container">
+<mat-card
+  [@fade]="canceled ? 'out' : 'in'"
+  id="container"
+  [class.overplay]="canceled"
+>
   <mat-progress-bar
     mode="determinate"
-    value="{{ progress | async }}"
+    value="{{ progress | async | number: '1.0-0' }}"
   ></mat-progress-bar>
 
   <div id="upload-bar">
@@ -25,12 +29,21 @@
         mat-raised-button
         (click)="interact()"
       >
-        {{ paused ? "Continue" : "Pause" }}
+        {{ paused ? "Resume" : "Pause" }}
       </button>
 
-      <button id="delete-btn" *ngIf="!uploaded" mat-button>
+      <button
+        id="delete-btn"
+        *ngIf="!uploaded"
+        mat-button
+        [matMenuTriggerFor]="menu"
+      >
         <mat-icon>delete</mat-icon>
       </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="cancel()">Yes</button>
+        <button mat-menu-item>No</button>
+      </mat-menu>
 
       <button
         id="update-btn"
@@ -38,6 +51,7 @@
         mat-raised-button
         [disabled]="!formValid"
         color="primary"
+        (click)="update()"
       >
         Update
       </button>
@@ -45,7 +59,8 @@
   </div>
 
   <div id="info-bar">
-    <div id="thumbnails"></div>
+    <app-upload-thumbnail-select [image-file]="fileImage">
+    </app-upload-thumbnail-select>
 
     <app-video-info-form
       [video-data]="videoData"

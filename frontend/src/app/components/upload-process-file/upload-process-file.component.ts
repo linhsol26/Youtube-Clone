@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { IVideoData } from "src/app/interfaces/video-form";
 import {
@@ -9,18 +9,31 @@ import {
 import { Observable } from "rxjs";
 import { finalize } from "rxjs/operators";
 
+import { ImageFile } from "src/app/interfaces/image-file";
+import { fadeAnimation } from "src/app/animations";
+
 @Component({
   selector: "app-upload-process-file",
   templateUrl: "./upload-process-file.component.html",
-  styleUrls: ["./upload-process-file.component.scss"]
+  styleUrls: ["./upload-process-file.component.scss"],
+  animations: [fadeAnimation]
 })
 export class UploadProcessFileComponent implements OnInit {
   @Input() file: File;
+  @Output("delete-me") deleteEvent = new EventEmitter();
+
+  fileImage: ImageFile = {
+    oldImgURL: "../../../assets/cat.jpg",
+    newImage: null
+  };
+
   uploaded = false;
   paused = false;
+  canceled = false;
+  vid: string;
 
   // form
-  videoData: IVideoData;
+  @Input() videoData: IVideoData;
   formValid = true;
 
   progress: Observable<number>;
@@ -30,7 +43,7 @@ export class UploadProcessFileComponent implements OnInit {
 
   constructor(
     private _userGG: UserGoogleService,
-    private storage: AngularFireStorage
+    private _storage: AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -48,15 +61,16 @@ export class UploadProcessFileComponent implements OnInit {
   }
 
   upload(file: File) {
-    const vid = this.videoData.uid + "-" + Date.now();
+    this.vid = this.videoData.uid + "-" + Date.now();
 
     // create a reference
-    this.ref = this.storage.ref("/videos/" + vid);
+    this.ref = this._storage.ref("/videos/" + this.vid);
     // upload
     this.task = this.ref.put(file);
     // this.task = this.storage.upload(path, file);
     // update the progress
     this.progress = this.task.percentageChanges();
+    // this.progress.subscribe(val => console.log(val));
     // get url
     this.task
       .snapshotChanges()
@@ -69,26 +83,34 @@ export class UploadProcessFileComponent implements OnInit {
       .subscribe();
   }
 
-  // pause continue buttons
+  // pause resume buttons
   interact() {
-    if (this.paused) this.continue();
+    if (this.paused) this.resume();
     else this.pause();
   }
 
   pause() {
     this.paused = true;
+    this.task.pause();
   }
 
-  continue() {
+  resume() {
     this.paused = false;
+    this.task.resume();
   }
 
   //cancel button
-  cancel() {}
+  cancel() {
+    this.canceled = true;
+    this.task.cancel();
 
-  // save button
+    setTimeout(() => {
+      this.deleteEvent.emit(true);
+    }, 500);
+  }
+
+  // update button
   changeValid(valid: boolean) {
-    console.log(valid);
     this.formValid = valid;
   }
 }

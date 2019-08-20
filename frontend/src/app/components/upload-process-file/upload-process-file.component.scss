@@ -2,6 +2,11 @@ $green: #27a02d;
 $light-green: #eef7ec;
 $dark-green: #1b4400;
 
+mat-card {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.5), 0 1px 1px 0 rgba(0, 0, 0, 0.4),
+    0 1px 3px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
 #container {
   width: 100%;
   height: auto;
@@ -43,7 +48,7 @@ mat-progress-bar {
   align-items: center;
 }
 
-button {
+#function-btn button {
   margin-left: 15px;
   padding: 0;
 }
@@ -67,15 +72,20 @@ button {
 #info-bar {
   display: flex;
   width: 100%;
+  justify-content: space-between;
 }
 
-#thumbnails {
-  display: flex;
-  width: 30%;
-  min-width: 300px;
-  background-color: white;
+app-upload-thumbnail-select {
+  height: auto;
+  width: 25%;
+  min-width: 324px;
 }
 
 app-video-info-form {
-  width: 70%;
+  width: 75%;
+  padding-left: 25px;
+}
+
+#function-btn p {
+  padding: 10px !important;
 }

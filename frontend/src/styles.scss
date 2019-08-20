@@ -25,7 +25,6 @@ a {
 // menu user
 .mat-menu-panel {
   max-width: 800px !important;
-  min-width: 300px !important;
   width: auto;
 }
 .mat-menu-item {
@@ -37,6 +36,7 @@ a {
   color: grey;
 }
 
+// snack bar
 .mat-snack-bar-container {
   background-color: $dark-green;
 }

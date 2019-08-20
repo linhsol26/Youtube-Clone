@@ -8,7 +8,7 @@ import { DatabaseService } from "src/app/services/database.service";
   styleUrls: ["./upload.component.scss"]
 })
 export class UploadComponent implements OnInit {
-  files: File[];
+  files: any[];
 
   constructor(private _userGG: UserGoogleService, private db: DatabaseService) {
     this.files = [];

@@ -1,0 +1,43 @@
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+mat-button-toggle-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+mat-button-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 324px;
+  width: 100%;
+  padding: 0;
+}
+
+mat-button-toggle-group img {
+  max-width: 300px;
+  max-height: 190px;
+  opacity: 0.4;
+}
+
+#upload-thumbnail-btn {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.checked {
+  opacity: 1 !important;
+}
+
+#thumbnail-spinner {
+  height: 150px;
+  display: flex;
+  align-items: center;
+}

@@ -1,6 +1,7 @@
 <div class="container">
   <app-upload-process-file
-    *ngFor="let file of files"
+    *ngFor="let file of files; let i = index"
     [file]="file"
+    (delete-me)="delete(i)"
   ></app-upload-process-file>
 </div>

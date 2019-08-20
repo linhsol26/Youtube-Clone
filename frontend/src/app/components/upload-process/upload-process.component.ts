@@ -6,8 +6,13 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./upload-process.component.scss"]
 })
 export class UploadProcessComponent implements OnInit {
-  @Input() files: any;
+  @Input() files: File[];
+
   constructor() {}
 
   ngOnInit() {}
+
+  delete(index) {
+    this.files.splice(index, 1);
+  }
 }

@@ -35,6 +35,7 @@ import { VideoInfoFormComponent } from "./components/video-info-form/video-info-
 import { ListCommentComponent } from "./components/list-comment/list-comment.component";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { UploadThumbnailSelectComponent } from './components/upload-thumbnail-select/upload-thumbnail-select.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -59,7 +60,8 @@ const routes: Routes = [
     DiskSizePipe,
     UploadProcessFileComponent,
     VideoInfoFormComponent,
-    ListCommentComponent
+    ListCommentComponent,
+    UploadThumbnailSelectComponent
   ],
   imports: [
     BrowserModule,
