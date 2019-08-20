@@ -31,6 +31,8 @@ import { DiskSizePipe } from './pipes/disk-size.pipe';
 import { UploadProcessFileComponent } from './components/upload-process-file/upload-process-file.component';
 import { VideoInfoFormComponent } from './components/video-info-form/video-info-form.component';
 
+import { ListCommentComponent } from './components/list-comment/list-comment.component';
+
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "upload", component: UploadComponent },
@@ -53,7 +55,8 @@ const routes: Routes = [
     TruncatePipe,
     DiskSizePipe,
     UploadProcessFileComponent,
-    VideoInfoFormComponent
+    VideoInfoFormComponent,
+    ListCommentComponent
   ],
   imports: [
     BrowserModule,

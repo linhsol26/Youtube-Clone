@@ -10,9 +10,82 @@
 
     </div>
     <div class=main>
+        <div>
+            <div class=main-title>
+                <mat-grid-list class=title cols=10>
+                    <mat-grid-tile rowspan=1 colspan=8>
+                        <div class="tiltle-div">
+                            <h2>Ironman in the infinity war</h2>
+                        </div>
+
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan=2>
+                        <div class="div-view">
+                            <h4>100.000 view</h4>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+            <mat-grid-list cols='10'>
+                <mat-grid-tile rowspan='1' colspan=1>
+                    <div class=owner-video-div>
+                        <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"
+                            alt="" />
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile rowspan=1 colspan=5>
+                    <div class=owner-video-name>
+                        <h3>Nguyen Vo Dang Cao</h3>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile rowspan='1' colspan=2>
+                    <div class="div-like-dislike">
+                        <mat-grid-list cols='2' colWidth=50% rowHeight=100%>
+                            <mat-grid-tile colspan='1'>
+                                <button class="button-like-dislike" mat-button>
+                                    <mat-icon>thumb_up</mat-icon>
+                                    <p>100</p>
+                                </button>
+                            </mat-grid-tile>
+                            <mat-grid-tile colspan='1'>
+                                <button class="button-like-dislike" mat-button>
+                                    <mat-icon>thumb_down</mat-icon>
+                                    <p>200</p>
+                                </button>
+                            </mat-grid-tile>
+
+                        </mat-grid-list>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile rowspan=1 colspan=1>
+                    <button mat-raised-button color=primary>Share</button>
+                </mat-grid-tile>
+
+                <mat-grid-tile rowspan=1 colspan=1>
+                    <button mat-raised-button color=warn>Report</button>
+                </mat-grid-tile>
+
+                <mat-grid-tile rowspan='2' colspan=10>
+                    <p class="des">Setting the gutter size
+                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
+                        are specified, px units are assumed. By default the gutter size is 1px.
+                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
+                        are specified, px units are assumed. By default the gutter size is 1px.
+                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
+                        are specified, px units are assumed. By default the gutter size is 1px.
+                        The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
+                        are specified, px units are assumed. By default the gutter size is 1px.
+                    </p>
+                </mat-grid-tile>
+
+            </mat-grid-list>
+        </div>
+
+
+        <!-- <div class=main>
         <div class=info-main>
             <mat-grid-list cols='10'>
-                <mat-grid-tile class="tile" rowspan='1' colspan=1>
+                <mat-grid-tile rowspan='1' colspan=1>
                     <div class=owner-video-div>
                         <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"
                             alt="" />
@@ -61,13 +134,33 @@
                         are specified, px units are assumed. By default the gutter size is 1px.
                         The gutter size can be set to any px, em, or rem value with the gutterSize property. If no units
                         are specified, px units are assumed. By default the gutter size is 1px.
-
-
                     </p>
                 </mat-grid-tile>
             </mat-grid-list>
+        </div> -->
+        <div class=comment-main>
+            <div class=comment-total>
+                <p>1000 Comment</p>
+            </div>
+            <div class=comment-input>
+                <form class=comment-form>
+                    <mat-form-field class=comment-form-field>
+                        <!-- <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"> -->
+                        <input matInput placeholder="Add Your Comment" type="text">
+                    </mat-form-field>
+                </form>
+                <div class="comment-button-cancel-accept">
+                    <button mat-raised-button style="margin-right: 20px">
+                        Cancle
+                    </button>
+                    <button mat-raised-button color='primary'>
+                        Accept
+                    </button>
+
+                </div>
+                <app-list-comment></app-list-comment>
+            </div>
         </div>
-        <div class=commentmain></div>
 
     </div>
 </div>
