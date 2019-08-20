@@ -1,9 +1,9 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { MatVideoComponent } from 'mat-video/app/video/video.component';
+import { Component, OnInit, Input, } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { ActivatedRoute} from '@angular/router'
-import { ReportComponent } from '../report/report.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+// import { ReportComponent } from '../report/report.component';
+// import { MatDialog } from '@angular/material/dialog';
+import { VideoUrlService } from '../../services/video-url.service';
 
 @Component({
   selector: 'app-watch',
@@ -11,25 +11,18 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./watch.component.scss']
 })
 
-
-
-
 export class WatchComponent implements OnInit {
 
-  //@ViewChild('videomain',{static:false}) matVideo : MatVideoComponent;
-  @Input() linkvideo;
-
-
   videomain: HTMLVideoElement;
-  param: any;
-  constructor( public user: UserService,private route: ActivatedRoute , public dialog: MatDialog) { 
-    this.param = this.route.snapshot.params['vid'];
-    console.log(this.param);
+  vid: any;
+  arrvd: any;
+  constructor(private VideoUrlService: VideoUrlService, public user: UserService, private route: ActivatedRoute) {
+    this.vid = this.route.snapshot.params['vid'];
   }
-  
- // firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c
 
-//info
+  // firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c
+
+  //info
   src = "https://firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c";
   view_total = '100.000';
   owner_video_name = 'Nguyen Vo Dang Cao';
@@ -39,44 +32,44 @@ export class WatchComponent implements OnInit {
   total_comment = "1090";
   button_disable = true;
 
-//report
-  name : string;
-  email: string;
-  rpcontent: string;
-openReport(){
-  const dialogReport = this.dialog.open(ReportComponent,{
-    width: '260px',
-    data : {name : this.name, email : this.email, rpcontent : this.rpcontent }
-  });
-  dialogReport.afterClosed().subscribe(result => {
-    console.log('closed');
-  })
-}
-//viewmore
+  //report
+  //   name : string;
+  //   email: string;
+  //   rpcontent: string;
+  //   openReport(){
+  //   const dialogReport = this.dialog.open(ReportComponent,{
+  //     width: '260px',
+  //     data : {name : this.name, email : this.email, rpcontent : this.rpcontent }
+  //   });
+  //   dialogReport.afterClosed().subscribe(result => {
+  //     console.log('closed');
+  //   })
+  // }
+  //viewmore
   off_viewmore = true;
   title_view = 'View more';
-  viewmore(){
-    if(this.off_viewmore){
+  viewmore() {
+    if (this.off_viewmore) {
       this.title_view = "Compact";
       this.off_viewmore = false;
-    }else{
+    } else {
       this.title_view = 'View more';
       this.off_viewmore = true;
     }
   }
   //button
-  availablebutton() {    
-      this.button_disable = false;   
+  availablebutton() {
+    this.button_disable = false;
   }
-  availablebutton_focusout(){
-    if(this.comment == "")this.button_disable = true; 
+  availablebutton_focusout() {
+    if (this.comment == "") this.button_disable = true;
     else this.availablebutton();
   }
-  Cancel(){
+  Cancel() {
     this.comment = "";
     this.button_disable = true;
   }
-  
+
   Accept() {
     //dosomething
     console.log(window.location.search);
@@ -86,11 +79,15 @@ openReport(){
   //input
   comment: string = "";
 
+  videos : any;
 
-  
   ngOnInit() {
-    //this.videomain = this.matVideo.getVideoTag();
-    //this.videomain.src = "video.mp4";
+    this.VideoUrlService.getVideos().subscribe(videos => {
+      console.log(videos);
+      this.videos = videos;
+      console.log(this.videos.url);
+      this.src = this.videos[0]['url'];
+    })
   }
 
 }
