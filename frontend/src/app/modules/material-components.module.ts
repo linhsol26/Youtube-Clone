@@ -18,7 +18,7 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
-  exports: [    
+  exports: [
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,

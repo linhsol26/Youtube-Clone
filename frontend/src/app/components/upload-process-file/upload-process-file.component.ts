@@ -2,12 +2,9 @@ import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { IVideoData } from "src/app/interfaces/video-form";
 import {
-  AngularFireStorageReference,
   AngularFireUploadTask,
   AngularFireStorage
 } from "@angular/fire/storage";
-import { Observable } from "rxjs";
-import { finalize } from "rxjs/operators";
 
 import { ImageFile } from "src/app/interfaces/image-file";
 import { fadeAnimation } from "src/app/animations";
@@ -42,7 +39,6 @@ export class UploadProcessFileComponent implements OnInit {
 
   constructor(
     private _userGG: UserGoogleService,
-    private _storage: AngularFireStorage,
     private _db: DatabaseService
   ) {}
 
@@ -96,7 +92,10 @@ export class UploadProcessFileComponent implements OnInit {
   cancel() {
     this.canceled = true;
     this.task.cancel();
+    this.deleteMe();
+  }
 
+  private deleteMe() {
     setTimeout(() => {
       this.deleteEvent.emit(true);
     }, 500);
@@ -105,5 +104,10 @@ export class UploadProcessFileComponent implements OnInit {
   // update button
   changeValid(valid: boolean) {
     this.formValid = valid;
+  }
+
+  update() {
+    // update database
+    this.deleteMe();
   }
 }

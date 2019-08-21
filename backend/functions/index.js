@@ -33,8 +33,6 @@ exports.genThumb = functions.https.onCall(data => {
   const tempThumbPath = path.join(os.tmpdir(), thumbPath);
   const tempDir = path.join(os.tmpdir(), "/videos");
 
-  console.log(tempThumbPath, tempDir);
-
   return mkdirp(tempDir)
     .then(() => {
       return generateFromVideo(video, tempThumbPath);

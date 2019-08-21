@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { DatabaseService } from "src/app/services/database.service";
+import { IVideo } from "src/app/interfaces/video";
 
 @Component({
   selector: "app-upload",
@@ -9,8 +10,9 @@ import { DatabaseService } from "src/app/services/database.service";
 })
 export class UploadComponent implements OnInit {
   files: any[];
+  video: any;
 
-  constructor(private _userGG: UserGoogleService, private db: DatabaseService) {
+  constructor(private _db: DatabaseService) {
     this.files = [];
   }
 

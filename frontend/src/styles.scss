@@ -49,3 +49,9 @@ a {
   background-color: white;
   color: $dark-green;
 }
+
+// button toggle
+div.mat-button-toggle-label-content {
+  position: static;
+  padding: 0 !important;
+}
