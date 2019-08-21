@@ -11,6 +11,7 @@ import { finalize } from "rxjs/operators";
 
 import { ImageFile } from "src/app/interfaces/image-file";
 import { fadeAnimation } from "src/app/animations";
+import { DatabaseService } from "src/app/services/database.service";
 
 @Component({
   selector: "app-upload-process-file",
@@ -22,8 +23,8 @@ export class UploadProcessFileComponent implements OnInit {
   @Input() file: File;
   @Output("delete-me") deleteEvent = new EventEmitter();
 
-  fileImage: ImageFile = {
-    oldImgURL: "../../../assets/cat.jpg",
+  imageFile: ImageFile = {
+    oldImgURL: "",
     newImage: null
   };
 
@@ -36,14 +37,13 @@ export class UploadProcessFileComponent implements OnInit {
   @Input() videoData: IVideoData;
   formValid = true;
 
-  progress: Observable<number>;
-  ref: AngularFireStorageReference;
+  progress: number;
   task: AngularFireUploadTask;
-  url: Observable<string>;
 
   constructor(
     private _userGG: UserGoogleService,
-    private _storage: AngularFireStorage
+    private _storage: AngularFireStorage,
+    private _db: DatabaseService
   ) {}
 
   ngOnInit() {
@@ -61,26 +61,19 @@ export class UploadProcessFileComponent implements OnInit {
   }
 
   upload(file: File) {
-    this.vid = this.videoData.uid + "-" + Date.now();
+    const data = this._db.uploadVideo(file, this.videoData.uid);
+    this.vid = data.vid;
+    this.task = data.task;
 
-    // create a reference
-    this.ref = this._storage.ref("/videos/" + this.vid);
-    // upload
-    this.task = this.ref.put(file);
-    // this.task = this.storage.upload(path, file);
-    // update the progress
-    this.progress = this.task.percentageChanges();
-    // this.progress.subscribe(val => console.log(val));
-    // get url
-    this.task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.uploaded = true;
-          this.url = this.ref.getDownloadURL();
-        })
-      )
-      .subscribe();
+    this.task.percentageChanges().subscribe(val => {
+      this.progress = val;
+      if (val == 100) {
+        this.uploaded = true;
+        this._db
+          .getThumbnailURL(this.vid)
+          .then(url => (this.imageFile.oldImgURL = url));
+      }
+    });
   }
 
   // pause resume buttons

@@ -5,7 +5,7 @@
 >
   <mat-progress-bar
     mode="determinate"
-    value="{{ progress | async | number: '1.0-0' }}"
+    value="{{ progress | number: '1.0-0' }}"
   ></mat-progress-bar>
 
   <div id="upload-bar">
@@ -13,7 +13,7 @@
       <p>
         {{ file.name | truncate }} - {{ file.size | diskSize }}
         <span *ngIf="!uploaded" id="percentage">
-          {{ progress | async | number: "1.0-0" }}%
+          {{ progress | number: "1.0-0" }}%
         </span>
 
         <span *ngIf="uploaded" id="percentage">
@@ -51,7 +51,6 @@
         mat-raised-button
         [disabled]="!formValid"
         color="primary"
-        (click)="update()"
       >
         Update
       </button>
@@ -59,7 +58,7 @@
   </div>
 
   <div id="info-bar">
-    <app-upload-thumbnail-select [image-file]="fileImage">
+    <app-upload-thumbnail-select [image-file]="imageFile">
     </app-upload-thumbnail-select>
 
     <app-video-info-form

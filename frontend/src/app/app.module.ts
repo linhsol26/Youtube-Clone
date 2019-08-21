@@ -32,11 +32,11 @@ import { TruncatePipe } from "./pipes/truncate.pipe";
 import { DiskSizePipe } from "./pipes/disk-size.pipe";
 import { UploadProcessFileComponent } from "./components/upload-process-file/upload-process-file.component";
 import { VideoInfoFormComponent } from "./components/video-info-form/video-info-form.component";
-import { from } from 'rxjs';
 import { ListCommentComponent } from "./components/list-comment/list-comment.component";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { UploadThumbnailSelectComponent } from './components/upload-thumbnail-select/upload-thumbnail-select.component';
+import { UploadThumbnailSelectComponent } from "./components/upload-thumbnail-select/upload-thumbnail-select.component";
+import { AngularFireFunctionsModule } from "@angular/fire/functions";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -74,9 +74,10 @@ const routes: Routes = [
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireFunctionsModule
   ],
-  providers: [UserService, UserGoogleService, DatabaseService,CommentsService],
+  providers: [UserService, UserGoogleService, DatabaseService, CommentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

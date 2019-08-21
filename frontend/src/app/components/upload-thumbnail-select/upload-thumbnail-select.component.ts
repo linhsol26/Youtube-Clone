@@ -34,7 +34,7 @@ export class UploadThumbnailSelectComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (event: Event) => {
-        this.imageURL = event.target.result;
+        this.imageURL = event.target["result"];
       };
 
       this.choice = "2";
@@ -51,11 +51,4 @@ export class UploadThumbnailSelectComponent implements OnInit {
     if (choice == "1") this.data.newImage = null;
     if (choice == "2") this.data.newImage = this.newImage;
   }
-
-  // update() {
-  //   this._storage
-  //     .ref("/videos/" + this.vid + "_384x216.thumbnail.jpg")
-  //     .getDownloadURL()
-  //     .subscribe(url => console.log(url));
-  // }
 }
