@@ -1,70 +1,77 @@
-<mat-card
-  [@fade]="canceled ? 'out' : 'in'"
-  id="container"
-  [class.overplay]="canceled"
->
-  <mat-progress-bar
-    mode="determinate"
-    value="{{ progress | number: '1.0-0' }}"
-  ></mat-progress-bar>
-
-  <div id="upload-bar">
-    <div id="process-bar">
-      <p>
-        {{ file.name | truncate }} - {{ file.size | diskSize }}
-        <span *ngIf="!uploaded" id="percentage">
-          {{ progress | number: "1.0-0" }}%
-        </span>
-
-        <span *ngIf="uploaded" id="percentage">
-          Done
-        </span>
-      </p>
-    </div>
-
-    <div id="function-btn">
-      <button
-        id="pause-btn"
-        *ngIf="!uploaded"
-        mat-raised-button
-        (click)="interact()"
-      >
-        {{ paused ? "Resume" : "Pause" }}
-      </button>
-
-      <button
-        id="delete-btn"
-        *ngIf="!uploaded"
-        mat-button
-        [matMenuTriggerFor]="menu"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="cancel()">Yes</button>
-        <button mat-menu-item>No</button>
-      </mat-menu>
-
-      <button
-        id="update-btn"
-        *ngIf="uploaded"
-        mat-raised-button
-        [disabled]="!formValid"
-        color="primary"
-        (click)="update()"
-      >
-        Update
-      </button>
-    </div>
+<div [@fade]="canceled ? 'out' : 'in'" id="wrapper">
+  <div id="overlay" *ngIf="finished">
+    <p>Updating...</p>
+      <mat-progress-bar mode="query"></mat-progress-bar>
   </div>
 
-  <div id="info-bar">
-    <app-upload-thumbnail-select [image-file]="imageFile">
-    </app-upload-thumbnail-select>
+  <mat-card id="container">
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ progress | number: '1.0-0' }}"
+    ></mat-progress-bar>
 
-    <app-video-info-form
-      [video-data]="videoData"
-      (form-validation)="changeValid($event)"
-    ></app-video-info-form>
-  </div>
-</mat-card>
+    <div id="upload-bar">
+      <div id="process-bar">
+        <p>
+          {{ file.name | truncate }} - {{ file.size | diskSize }}
+          <span *ngIf="!uploaded" id="percentage">
+            {{ progress | number: "1.0-0" }}%
+          </span>
+
+          <span *ngIf="uploaded" id="percentage">
+            Done
+          </span>
+        </p>
+      </div>
+
+      <div id="function-btn">
+        <button
+          id="pause-btn"
+          *ngIf="!uploaded"
+          mat-raised-button
+          (click)="interact()"
+        >
+          {{ paused ? "Resume" : "Pause" }}
+        </button>
+
+        <button
+          id="delete-btn"
+          *ngIf="!uploaded"
+          mat-button
+          [matMenuTriggerFor]="menu1"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+        <mat-menu #menu1="matMenu" xPosition="before">
+          <button mat-menu-item (click)="cancel()">Yes</button>
+          <button mat-menu-item>No</button>
+        </mat-menu>
+
+        <button
+          id="update-btn"
+          *ngIf="uploaded"
+          mat-raised-button
+          [disabled]="!formValid"
+          color="primary"
+          [matMenuTriggerFor]="menu2"
+        >
+          Update
+        </button>
+        <mat-menu #menu2="matMenu" xPosition="before">
+          <button mat-menu-item (click)="update()">Yes</button>
+          <button mat-menu-item>No</button>
+        </mat-menu>
+      </div>
+    </div>
+
+    <div id="info-bar">
+      <app-upload-thumbnail-select [image-file]="imageFile">
+      </app-upload-thumbnail-select>
+
+      <app-video-info-form
+        [video-data]="videoData"
+        (form-validation)="changeValid($event)"
+      ></app-video-info-form>
+    </div>
+  </mat-card>
+</div>

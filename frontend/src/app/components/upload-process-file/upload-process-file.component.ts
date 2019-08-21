@@ -1,14 +1,12 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { IVideoData } from "src/app/interfaces/video-form";
-import {
-  AngularFireUploadTask,
-  AngularFireStorage
-} from "@angular/fire/storage";
+import { AngularFireUploadTask } from "@angular/fire/storage";
 
 import { ImageFile } from "src/app/interfaces/image-file";
 import { fadeAnimation } from "src/app/animations";
 import { DatabaseService } from "src/app/services/database.service";
+import { User } from "src/app/interfaces/user";
 
 @Component({
   selector: "app-upload-process-file",
@@ -28,6 +26,7 @@ export class UploadProcessFileComponent implements OnInit {
   uploaded = false;
   paused = false;
   canceled = false;
+  finished = false;
   vid: string;
 
   // form
@@ -53,11 +52,11 @@ export class UploadProcessFileComponent implements OnInit {
       thumbnail: []
     };
 
-    this.upload(this.file);
+    this.upload(this.file, this._userGG.user);
   }
 
-  upload(file: File) {
-    const data = this._db.uploadVideo(file, this.videoData.uid);
+  upload(file: File, user: User) {
+    const data = this._db.uploadVideo(file, user);
     this.vid = data.vid;
     this.task = data.task;
 
@@ -108,6 +107,8 @@ export class UploadProcessFileComponent implements OnInit {
 
   update() {
     // update database
-    this.deleteMe();
+
+    this.finished = true;
+    // this.deleteMe();
   }
 }

@@ -15,6 +15,7 @@ import { Observable } from "rxjs";
 import { finalize } from "rxjs/operators";
 import { IVideo, IVideoForm } from "../interfaces/video";
 import { AngularFireFunctions } from "@angular/fire/functions";
+import { get } from "http";
 
 @Injectable({
   providedIn: "root"
@@ -49,26 +50,29 @@ export class DatabaseService {
   }
 
   // storage
-  uploadVideo(file: File, uid: string) {
-    const vid: string = uid + "-" + Date.now();
-
+  uploadVideo(file: File, user: User) {
+    const vid: string = user.uid + "-" + Date.now();
     const ref: AngularFireStorageReference = this._storage.ref(
       "/videos/" + vid
     );
     const task: AngularFireUploadTask = ref.put(file);
-
-    // get url
-    // this.task
-    //   .snapshotChanges()
-    //   .pipe(
-    //     finalize(() => {
-    //       this.uploaded = true;
-    //       this.url = this.ref.getDownloadURL();
-    //     })
-    //   )
-    //   .subscribe();
+    // this.getVideoURL(ref, task).then(val => console.log(val));
 
     return { vid, task };
+  }
+
+  getVideoURL(ref: AngularFireStorageReference, task: AngularFireUploadTask) {
+    let url: Promise<any>;
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(async () => {
+          url = await ref.getDownloadURL().toPromise();
+        })
+      )
+      .subscribe();
+
+    return url;
   }
 
   // thumbnails
