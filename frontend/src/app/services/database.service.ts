@@ -5,6 +5,7 @@ import {
   AngularFirestoreDocument
 } from "@angular/fire/firestore";
 import { IVideo, IVideoForm } from "../interfaces/video";
+import {Comments} from '../interfaces/comments'
 
 @Injectable({
   providedIn: "root"
@@ -35,4 +36,14 @@ export class DatabaseService {
   }
 
   updateVideoInfo(data: IVideoForm) {}
+  
+  addComment (comment: Comments){
+    const commentRef : AngularFirestoreDocument<any> = this._afs
+    .collection ('comments')
+    .doc(comment.cid);
+    commentRef.set(comment);
+  }
+  
+  
+  
 }

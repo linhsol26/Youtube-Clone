@@ -69,7 +69,10 @@ video{
 .div-view{
   height: 100%;
   width: 100%;
-  margin: 15% 0 0 40%;
+  margin: 15% 2% 0 40%;
+}
+.div-view h4{
+  text-align: right;
 }
 .tiltle-div{
   height: 100%;
@@ -85,17 +88,19 @@ video{
   width: 100%;
   height: 100%;
 }
+
 .button-like-dislike{
   height: 50%;
   width: 70%;
   padding: 0;
 }
+
 .button-like-dislike p {
   display: inline-block;
   padding-left: 5px;
 }
 .des{
-  height: 62px;
+  max-height: 62px;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -112,12 +117,16 @@ video{
   width: 100;
   height: auto;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end;  
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(82, 82, 82, 0.8);
 }
 .view-more{
  
   color: rgb(124, 124, 124);
   padding-right: 15px;
+
 }
 .view-more:hover{
   cursor: pointer;

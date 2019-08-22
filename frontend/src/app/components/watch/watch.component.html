@@ -4,7 +4,8 @@
             <source src="https://firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c" type="video/mp4">
 
         </mat-video> -->
-        <video controls="true" src="{{src}}"></video>
+        <!-- <video controls="true" src="{{src}}"></video> -->
+        <app-watch-video [src] = "src"></app-watch-video>
 
 
     </div>
@@ -14,7 +15,7 @@
                 <mat-grid-list class=title cols=10>
                     <mat-grid-tile rowspan=1 colspan=8>
                         <div class="tiltle-div">
-                            <h2>Ironman in the infinity war</h2>
+                            <h2>{{title}}</h2>
                         </div>
 
                     </mat-grid-tile>
@@ -28,13 +29,13 @@
             <mat-grid-list cols='10'>
                 <mat-grid-tile rowspan='1' colspan=1>
                     <div class=owner-video-div>
-                        <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"
+                        <img src="{{owner_avatarURL}}"
                             alt="" />
                     </div>
                 </mat-grid-tile>
                 <mat-grid-tile rowspan=1 colspan=5>
                     <div class=owner-video-name>
-                        <h3>{{owner_video_name}}</h3>
+                        <h3>{{owner_name}}</h3>
                     </div>
                 </mat-grid-tile>
                 <mat-grid-tile rowspan='1' colspan=2>
@@ -74,7 +75,7 @@
         </div>
         <p [className] = "off_viewmore ? 'des' : 'desfull'"> {{description}}</p>
         <div class = div-view-more>
-        <p class = "view-more" (click) = viewmore()>{{title_view}}</p>
+        <p [className] = "'view-more'" (click) = viewmore()>{{title_view}}</p>
         </div>
         <div class=comment-main>
             <div class=comment-total>
@@ -98,7 +99,7 @@
                 </div>
                
             </div>
-            <app-list-comment></app-list-comment>
+            <app-list-comment [comment] = "comment_id"></app-list-comment>
         </div>
 
     </div>
