@@ -1,16 +1,13 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { IVideoData } from "src/app/interfaces/video-form";
-import {
-  AngularFireStorageReference,
-  AngularFireUploadTask,
-  AngularFireStorage
-} from "@angular/fire/storage";
-import { Observable } from "rxjs";
-import { finalize } from "rxjs/operators";
+import { AngularFireUploadTask } from "@angular/fire/storage";
 
 import { ImageFile } from "src/app/interfaces/image-file";
 import { fadeAnimation } from "src/app/animations";
+import { DatabaseService } from "src/app/services/database.service";
+import { User } from "src/app/interfaces/user";
+import { getVideoTemplate } from "src/app/interfaces/video";
 
 @Component({
   selector: "app-upload-process-file",
@@ -22,28 +19,27 @@ export class UploadProcessFileComponent implements OnInit {
   @Input() file: File;
   @Output("delete-me") deleteEvent = new EventEmitter();
 
-  fileImage: ImageFile = {
-    oldImgURL: "../../../assets/cat.jpg",
+  imageFile: ImageFile = {
+    oldImgURL: "",
     newImage: null
   };
 
   uploaded = false;
   paused = false;
   canceled = false;
+  finished = false;
   vid: string;
 
   // form
   @Input() videoData: IVideoData;
   formValid = true;
 
-  progress: Observable<number>;
-  ref: AngularFireStorageReference;
+  progress: number;
   task: AngularFireUploadTask;
-  url: Observable<string>;
 
   constructor(
     private _userGG: UserGoogleService,
-    private _storage: AngularFireStorage
+    private _db: DatabaseService
   ) {}
 
   ngOnInit() {
@@ -57,30 +53,28 @@ export class UploadProcessFileComponent implements OnInit {
       thumbnail: []
     };
 
-    this.upload(this.file);
+    this.upload(this.file, this._userGG.user);
   }
 
-  upload(file: File) {
-    this.vid = this.videoData.uid + "-" + Date.now();
+  upload(file: File, user: User) {
+    const data = this._db.uploadVideo(file, user, (url: string) =>
+      this.setBasicInfo(url)
+    );
+    this.task = data.task;
+    this.vid = data.vid;
 
-    // create a reference
-    this.ref = this._storage.ref("/videos/" + this.vid);
-    // upload
-    this.task = this.ref.put(file);
-    // this.task = this.storage.upload(path, file);
-    // update the progress
-    this.progress = this.task.percentageChanges();
-    // this.progress.subscribe(val => console.log(val));
-    // get url
-    this.task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.uploaded = true;
-          this.url = this.ref.getDownloadURL();
-        })
-      )
-      .subscribe();
+    data.percentage.subscribe(async val => {
+      this.progress = val;
+      if (val == 100) {
+        this.uploaded = true;
+        this.imageFile.oldImgURL = await this._db.getThumbnailURL(this.vid);
+      }
+    });
+  }
+
+  setBasicInfo(url: string) {
+    const info = getVideoTemplate(this._userGG.user, url);
+    this._db.setBasicVideoInfo(info);
   }
 
   // pause resume buttons
@@ -103,7 +97,10 @@ export class UploadProcessFileComponent implements OnInit {
   cancel() {
     this.canceled = true;
     this.task.cancel();
+    this.deleteMe();
+  }
 
+  private deleteMe() {
     setTimeout(() => {
       this.deleteEvent.emit(true);
     }, 500);
@@ -112,5 +109,12 @@ export class UploadProcessFileComponent implements OnInit {
   // update button
   changeValid(valid: boolean) {
     this.formValid = valid;
+  }
+
+  update() {
+    // update database
+
+    this.finished = true;
+    // this.deleteMe();
   }
 }

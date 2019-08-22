@@ -1,3 +1,7 @@
+$green: #27a02d;
+$light-green: #eef7ec;
+$dark-green: #1b4400;
+
 #container {
   display: flex;
   justify-content: center;
@@ -16,15 +20,21 @@ mat-button-toggle {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 324px;
-  width: 100%;
   padding: 0;
+  width: 100%;
+  min-width: 300px;
+  min-height: 150px;
+  box-sizing: border-box;
 }
 
 mat-button-toggle-group img {
   max-width: 300px;
   max-height: 190px;
-  opacity: 0.4;
+  opacity: 0.3;
+}
+
+mat-button-toggle-group img:hover {
+  opacity: 1;
 }
 
 #upload-thumbnail-btn {
@@ -38,6 +48,20 @@ mat-button-toggle-group img {
 
 #thumbnail-spinner {
   height: 150px;
+  width: 100%;
   display: flex;
   align-items: center;
+}
+
+// check icon
+.check-icon {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  height: auto;
+  width: auto;
+  font-size: 30px;
+  color: $dark-green;
+  background-color: white;
+  border-radius: 15px;
 }

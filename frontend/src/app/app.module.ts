@@ -37,6 +37,7 @@ import { ListCommentComponent } from "./components/list-comment/list-comment.com
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UploadThumbnailSelectComponent } from './components/upload-thumbnail-select/upload-thumbnail-select.component';
 import { WatchVideoComponent } from './components/watch-video/watch-video.component';
+import { AngularFireFunctionsModule } from "@angular/fire/functions";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -75,9 +76,10 @@ const routes: Routes = [
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireFunctionsModule
   ],
-  providers: [UserService, UserGoogleService, DatabaseService,CommentsService],
+  providers: [UserService, UserGoogleService, DatabaseService, CommentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

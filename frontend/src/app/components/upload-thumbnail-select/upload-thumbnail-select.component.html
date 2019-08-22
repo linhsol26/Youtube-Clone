@@ -5,9 +5,14 @@
     (change)="onSelect(group.value)"
   >
     <mat-button-toggle value="1" #toggle1>
+      <mat-icon *ngIf="toggle1.checked && data.oldImgURL" class="check-icon"
+        >check_circle</mat-icon
+      >
+
       <div id="thumbnail-spinner" *ngIf="!data.oldImgURL">
         <mat-spinner [strokeWidth]="5" [diameter]="50"></mat-spinner>
       </div>
+
       <img
         *ngIf="data.oldImgURL"
         src="{{ data.oldImgURL }}"
@@ -28,6 +33,9 @@
     </button>
 
     <mat-button-toggle *ngIf="uploaded" value="2" #toggle2>
+      <mat-icon *ngIf="toggle2.checked" class="check-icon"
+        >check_circle</mat-icon
+      >
       <img
         *ngIf="imageURL"
         src="{{ imageURL }}"

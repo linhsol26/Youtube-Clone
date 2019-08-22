@@ -4,6 +4,15 @@ import {
   AngularFirestore,
   AngularFirestoreDocument
 } from "@angular/fire/firestore";
+
+import {
+  AngularFireStorageReference,
+  AngularFireUploadTask,
+  AngularFireStorage
+} from "@angular/fire/storage";
+
+import { finalize } from "rxjs/operators";
+import { AngularFireFunctions } from "@angular/fire/functions";
 import { IVideo, IVideoForm } from "../interfaces/video";
 import {Comments} from '../interfaces/comments'
 
@@ -11,7 +20,11 @@ import {Comments} from '../interfaces/comments'
   providedIn: "root"
 })
 export class DatabaseService {
-  constructor(private _afs: AngularFirestore) {}
+  constructor(
+    private _afs: AngularFirestore,
+    private _storage: AngularFireStorage,
+    private _afn: AngularFireFunctions
+  ) {}
 
   checkUser(user: User): boolean {
     const userRef: AngularFirestoreDocument<any> = this._afs
@@ -28,13 +41,42 @@ export class DatabaseService {
     return false;
   }
 
-  async setVideoInfo(video: IVideo) {
-    await this._afs
+  setBasicVideoInfo(video: IVideo) {
+    return this._afs
       .collection("videos")
       .doc(video.vid)
       .set(video);
   }
 
+  // storage
+  uploadVideo(file: File, user: User, doWhenUploaded: Function) {
+    const vid: string = user.uid + "-" + Date.now();
+
+    const ref: AngularFireStorageReference = this._storage.ref(
+      "/videos/" + vid
+    );
+    const task: AngularFireUploadTask = ref.put(file);
+
+    const percentage = task.percentageChanges();
+
+    //get url
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          ref.getDownloadURL().subscribe(url => doWhenUploaded(url));
+        })
+      )
+      .subscribe();
+
+    return { task, vid, percentage };
+  }
+
+  // thumbnails
+  getThumbnailURL(vid: string) {
+    const genThumb = this._afn.httpsCallable("genThumb");
+    return genThumb({ vid: vid }).toPromise();
+  }
   updateVideoInfo(data: IVideoForm) {}
   
   addComment (comment: Comments){
@@ -43,7 +85,4 @@ export class DatabaseService {
     .doc(comment.cid);
     commentRef.set(comment);
   }
-  
-  
-  
 }

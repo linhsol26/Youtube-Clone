@@ -2,9 +2,42 @@ $green: #27a02d;
 $light-green: #eef7ec;
 $dark-green: #1b4400;
 
+#wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+#overlay {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border-radius: 5px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#overlay p {
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+
+#overlay mat-progress-bar {
+  height: 6px;
+}
+
 mat-card {
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.5), 0 1px 1px 0 rgba(0, 0, 0, 0.4),
     0 1px 3px 0 rgba(0, 0, 0, 0.4) !important;
+  box-sizing: border-box;
 }
 
 #container {
@@ -27,7 +60,7 @@ mat-card {
   width: 75%;
 }
 
-mat-progress-bar {
+mat-card mat-progress-bar {
   height: 10px;
   border-radius: 5px;
 }
@@ -77,12 +110,12 @@ mat-progress-bar {
 
 app-upload-thumbnail-select {
   height: auto;
-  width: 25%;
-  min-width: 324px;
+  width: 30%;
+  min-width: 300px;
 }
 
 app-video-info-form {
-  width: 75%;
+  width: 70%;
   padding-left: 25px;
 }
 

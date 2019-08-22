@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { UserGoogleService } from "src/app/services/user-google.service";
 import { DatabaseService } from "src/app/services/database.service";
 
 @Component({
@@ -10,7 +9,7 @@ import { DatabaseService } from "src/app/services/database.service";
 export class UploadComponent implements OnInit {
   files: any[];
 
-  constructor(private _userGG: UserGoogleService, private db: DatabaseService) {
+  constructor(private _db: DatabaseService) {
     this.files = [];
   }
 
