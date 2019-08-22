@@ -11,11 +11,9 @@ import {
   AngularFireStorage
 } from "@angular/fire/storage";
 
-import { Observable } from "rxjs";
 import { finalize } from "rxjs/operators";
-import { IVideo, IVideoForm } from "../interfaces/video";
+import { IVideo } from "../interfaces/video";
 import { AngularFireFunctions } from "@angular/fire/functions";
-import { get } from "http";
 
 @Injectable({
   providedIn: "root"
@@ -42,44 +40,40 @@ export class DatabaseService {
     return false;
   }
 
-  async setVideoInfo(video: IVideo) {
-    await this._afs
+  setBasicVideoInfo(video: IVideo) {
+    return this._afs
       .collection("videos")
       .doc(video.vid)
       .set(video);
   }
 
   // storage
-  uploadVideo(file: File, user: User) {
+  uploadVideo(file: File, user: User, doWhenUploaded: Function) {
     const vid: string = user.uid + "-" + Date.now();
+
     const ref: AngularFireStorageReference = this._storage.ref(
       "/videos/" + vid
     );
     const task: AngularFireUploadTask = ref.put(file);
-    // this.getVideoURL(ref, task).then(val => console.log(val));
 
-    return { vid, task };
-  }
+    const percentage = task.percentageChanges();
 
-  getVideoURL(ref: AngularFireStorageReference, task: AngularFireUploadTask) {
-    let url: Promise<any>;
+    //get url
     task
       .snapshotChanges()
       .pipe(
-        finalize(async () => {
-          url = await ref.getDownloadURL().toPromise();
+        finalize(() => {
+          ref.getDownloadURL().subscribe(url => doWhenUploaded(url));
         })
       )
       .subscribe();
 
-    return url;
+    return { task, vid, percentage };
   }
 
   // thumbnails
-  async getThumbnailURL(vid: string) {
+  getThumbnailURL(vid: string) {
     const genThumb = this._afn.httpsCallable("genThumb");
-    return await genThumb({ vid: vid }).toPromise();
+    return genThumb({ vid: vid }).toPromise();
   }
-
-  updateVideoInfo(data: IVideoForm) {}
 }

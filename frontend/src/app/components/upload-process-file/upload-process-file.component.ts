@@ -7,6 +7,7 @@ import { ImageFile } from "src/app/interfaces/image-file";
 import { fadeAnimation } from "src/app/animations";
 import { DatabaseService } from "src/app/services/database.service";
 import { User } from "src/app/interfaces/user";
+import { getVideoTemplate } from "src/app/interfaces/video";
 
 @Component({
   selector: "app-upload-process-file",
@@ -56,19 +57,24 @@ export class UploadProcessFileComponent implements OnInit {
   }
 
   upload(file: File, user: User) {
-    const data = this._db.uploadVideo(file, user);
-    this.vid = data.vid;
+    const data = this._db.uploadVideo(file, user, (url: string) =>
+      this.setBasicInfo(url)
+    );
     this.task = data.task;
+    this.vid = data.vid;
 
-    this.task.percentageChanges().subscribe(val => {
+    data.percentage.subscribe(async val => {
       this.progress = val;
       if (val == 100) {
         this.uploaded = true;
-        this._db
-          .getThumbnailURL(this.vid)
-          .then(url => (this.imageFile.oldImgURL = url));
+        this.imageFile.oldImgURL = await this._db.getThumbnailURL(this.vid);
       }
     });
+  }
+
+  setBasicInfo(url: string) {
+    const info = getVideoTemplate(this._userGG.user, url);
+    this._db.setBasicVideoInfo(info);
   }
 
   // pause resume buttons
