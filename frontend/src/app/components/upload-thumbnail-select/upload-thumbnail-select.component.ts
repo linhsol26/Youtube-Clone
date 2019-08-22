@@ -23,25 +23,6 @@ export class UploadThumbnailSelectComponent implements OnInit {
   getFile($event: any) {
     const file = $event.target.files[0];
 
-<<<<<<< HEAD
-  //   if (!this.fileTypes.includes(file.type)) {
-  //     this.openSnackBar("Invalid image!", "Close");
-  //   } else if (file.size > 2097152) {
-  //     this.openSnackBar("Max 2MB image size!", "Close");
-  //   } else {
-  //     this.uploaded = true;
-  //     this.newImage = file;
-
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = (event: Event) => {
-  //       this.imageURL = event.target.result;
-  //     };
-
-  //     this.choice = "2";
-  //   }
-   }
-=======
     if (!this.fileTypes.includes(file.type)) {
       this.openSnackBar("Invalid image!", "Close");
     } else if (file.size > 2097152) {
@@ -59,7 +40,6 @@ export class UploadThumbnailSelectComponent implements OnInit {
       this.choice = "2";
     }
   }
->>>>>>> 09855c7257e43cd173de0f71f8edce571863b485
 
   private openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {

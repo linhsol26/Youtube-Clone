@@ -1,7 +1,7 @@
 
 export interface Comments {
     vid : string; 
-    cid : string;
+    cid ?: string;
     uid : string;
     content: string;
     time: number;

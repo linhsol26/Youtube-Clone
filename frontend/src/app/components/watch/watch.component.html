@@ -99,7 +99,7 @@
                 </div>
                
             </div>
-            <app-list-comment [comment] = "comment_id"></app-list-comment>
+            <app-list-comment *ngFor="let comment of comment_id" [comment] = comment></app-list-comment>
         </div>
 
     </div>

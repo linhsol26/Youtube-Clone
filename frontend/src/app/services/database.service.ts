@@ -6,6 +6,7 @@ import {
 } from "@angular/fire/firestore";
 
 import {
+
   AngularFireStorageReference,
   AngularFireUploadTask,
   AngularFireStorage
@@ -13,8 +14,9 @@ import {
 
 import { finalize } from "rxjs/operators";
 import { AngularFireFunctions } from "@angular/fire/functions";
-import { IVideo, IVideoForm } from "../interfaces/video";
-import {Comments} from '../interfaces/comments'
+import { IVideo, /*IVideoForm*/ } from "../interfaces/video";
+import { Comments } from '../interfaces/comments'
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: "root"
@@ -24,7 +26,7 @@ export class DatabaseService {
     private _afs: AngularFirestore,
     private _storage: AngularFireStorage,
     private _afn: AngularFireFunctions
-  ) {}
+  ) { }
 
   checkUser(user: User): boolean {
     const userRef: AngularFirestoreDocument<any> = this._afs
@@ -77,12 +79,15 @@ export class DatabaseService {
     const genThumb = this._afn.httpsCallable("genThumb");
     return genThumb({ vid: vid }).toPromise();
   }
-  updateVideoInfo(data: IVideoForm) {}
-  
-  addComment (comment: Comments){
-    const commentRef : AngularFirestoreDocument<any> = this._afs
-    .collection ('comments')
-    .doc(comment.cid);
-    commentRef.set(comment);
+  // updateVideoInfo(data: IVideoForm) {}
+
+  addComment(comment: Comments) {
+    this._afs
+      .collection('comments')
+      .add(comment).then((comment_add) => {
+        console.log(comment_add.id);
+        this._afs.collection('videos').doc(comment.vid).update({cid : firebase.firestore.FieldValue.arrayUnion(comment_add.id)});
+      });
+
   }
 }

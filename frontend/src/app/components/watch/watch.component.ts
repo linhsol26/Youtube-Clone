@@ -101,7 +101,6 @@ export class WatchComponent implements OnInit {
   addnewcomment() {
     this.comment_interface = {
       uid: this.current_user.user.uid,
-      cid: this.current_user.user.uid + this.vid + Date.now(),
       vid: this.vid,
       content: this.comment,
       likes: 0,
@@ -136,14 +135,14 @@ export class WatchComponent implements OnInit {
         this.videoinfo = data.payload.data();
         //console.log(this.videoinfo);
         this.src = this.videoinfo['url'];
-        console.log(this.src);
+        //console.log(this.src);
         this.like_count = this.videoinfo['likes'];
         this.dislike_count = this.videoinfo['dislikes'];
         this.description = this.videoinfo['description'];
         this.title = this.videoinfo['title'];
         this.view_total = this.videoinfo['views'];
         this.comment_id = this.videoinfo['cid'];
-        //console.log(typeof(data.data()['cid']));
+        console.log(this.comment_id);
         //after get uid going to do take 
         this.firebase.collection('users').doc(this.videoinfo['uid']).get()
           .toPromise()
