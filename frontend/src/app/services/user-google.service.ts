@@ -41,13 +41,18 @@ export class UserGoogleService {
       lastTime: Date.now(),
       name: this._userGG.displayName,
       email: this._userGG.email,
-      avatarURL: this._userGG.photoURL
+      avatarURL: this._userGG.photoURL,
+      videos: [],
+      likes: [],
+      dislikes: []
     };
     this.db.checkUser(this.user);
   }
 
   signOut() {
     this._afAuth.auth.signOut().then(() => {
+      this.user = null;
+      this._userGG = null;
       this._router.navigate(["/"]);
     });
   }

@@ -17,6 +17,7 @@ export class WatchComponent implements OnInit {
   vid = 'M4YWrvD8D8W9m8idhTSO6rL7r2T2-1566194943916';
   comment_interface: Comments;
   comment_id;
+  data_have = false;
   constructor(
     private firebase: AngularFirestore,
     //private VideoUrlService: VideoUrlService,
@@ -118,7 +119,7 @@ export class WatchComponent implements OnInit {
     this.button_disable = true;
   }
 
-
+  comment_list = false;
   //videos : any;
 
   ngOnInit() {
@@ -142,6 +143,7 @@ export class WatchComponent implements OnInit {
         this.title = this.videoinfo['title'];
         this.view_total = this.videoinfo['views'];
         this.comment_id = this.videoinfo['cid'];
+        this.comment_list = true;
         console.log(this.comment_id);
         //after get uid going to do take 
         this.firebase.collection('users').doc(this.videoinfo['uid']).get()
@@ -151,6 +153,7 @@ export class WatchComponent implements OnInit {
             //console.log(this.userinfo_owner);
             this.owner_avatarURL = this.userinfo_owner['avatarURL'];
             this.owner_name = this.userinfo_owner['name'];
+            this.data_have = true;
           })
       })
       

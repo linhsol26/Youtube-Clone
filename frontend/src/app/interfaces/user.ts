@@ -5,4 +5,7 @@ export interface User {
   name: string;
   email: string;
   avatarURL: string;
+  videos: string[];
+  likes : string[];
+  dislikes: string[];
 }

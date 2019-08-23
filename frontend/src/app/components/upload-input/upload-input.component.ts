@@ -23,16 +23,15 @@ export class UploadInputComponent implements OnInit {
       if (this.fileTypes.includes(file.type)) {
         this.files.push(file);
       } else {
-        this.openSnackBar("Invalid files!", "Close");
+        this.openSnackBar("Invalid files!", "OK");
         this.files = [];
         break;
       }
     }
   }
-  
+
   deleteFile(index: number) {
     this.files.splice(index, 1);
-    console.log(this.files);
   }
 
   startUploading() {

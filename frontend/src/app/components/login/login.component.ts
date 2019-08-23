@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { UserGoogleService } from "src/app/services/user-google.service";
+import { ThemeService } from "src/app/services/theme.service";
 
 @Component({
   selector: "app-login",
@@ -16,11 +17,12 @@ export class LoginComponent implements OnInit {
       matIcon: "keyboard_return"
     }
   ];
-
-  constructor(public userGG: UserGoogleService) {}
+  constructor(public userGG: UserGoogleService, private _theme: ThemeService) {}
   ngOnInit() {}
 
   toProfile() {}
 
-  changeTheme() {}
+  changeTheme() {
+    this._theme.dark = !this._theme.dark;
+  }
 }

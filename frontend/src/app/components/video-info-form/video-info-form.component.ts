@@ -17,15 +17,7 @@ export class VideoInfoFormComponent implements OnInit {
     { key: "public", name: "Public" }
   ];
 
-  constructor() {
-    this.videoData = {
-      title: "A video of Kai",
-      privacy: "private",
-      tags: ["amazing"],
-      description: "",
-      thumbnail: []
-    };
-  }
+  constructor() {}
   ngOnInit() {}
 
   // select

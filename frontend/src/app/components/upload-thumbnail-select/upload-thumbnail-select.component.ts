@@ -24,7 +24,7 @@ export class UploadThumbnailSelectComponent implements OnInit {
     const file = $event.target.files[0];
 
     if (!this.fileTypes.includes(file.type)) {
-      this.openSnackBar("Invalid image!", "Close");
+      this.openSnackBar("Invalid image!", "OK");
     } else if (file.size > 2097152) {
       this.openSnackBar("Max 2MB image size!", "Close");
     } else {

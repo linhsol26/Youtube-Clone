@@ -1,13 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CommentsService } from '../../services/comments.service';
-import { Comments } from '../../interfaces/comments';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { User } from 'firebase';
-
+import { Component, OnInit, Input } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { User } from "src/app/interfaces/user";
+import { Comments } from "src/app/interfaces/comments";
 @Component({
-  selector: 'app-list-comment',
-  templateUrl: './list-comment.component.html',
-  styleUrls: ['./list-comment.component.scss']
+  selector: "app-list-comment",
+  templateUrl: "./list-comment.component.html",
+  styleUrls: ["./list-comment.component.scss"]
 })
 export class ListCommentComponent implements OnInit {
   @Input() comment;
@@ -17,21 +15,28 @@ export class ListCommentComponent implements OnInit {
 
   }
   data_have = false;
+
   ngOnInit() {
-    this.firestore.collection('comments').doc(this.comment).get()
-      .subscribe(value => {
-        this.current_comment = value.data() as Comments;
-        console.log(this.current_comment);
-        this.firestore.collection('users').doc(this.current_comment['uid']).get()
-          .subscribe(value => {
-            this.user_comment = value.data() as User;
-            console.log(this.user_comment);
-          })
-      })
+    this.firestore
+    .collection("comments")
+    .doc(this.comment)
+    .get()
+    .subscribe(value => {
+      this.current_comment = value.data() as Comments;
+      console.log(this.current_comment);
+      this.firestore
+        .collection("users")
+        .doc(this.current_comment["uid"])
+        .get()
+        .subscribe(value => {
+          this.user_comment = value.data() as User;
+          this.data_have = true;
+          console.log(this.user_comment);
+        });
+    });
   }
+
   ngOnChanges(): void {
-
-
 
 
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
@@ -51,6 +56,4 @@ export class ListCommentComponent implements OnInit {
 
     //}
   }
-
 }
-

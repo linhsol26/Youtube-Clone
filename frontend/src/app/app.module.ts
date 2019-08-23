@@ -35,9 +35,10 @@ import { VideoInfoFormComponent } from "./components/video-info-form/video-info-
 import { ListCommentComponent } from "./components/list-comment/list-comment.component";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { UploadThumbnailSelectComponent } from './components/upload-thumbnail-select/upload-thumbnail-select.component';
-import { WatchVideoComponent } from './components/watch-video/watch-video.component';
+import { UploadThumbnailSelectComponent } from "./components/upload-thumbnail-select/upload-thumbnail-select.component";
+import { WatchVideoComponent } from "./components/watch-video/watch-video.component";
 import { AngularFireFunctionsModule } from "@angular/fire/functions";
+import { ThemeService } from "./services/theme.service";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -79,7 +80,13 @@ const routes: Routes = [
     AngularFireStorageModule,
     AngularFireFunctionsModule
   ],
-  providers: [UserService, UserGoogleService, DatabaseService, CommentsService],
+  providers: [
+    UserService,
+    UserGoogleService,
+    DatabaseService,
+    CommentsService,
+    ThemeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

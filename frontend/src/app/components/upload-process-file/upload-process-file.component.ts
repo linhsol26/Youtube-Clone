@@ -6,7 +6,6 @@ import { AngularFireUploadTask } from "@angular/fire/storage";
 import { ImageFile } from "src/app/interfaces/image-file";
 import { fadeAnimation } from "src/app/animations";
 import { DatabaseService } from "src/app/services/database.service";
-import { User } from "src/app/interfaces/user";
 import { getVideoTemplate } from "src/app/interfaces/video";
 
 @Component({
@@ -26,9 +25,10 @@ export class UploadProcessFileComponent implements OnInit {
 
   uploaded = false;
   paused = false;
-  canceled = false;
-  finished = false;
-  vid: string;
+  fadeOut = false;
+  finished = false; // when the user press the update button
+  thumbGen = false;
+  timestamp: number;
 
   // form
   @Input() videoData: IVideoData;
@@ -40,41 +40,50 @@ export class UploadProcessFileComponent implements OnInit {
   constructor(
     private _userGG: UserGoogleService,
     private _db: DatabaseService
-  ) {}
+  ) {
+    this.timestamp = Date.now();
+  }
 
   ngOnInit() {
-    // add an observable here to listen to the user value
     this.videoData = {
-      uid: this._userGG.user.uid,
+      vid: this._userGG.user.uid + "-" + this.timestamp,
       title: "A video of " + this._userGG.user.name,
       privacy: "private",
       tags: ["amazing"],
       description: "",
-      thumbnail: []
+      thumbnailURL: ""
     };
 
-    this.upload(this.file, this._userGG.user);
+    this.upload(this.file);
   }
 
-  upload(file: File, user: User) {
-    const data = this._db.uploadVideo(file, user, (url: string) =>
+  upload(file: File) {
+    const data = this._db.uploadVideo(this.videoData.vid, file, (url: string) =>
       this.setBasicInfo(url)
     );
     this.task = data.task;
-    this.vid = data.vid;
 
     data.percentage.subscribe(async val => {
       this.progress = val;
       if (val == 100) {
         this.uploaded = true;
-        this.imageFile.oldImgURL = await this._db.getThumbnailURL(this.vid);
+        this.imageFile.oldImgURL = await this._db.getThumbnailURL(
+          this.videoData.vid
+        );
+        this.thumbGen = true;
       }
     });
   }
 
   setBasicInfo(url: string) {
-    const info = getVideoTemplate(this._userGG.user, url);
+    const info = getVideoTemplate(
+      this.videoData,
+      this._userGG.user,
+      this.timestamp,
+      url
+    );
     this._db.setBasicVideoInfo(info);
+    this._db.addVideoToUser(this._userGG.user.uid, this.videoData.vid);
   }
 
   // pause resume buttons
@@ -95,12 +104,12 @@ export class UploadProcessFileComponent implements OnInit {
 
   //cancel button
   cancel() {
-    this.canceled = true;
     this.task.cancel();
     this.deleteMe();
   }
 
   private deleteMe() {
+    this.fadeOut = true;
     setTimeout(() => {
       this.deleteEvent.emit(true);
     }, 500);
@@ -111,10 +120,19 @@ export class UploadProcessFileComponent implements OnInit {
     this.formValid = valid;
   }
 
-  update() {
-    // update database
-
+  async update() {
     this.finished = true;
-    // this.deleteMe();
+    if (this.imageFile.newImage) {
+      this.videoData.thumbnailURL = await this._db.uploadThumbnail(
+        this.videoData.vid,
+        this.imageFile.newImage
+      );
+    } else {
+      this.videoData.thumbnailURL = this.imageFile.oldImgURL;
+    }
+
+    this._db.updateVideoInfo(this.videoData.vid, this.videoData).then(() => {
+      this.deleteMe();
+    });
   }
 }

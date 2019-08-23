@@ -1,7 +1,7 @@
-<div [@fade]="canceled ? 'out' : 'in'" id="wrapper">
+<div [@fade]="fadeOut ? 'out' : 'in'" id="wrapper">
   <div id="overlay" *ngIf="finished">
     <p>Updating...</p>
-      <mat-progress-bar mode="query"></mat-progress-bar>
+    <mat-progress-bar mode="query"></mat-progress-bar>
   </div>
 
   <mat-card id="container">
@@ -51,7 +51,7 @@
           id="update-btn"
           *ngIf="uploaded"
           mat-raised-button
-          [disabled]="!formValid"
+          [disabled]="!formValid || !thumbGen"
           color="primary"
           [matMenuTriggerFor]="menu2"
         >

@@ -1,5 +1,8 @@
 import { Component, ViewChild, Input } from "@angular/core";
 import { MatSidenav } from "@angular/material/sidenav";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { UserGoogleService } from "src/app/services/user-google.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-side-bar",
@@ -18,9 +21,29 @@ export class SideBarComponent {
 
   @Input("active") activeMenu: string = "Home";
 
-  constructor() {}
+  constructor(
+    private _snackBar: MatSnackBar,
+    private _userGG: UserGoogleService,
+    private _router: Router
+  ) {}
 
-  close() {
+  close(route: string) {
     this.sidenav.close();
+    if (route == "/upload") this.toUpload();
+    else this._router.navigate([route]);
+  }
+
+  toUpload() {
+    if (!this._userGG.user) {
+      this.openSnackBar("You need to sign in to upload videos!", "OK");
+    } else {
+      this._router.navigate(["/upload"]);
+    }
+  }
+
+  private openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000
+    });
   }
 }

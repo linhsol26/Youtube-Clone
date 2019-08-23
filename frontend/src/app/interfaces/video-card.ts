@@ -4,5 +4,5 @@ export interface IVideoCard {
   title: string;
   thumbnailURL: string;
   views: number;
-  dates: string;
+  timestamp: number;
 }
