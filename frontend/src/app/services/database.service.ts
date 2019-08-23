@@ -61,7 +61,7 @@ export class DatabaseService {
     return this._afs
       .collection("users")
       .doc(uid)
-      .update({ videos: firebase.firestore.FieldValue.arrayUnion("abc") });
+      .update({ videos: firebase.firestore.FieldValue.arrayUnion(vid) });
   }
 
   // storage
@@ -89,7 +89,6 @@ export class DatabaseService {
   // thumbnail generated from the video
   getThumbnailURL(vid: string) {
     const genThumb = this._afn.httpsCallable("genThumb");
-    // return new Promise(resolve => resolve("abc.com"));
     return genThumb({ vid: vid }).toPromise();
   }
 
