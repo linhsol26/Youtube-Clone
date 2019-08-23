@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { UserGoogleService } from "src/app/services/user-google.service";
+import { ThemeService } from "src/app/services/theme.service";
 
 @Component({
   selector: "app-login",
@@ -7,7 +8,6 @@ import { UserGoogleService } from "src/app/services/user-google.service";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-  @Output("change-theme") theme = new EventEmitter();
   choices = [
     { name: "Profile", do: () => this.toProfile(), matIcon: "folder_shared" },
     { name: "Theme", do: () => this.changeTheme(), matIcon: "invert_colors" },
@@ -17,12 +17,12 @@ export class LoginComponent implements OnInit {
       matIcon: "keyboard_return"
     }
   ];
-  constructor(public userGG: UserGoogleService) {}
+  constructor(public userGG: UserGoogleService, private _theme: ThemeService) {}
   ngOnInit() {}
 
   toProfile() {}
 
   changeTheme() {
-    this.theme.emit();
+    this._theme.dark = !this._theme.dark;
   }
 }

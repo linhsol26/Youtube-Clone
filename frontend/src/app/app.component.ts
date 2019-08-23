@@ -13,4 +13,9 @@ export class AppComponent {
     if (this.router.url == "/") return "Home";
     if (this.router.url == "/upload") return "Upload";
   }
+
+  test() {
+    console.log("123");
+    
+  }
 }
