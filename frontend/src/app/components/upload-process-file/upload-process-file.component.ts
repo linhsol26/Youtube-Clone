@@ -27,6 +27,7 @@ export class UploadProcessFileComponent implements OnInit {
   paused = false;
   fadeOut = false;
   finished = false; // when the user press the update button
+  thumbGen = false;
   timestamp: number;
 
   // form
@@ -50,7 +51,7 @@ export class UploadProcessFileComponent implements OnInit {
       privacy: "private",
       tags: ["amazing"],
       description: "",
-      thumbnail: ""
+      thumbnailURL: ""
     };
 
     this.upload(this.file);
@@ -69,6 +70,7 @@ export class UploadProcessFileComponent implements OnInit {
         this.imageFile.oldImgURL = await this._db.getThumbnailURL(
           this.videoData.vid
         );
+        this.thumbGen = true;
       }
     });
   }
@@ -121,12 +123,12 @@ export class UploadProcessFileComponent implements OnInit {
   async update() {
     this.finished = true;
     if (this.imageFile.newImage) {
-      this.videoData.thumbnail = await this._db.uploadThumbnail(
+      this.videoData.thumbnailURL = await this._db.uploadThumbnail(
         this.videoData.vid,
         this.imageFile.newImage
       );
     } else {
-      this.videoData.thumbnail = this.imageFile.oldImgURL;
+      this.videoData.thumbnailURL = this.imageFile.oldImgURL;
     }
 
     this._db.updateVideoInfo(this.videoData.vid, this.videoData).then(() => {

@@ -51,7 +51,7 @@
           id="update-btn"
           *ngIf="uploaded"
           mat-raised-button
-          [disabled]="!formValid"
+          [disabled]="!formValid || !thumbGen"
           color="primary"
           [matMenuTriggerFor]="menu2"
         >

@@ -27,7 +27,7 @@ export function getVideoTemplate(
     uid: user.uid,
     url: url,
     privacy: form.privacy,
-    thumbnailURL: form.thumbnail,
+    thumbnailURL: form.thumbnailURL,
     views: 0,
     likes: 0,
     dislikes: 0,

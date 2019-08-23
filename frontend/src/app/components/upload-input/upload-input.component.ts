@@ -32,7 +32,6 @@ export class UploadInputComponent implements OnInit {
   
   deleteFile(index: number) {
     this.files.splice(index, 1);
-    console.log(this.files);
   }
 
   startUploading() {

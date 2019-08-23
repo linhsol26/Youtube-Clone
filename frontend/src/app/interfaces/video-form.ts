@@ -4,5 +4,5 @@ export interface IVideoData {
   privacy: string;
   tags: string[];
   description: string;
-  thumbnail: string;
+  thumbnailURL: string;
 }
