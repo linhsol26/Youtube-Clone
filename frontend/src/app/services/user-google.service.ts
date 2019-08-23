@@ -49,6 +49,8 @@ export class UserGoogleService {
 
   signOut() {
     this._afAuth.auth.signOut().then(() => {
+      this.user = null;
+      this._userGG = null;
       this._router.navigate(["/"]);
     });
   }

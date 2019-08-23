@@ -10,8 +10,7 @@
         [class.last]="i == menus.length - 1"
       >
         <a
-          routerLink="{{ menu.url }}"
-          (click)="close()"
+          (click)="close(menu.url)"
           class="function-btn"
           [class.active]="menu.name == activeMenu"
         >

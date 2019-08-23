@@ -4,6 +4,7 @@ import { IVideoData } from "./video-form";
 export interface IVideo {
   vid: string; // video id
   uid: string; // user id
+  cid: string[];
   url: string;
   privacy: string;
   thumbnailURL: string;
@@ -25,6 +26,7 @@ export function getVideoTemplate(
   const video: IVideo = {
     vid: form.vid,
     uid: user.uid,
+    cid: [],
     url: url,
     privacy: form.privacy,
     thumbnailURL: form.thumbnailURL,
