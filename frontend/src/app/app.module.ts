@@ -35,7 +35,8 @@ import { VideoInfoFormComponent } from "./components/video-info-form/video-info-
 import { ListCommentComponent } from "./components/list-comment/list-comment.component";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { UploadThumbnailSelectComponent } from "./components/upload-thumbnail-select/upload-thumbnail-select.component";
+import { UploadThumbnailSelectComponent } from './components/upload-thumbnail-select/upload-thumbnail-select.component';
+import { WatchVideoComponent } from './components/watch-video/watch-video.component';
 import { AngularFireFunctionsModule } from "@angular/fire/functions";
 
 const routes: Routes = [
@@ -62,7 +63,8 @@ const routes: Routes = [
     UploadProcessFileComponent,
     VideoInfoFormComponent,
     ListCommentComponent,
-    UploadThumbnailSelectComponent
+    UploadThumbnailSelectComponent,
+    WatchVideoComponent
   ],
   imports: [
     BrowserModule,

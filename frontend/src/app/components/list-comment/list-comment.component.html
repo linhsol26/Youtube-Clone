@@ -2,15 +2,15 @@
     <mat-card class = "comment-mat-card">
         <mat-card-header class = "comment-header">
             <div mat-card-avatar class="comment-avatar"> <img
-                    src="https://lh5.googleusercontent.com/-a6t5VMQB5qI/AAAAAAAAAAI/AAAAAAAADgc/IwQ0WMnme9o/photo.jpg">
+                    src="{{user_comment.avatarURL}}">
             </div>
-            <mat-card-title class = "comment-name">Hieu</mat-card-title>
-            <!-- <mat-card-subtitle>
+            <mat-card-title class = "comment-name">{{user_comment.name}}</mat-card-title>
+             <mat-card-subtitle>
                 
-            </mat-card-subtitle> -->
+            </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <p class = "comment-content">kdsfdajfkafklsafkljdsfdls;afklsdflk;sjfl;kjkslfjk;ladjkfsjf;adsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssalfdjkl;sa;kjfas;lkfjklsdfjlkdssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+            <p class = "comment-content"> {{current_comment.content}}
             </p>
         </mat-card-content>
     </mat-card>

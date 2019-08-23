@@ -12,10 +12,11 @@ import {
 } from "@angular/fire/storage";
 
 import { finalize } from "rxjs/operators";
-import { IVideo } from "../interfaces/video";
 import { AngularFireFunctions } from "@angular/fire/functions";
 import { IVideoData } from "../interfaces/video-form";
-import * as firebase from "firebase/app";
+import { IVideo } from "../interfaces/video";
+import { Comments } from "../interfaces/comments";
+import * as firebase from "firebase";
 
 @Injectable({
   providedIn: "root"
@@ -109,5 +110,20 @@ export class DatabaseService {
         )
         .subscribe();
     });
+  }
+
+  addComment(comment: Comments) {
+    this._afs
+      .collection("comments")
+      .add(comment)
+      .then(comment_add => {
+        console.log(comment_add.id);
+        this._afs
+          .collection("videos")
+          .doc(comment.vid)
+          .update({
+            cid: firebase.firestore.FieldValue.arrayUnion(comment_add.id)
+          });
+      });
   }
 }
