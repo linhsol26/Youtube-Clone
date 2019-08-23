@@ -14,6 +14,8 @@ import {
 import { finalize } from "rxjs/operators";
 import { IVideo } from "../interfaces/video";
 import { AngularFireFunctions } from "@angular/fire/functions";
+import { IVideoData } from "../interfaces/video-form";
+import * as firebase from "firebase/app";
 
 @Injectable({
   providedIn: "root"
@@ -47,10 +49,22 @@ export class DatabaseService {
       .set(video);
   }
 
-  // storage
-  uploadVideo(file: File, user: User, doWhenUploaded: Function) {
-    const vid: string = user.uid + "-" + Date.now();
+  updateVideoInfo(vid: string, info: IVideoData) {
+    return this._afs
+      .collection("videos")
+      .doc(vid)
+      .update(info);
+  }
 
+  addVideoToUser(uid: string, vid: string) {
+    return this._afs
+      .collection("users")
+      .doc(uid)
+      .update({ videos: firebase.firestore.FieldValue.arrayUnion("abc") });
+  }
+
+  // storage
+  uploadVideo(vid: string, file: File, doWhenUploaded: Function) {
     const ref: AngularFireStorageReference = this._storage.ref(
       "/videos/" + vid
     );
@@ -68,12 +82,32 @@ export class DatabaseService {
       )
       .subscribe();
 
-    return { task, vid, percentage };
+    return { task, percentage };
   }
 
-  // thumbnails
+  // thumbnail generated from the video
   getThumbnailURL(vid: string) {
     const genThumb = this._afn.httpsCallable("genThumb");
+    // return new Promise(resolve => resolve("abc.com"));
     return genThumb({ vid: vid }).toPromise();
+  }
+
+  uploadThumbnail(vid: string, image: File): Promise<string> {
+    const ref: AngularFireStorageReference = this._storage.ref(
+      "/videos/" + vid + ".user"
+    );
+    const task: AngularFireUploadTask = ref.put(image);
+
+    //get url
+    return new Promise(resolve => {
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            ref.getDownloadURL().subscribe(url => resolve(url));
+          })
+        )
+        .subscribe();
+    });
   }
 }

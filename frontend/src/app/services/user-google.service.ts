@@ -41,7 +41,8 @@ export class UserGoogleService {
       lastTime: Date.now(),
       name: this._userGG.displayName,
       email: this._userGG.email,
-      avatarURL: this._userGG.photoURL
+      avatarURL: this._userGG.photoURL,
+      videos: []
     };
     this.db.checkUser(this.user);
   }

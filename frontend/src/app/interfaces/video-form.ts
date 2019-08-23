@@ -1,8 +1,8 @@
 export interface IVideoData {
-  uid: string;
+  vid: string;
   title: string;
   privacy: string;
   tags: string[];
   description: string;
-  thumbnail: string[];
+  thumbnail: string;
 }

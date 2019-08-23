@@ -1,11 +1,11 @@
 import { User } from "./user";
+import { IVideoData } from "./video-form";
 
 export interface IVideo {
   vid: string; // video id
   uid: string; // user id
-  cid: string; // comment id
   url: string;
-  cat: string;
+  privacy: string;
   thumbnailURL: string;
   views: number;
   likes: number;
@@ -13,48 +13,28 @@ export interface IVideo {
   title: string;
   description: string;
   tags: string[];
-  date: number;
+  timestamp: number;
 }
 
-export function getVideoTemplate(user: User, url: string) {
-  let video: IVideo = {
-    vid: user.uid + "-" + Date.now(),
+export function getVideoTemplate(
+  form: IVideoData,
+  user: User,
+  timestamp: number,
+  url: string
+) {
+  const video: IVideo = {
+    vid: form.vid,
     uid: user.uid,
-    cid: "",
     url: url,
-    cat: "private",
-    thumbnailURL: "",
+    privacy: form.privacy,
+    thumbnailURL: form.thumbnail,
     views: 0,
     likes: 0,
     dislikes: 0,
-    title: `A video of ${user.name}`,
-    description: "",
-    tags: [],
-    date: Date.now()
+    title: form.title,
+    description: form.description,
+    tags: form.tags,
+    timestamp: timestamp
   };
   return video;
 }
-
-// export class Video implements IVideo {
-//   vid: string;
-//   uid: string;
-//   cid: string;
-//   url: string;
-//   cat: string = "private";
-//   thumbnailURL: string;
-//   views: number = 0;
-//   likes: number = 0;
-//   dislikes: number = 0;
-//   title: string;
-//   description: string;
-//   tags: string[];
-//   date: number;
-
-//   constructor(user: User, url: string) {
-//     this.date = Date.now();
-//     this.vid = user.uid + this.date;
-//     this.uid = user.uid;
-//     this.url = url;
-//     this.title = `A video of ${user.name}`;
-//   }
-// }
