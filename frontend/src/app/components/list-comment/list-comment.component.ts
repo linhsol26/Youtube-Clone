@@ -23,7 +23,7 @@ export class ListCommentComponent implements OnInit {
     .get()
     .subscribe(value => {
       this.current_comment = value.data() as Comments;
-      console.log(this.current_comment);
+      //console.log(this.current_comment);
       this.firestore
         .collection("users")
         .doc(this.current_comment["uid"])
