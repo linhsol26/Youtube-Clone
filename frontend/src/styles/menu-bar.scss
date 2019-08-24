@@ -1,0 +1,17 @@
+@import "../../node_modules/@angular/material/theming";
+
+@mixin menu-bar($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  mat-toolbar {
+    background-color: mat-color($primary) !important;
+  }
+
+  mat-toolbar #logo p {
+    text-shadow: 4px 4px 2px mat-color($primary, darker);
+  }
+}

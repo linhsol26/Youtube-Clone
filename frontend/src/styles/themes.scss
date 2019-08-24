@@ -1,0 +1,29 @@
+@import "../../node_modules/@angular/material/theming";
+@import "./side-bar.scss";
+@import "./menu-bar.scss";
+
+@include mat-core();
+
+$primary: mat-palette($mat-green, 600, 50, 900);
+$accent: mat-palette($mat-blue, 700, 50, 900);
+$warn: mat-palette($mat-red, 600, 100, 900);
+$light-theme: mat-light-theme($primary, $accent, $warn);
+
+$dark-primary: mat-palette($mat-grey, 800, 700, 900);
+$dark-accent: mat-palette($mat-green, A700);
+$dark-warn: mat-palette($mat-red, 600, 100, 900);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// add more custom component themes here
+@mixin custom-theme($theme) {
+  @include side-bar($theme);
+  @include menu-bar($theme);
+}
+
+.dark-theme {
+  @include custom-theme($dark-theme);
+  @include angular-material-theme($dark-theme);
+}
+
+@include custom-theme($light-theme);
+@include angular-material-theme($light-theme);

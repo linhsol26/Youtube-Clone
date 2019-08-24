@@ -1,6 +1,6 @@
 <div id="login-wrapper">
   <div *ngIf="!userGG.logged">
-    <button mat-raised-button (click)="userGG.loginGoogle()">
+    <button mat-raised-button (click)="userGG.loginGoogle()" color="accent">
       Sign in
     </button>
   </div>
@@ -22,7 +22,7 @@
       <button
         *ngFor="let choice of choices"
         mat-menu-item
-        (click)="choice.do()"
+        (click)="choice.do()"        
       >
         <mat-icon>{{ choice.matIcon }}</mat-icon>
         {{ choice.name }}

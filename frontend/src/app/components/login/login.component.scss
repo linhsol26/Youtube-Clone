@@ -1,7 +1,3 @@
-$green: #27a02d;
-$light-green: #eef7ec;
-$dark-green: #1b4400;
-
 #login-wrapper {
   height: 60px;
   width: 90px;
@@ -17,7 +13,6 @@ $dark-green: #1b4400;
   height: 44px;
   padding: 0;
   border-radius: 22px;
-  border: 1px solid white;
   transition: 0.2s;
 }
 
@@ -30,7 +25,7 @@ $dark-green: #1b4400;
 #avatar-btn img {
   width: 100%;
   height: 100%;
-  border-radius: 22px;
+  border-radius: 25px;
 }
 
 // user info in menu

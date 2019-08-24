@@ -125,4 +125,15 @@ export class DatabaseService {
           });
       });
   }
+
+  // home page
+  async getPublicVideos() {
+    const snapshot = await this._afs
+      .collection("public")
+      .get()
+      .toPromise();
+    return snapshot.docs.map(doc => doc.data());
+  }
+
+  
 }
