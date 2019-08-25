@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { Router } from "@angular/router";
+import { ThemeService } from "src/app/services/theme.service";
 
 @Component({
   selector: "app-menu-bar",
@@ -15,13 +16,14 @@ export class MenuBarComponent {
   constructor(
     private _snackBar: MatSnackBar,
     private _userGG: UserGoogleService,
-    private _router: Router
+    private _router: Router,
+    public theme: ThemeService
   ) {}
 
   showSideBar() {
     this.showSideNav.emit();
   }
-  
+
   toUpload() {
     if (!this._userGG.user) {
       this.openSnackBar("You need to sign in to upload videos!", "OK");

@@ -3,6 +3,7 @@ import { MatSidenav } from "@angular/material/sidenav";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { Router } from "@angular/router";
+import { ThemeService } from "src/app/services/theme.service";
 
 @Component({
   selector: "app-side-bar",
@@ -24,7 +25,8 @@ export class SideBarComponent {
   constructor(
     private _snackBar: MatSnackBar,
     private _userGG: UserGoogleService,
-    private _router: Router
+    private _router: Router,
+    public theme: ThemeService
   ) {}
 
   close(route: string) {

@@ -4,10 +4,11 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <div id="logo">
-      <img src="../../../assets/bamboo-flat.png" alt="" />
+    <a id="logo" routerLink="/">
+      <img *ngIf="!theme.dark" src="../../../assets/bamboo-white.png" alt="" />
+      <img *ngIf="theme.dark" src="../../../assets/bamboo-green.png" alt="" />
       <p>Bamboo</p>
-    </div>
+    </a>
   </div>
 
   <div id="right-side">
