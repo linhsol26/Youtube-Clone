@@ -1,4 +1,3 @@
-
 p {
   margin: 0;
 }
@@ -12,11 +11,10 @@ mat-toolbar {
   position: fixed;
   top: 0;
   z-index: 1;
-  
+
   justify-content: space-between;
   font-family: "Righteous", cursive;
 }
-
 
 // left side
 #left-side {
@@ -34,6 +32,11 @@ button {
 #logo {
   display: flex;
   align-items: center;
+}
+
+#logo-image {
+  height: 35px;
+  width: 50px;
 }
 
 #logo img {

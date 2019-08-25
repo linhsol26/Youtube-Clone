@@ -5,8 +5,15 @@
     </button>
 
     <a id="logo" routerLink="/">
-      <img *ngIf="!theme.dark" src="../../../assets/bamboo-white.png" alt="" />
-      <img *ngIf="theme.dark" src="../../../assets/bamboo-green.png" alt="" />
+      <div id="logo-image">
+        <img
+          *ngIf="!theme.dark"
+          src="../../../assets/bamboo-white.png"
+          alt=""
+        />
+        <img *ngIf="theme.dark" src="../../../assets/bamboo-green.png" alt="" />
+      </div>
+
       <p>Bamboo</p>
     </a>
   </div>
