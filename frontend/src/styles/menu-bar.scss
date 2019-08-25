@@ -1,17 +1,18 @@
-@import "../../node_modules/@angular/material/theming";
+@import "./theming.scss";
 
 @mixin menu-bar($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
-  $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
+  $menu: map-get($theme, background);
 
   mat-toolbar {
-    background-color: mat-color($primary) !important;
+    background-color: mat-color($menu, app-bar) !important;
   }
 
-  mat-toolbar #logo p {
-    text-shadow: 4px 4px 2px mat-color($primary, darker);
+  mat-toolbar mat-icon {
+    color: mat-color($foreground, icon);
+  }
+
+  mat-toolbar>div>button {
+    background-color: mat-color($menu, app-bar) !important;
   }
 }

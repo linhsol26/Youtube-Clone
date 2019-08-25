@@ -28,7 +28,12 @@
 </div>
 
 <div *ngIf="files.length !== 0" id="function-bar">
-  <button id="upload-btn" mat-raised-button (click)="startUploading()">
+  <button
+    id="upload-btn"
+    mat-raised-button
+    (click)="startUploading()"
+    color="accent"
+  >
     Upload
   </button>
 </div>

@@ -1,0 +1,31 @@
+@import "./theming";
+
+@mixin upload-input($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  app-upload-input .container {
+    border: 2px dashed mat-color($primary, darker);
+    background-color: transparent;
+
+    &:hover {
+      background-color: mat-color($background, hover);
+    }
+  }
+
+  app-upload-input .container mat-icon {
+    color: mat-color($primary);
+  }
+
+  app-upload-input .file-list {
+    color: mat-color($foreground, text);
+    border-color: mat-color($primary, darker) !important;
+  }
+
+  app-upload-input .file-list button {
+    color: mat-color($primary, darker);
+  }
+}

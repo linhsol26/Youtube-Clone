@@ -1,0 +1,11 @@
+@import "./theming.scss";
+
+@mixin upload-thumbnail-select($theme) {
+	$primary: map-get($theme, primary);
+	$background: map-get($theme, background);
+
+  app-upload-process-file .check-icon {
+    background-color: mat-color($background, background);
+    color: mat-color($primary);
+  }
+}

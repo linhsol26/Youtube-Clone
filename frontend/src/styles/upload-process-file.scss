@@ -1,0 +1,10 @@
+@import "./theming.scss";
+
+@mixin upload-process-file($theme) {
+  $accent: map-get($theme, accent);
+
+  app-upload-process-file #percentage {
+    color: white;
+    background-color: mat-color($accent);
+  }
+}

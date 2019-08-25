@@ -1,6 +1,20 @@
-@import "../../node_modules/@angular/material/theming";
+@import "./theming.scss";
 @import "./side-bar.scss";
 @import "./menu-bar.scss";
+@import "./upload-input.scss";
+@import "./upload-process-file.scss";
+@import "./upload-thumbnail-select.scss";
+
+
+// add more custom component themes here
+@mixin custom-theme($theme) {
+  @include side-bar($theme);
+  @include menu-bar($theme);
+  @include upload-input($theme);
+  @include upload-process-file($theme);
+  @include upload-thumbnail-select($theme);
+}
+
 
 @include mat-core();
 
@@ -9,16 +23,10 @@ $accent: mat-palette($mat-blue, 700, 50, 900);
 $warn: mat-palette($mat-red, 600, 100, 900);
 $light-theme: mat-light-theme($primary, $accent, $warn);
 
-$dark-primary: mat-palette($mat-grey, 800, 700, 900);
-$dark-accent: mat-palette($mat-green, A700);
+$dark-primary: mat-palette($mat-green, A700);
+$dark-accent: mat-palette($mat-blue, A700);
 $dark-warn: mat-palette($mat-red, 600, 100, 900);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
-// add more custom component themes here
-@mixin custom-theme($theme) {
-  @include side-bar($theme);
-  @include menu-bar($theme);
-}
 
 .dark-theme {
   @include custom-theme($dark-theme);

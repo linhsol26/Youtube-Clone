@@ -30,6 +30,7 @@
           *ngIf="!uploaded"
           mat-raised-button
           (click)="interact()"
+          color="primary"
         >
           {{ paused ? "Resume" : "Pause" }}
         </button>
@@ -54,6 +55,7 @@
           [disabled]="!formValid || !thumbGen"
           color="primary"
           [matMenuTriggerFor]="menu2"
+          color="accent"
         >
           Update
         </button>
