@@ -20,12 +20,12 @@
       </div>
 
       <button
-        *ngFor="let choice of choices"
+        *ngFor="let choice of choices; let i = index"
         mat-menu-item
-        (click)="choice.do()"        
+        (click)="choice.do()"
       >
         <mat-icon>{{ choice.matIcon }}</mat-icon>
-        {{ choice.name }}
+        {{ choice.name + (i == 1 ? ": " + darkTheme : "") }}
       </button>
     </mat-menu>
   </div>

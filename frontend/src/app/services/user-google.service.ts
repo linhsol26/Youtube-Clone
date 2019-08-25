@@ -4,6 +4,7 @@ import { auth } from "firebase";
 import { Router } from "@angular/router";
 import { User } from "../interfaces/user";
 import { DatabaseService } from "./database.service";
+import { ThemeService } from "./theme.service";
 
 @Injectable({
   providedIn: "root"
@@ -16,7 +17,8 @@ export class UserGoogleService {
   constructor(
     private _afAuth: AngularFireAuth,
     private _router: Router,
-    private db: DatabaseService
+    private _db: DatabaseService,
+    private _theme: ThemeService
   ) {
     this._afAuth.user.subscribe(usr => {
       if (usr != null) {
@@ -44,7 +46,7 @@ export class UserGoogleService {
       avatarURL: this._userGG.photoURL,
       videos: []
     };
-    this.db.checkUser(this.user);
+    this._db.checkUser(this.user);
   }
 
   signOut() {
@@ -52,6 +54,7 @@ export class UserGoogleService {
       this.user = null;
       this._userGG = null;
       this._router.navigate(["/"]);
+      this._theme.dark = false;
     });
   }
 }

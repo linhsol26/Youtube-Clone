@@ -8,9 +8,15 @@ import { ThemeService } from "src/app/services/theme.service";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
+  darkTheme: string = "Off";
+
   choices = [
     { name: "Profile", do: () => this.toProfile(), matIcon: "folder_shared" },
-    { name: "Theme", do: () => this.changeTheme(), matIcon: "invert_colors" },
+    {
+      name: "Dark theme",
+      do: () => this.changeTheme(),
+      matIcon: "invert_colors"
+    },
     {
       name: "Sign out",
       do: () => this.userGG.signOut(),
@@ -24,5 +30,6 @@ export class LoginComponent implements OnInit {
 
   changeTheme() {
     this._theme.dark = !this._theme.dark;
+    this.darkTheme = this._theme.dark ? "On" : "Off";
   }
 }

@@ -2,9 +2,14 @@
 
 @mixin upload-process-file($theme) {
   $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
 
   app-upload-process-file #percentage {
     color: white;
     background-color: mat-color($accent);
+  }
+
+  app-upload-process-file #overlay {
+    background-color: rgba(mat-color($background, background), 0.9);
   }
 }
