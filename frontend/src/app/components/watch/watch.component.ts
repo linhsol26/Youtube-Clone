@@ -14,9 +14,10 @@ import { CommentsService } from 'src/app/services/comments.service';
 })
 
 export class WatchComponent implements OnInit {
-  vid = 'M4YWrvD8D8W9m8idhTSO6rL7r2T2-1566194943916';
+  vid ;
   comment_interface: Comments;
   comment_id;
+  data_have = false;
   constructor(
     private firebase: AngularFirestore,
     //private VideoUrlService: VideoUrlService,
@@ -25,9 +26,8 @@ export class WatchComponent implements OnInit {
     private route: ActivatedRoute,
   ) {
     //take vid from route url
-    //this.vid = this.route.snapshot.params['vid'];  
     
-    
+
 
 
 
@@ -72,7 +72,7 @@ export class WatchComponent implements OnInit {
   off_viewmore = true;
   title_view = 'View more';
   viewmore() {
-    console.log(typeof(this.comment_id));
+    console.log(typeof (this.comment_id));
     if (this.off_viewmore) {
       this.title_view = "Compact";
       this.off_viewmore = false;
@@ -118,7 +118,7 @@ export class WatchComponent implements OnInit {
     this.button_disable = true;
   }
 
-
+  comment_list = false;
   //videos : any;
 
   ngOnInit() {
@@ -129,9 +129,11 @@ export class WatchComponent implements OnInit {
     //   this.src = this.videos[0]['url'];
     // })
     // this.firebase.doc(`videos/${this.vid}`).get()
+    this.vid = this.route.snapshot.params['vid'];  
+    console.log(this.vid);
     this.firebase.collection('videos').doc(this.vid).snapshotChanges()
       .subscribe(data => {
-        
+
         this.videoinfo = data.payload.data();
         //console.log(this.videoinfo);
         this.src = this.videoinfo['url'];
@@ -142,7 +144,8 @@ export class WatchComponent implements OnInit {
         this.title = this.videoinfo['title'];
         this.view_total = this.videoinfo['views'];
         this.comment_id = this.videoinfo['cid'];
-        console.log(this.comment_id);
+        this.comment_list = true;
+        //console.log(this.comment_id);
         //after get uid going to do take 
         this.firebase.collection('users').doc(this.videoinfo['uid']).get()
           .toPromise()
@@ -151,18 +154,24 @@ export class WatchComponent implements OnInit {
             //console.log(this.userinfo_owner);
             this.owner_avatarURL = this.userinfo_owner['avatarURL'];
             this.owner_name = this.userinfo_owner['name'];
+            this.data_have = true;
           })
+      this.current_user.user.likes.map(value => {
+        console.log(value);
+        if(this.vid == value)
+        console.log("tim thay"+this.like_count);
       })
-      
-       //this.firebase.collection('videos', ref =>  ref.where('vid','==',this.vid)).snapshotChanges().subscribe(data => {
-         // data.forEach(test => {
-           // console.log(test);
-            //this.comment_id = test.payload.doc.data().cid;
-            //console.log(typeof(this.comment_id));
-          //})
-          //this.comment_id = data. ;
-          //console.log(this.comment_id +"snapshotChanges");
-        //});
+      })
+
+    //this.firebase.collection('videos', ref =>  ref.where('vid','==',this.vid)).snapshotChanges().subscribe(data => {
+    // data.forEach(test => {
+    // console.log(test);
+    //this.comment_id = test.payload.doc.data().cid;
+    //console.log(typeof(this.comment_id));
+    //})
+    //this.comment_id = data. ;
+    //console.log(this.comment_id +"snapshotChanges");
+    //});
   }
 
 }

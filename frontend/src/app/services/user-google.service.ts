@@ -32,7 +32,7 @@ export class UserGoogleService {
   async loginGoogle() {
     await this._afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
     this._userGG = this._afAuth.auth.currentUser;
-
+    console.log(this._userGG.likes )
     this.setUser();
   }
 

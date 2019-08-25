@@ -6,4 +6,6 @@ export interface User {
   email: string;
   avatarURL: string;
   videos: string[];
+  likes : string[];
+  dislikes: string[];
 }

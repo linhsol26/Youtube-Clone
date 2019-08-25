@@ -11,28 +11,33 @@ export class ListCommentComponent implements OnInit {
   @Input() comment;
   current_comment: Comments;
   user_comment: User;
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore) {
+
+  }
   data_have = false;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.firestore
+    .collection("comments")
+    .doc(this.comment)
+    .get()
+    .subscribe(value => {
+      this.current_comment = value.data() as Comments;
+      //console.log(this.current_comment);
+      this.firestore
+        .collection("users")
+        .doc(this.current_comment["uid"])
+        .get()
+        .subscribe(value => {
+          this.user_comment = value.data() as User;
+          this.data_have = true;
+          console.log(this.user_comment);
+        });
+    });
+  }
 
   ngOnChanges(): void {
-    this.firestore
-      .collection("comments")
-      .doc(this.comment)
-      .get()
-      .subscribe(value => {
-        this.current_comment = value.data() as Comments;
-        console.log(this.current_comment);
-        this.firestore
-          .collection("users")
-          .doc(this.current_comment["uid"])
-          .get()
-          .subscribe(value => {
-            this.user_comment = value.data() as User;
-            console.log(this.user_comment);
-          });
-      });
+
 
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
