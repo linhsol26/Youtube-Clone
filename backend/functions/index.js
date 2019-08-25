@@ -10,6 +10,7 @@ const os = require("os");
 const fs = require("fs");
 
 admin.initializeApp();
+
 const db = admin.firestore();
 
 const THUMB_MAX_WIDTH = 400;
@@ -81,3 +82,30 @@ function generateFromVideo(file, tempThumbPath) {
       return promise;
     });
 }
+
+exports.updatePublicVideo = functions.firestore
+  .document("videos/{vid}")
+  .onUpdate(async change => {
+    const info = change.after.data();
+
+    if (info["privacy"] === "public") {
+      const user = await db
+        .doc(`users/${info["uid"]}`)
+        .get()
+        .then(doc => doc.data());
+
+      const data = {
+        vid: info["vid"],
+        owner: user["name"],
+        title: info["title"],
+        thumbnailURL: info["thumbnailURL"],
+        views: info["views"],
+        timestamp: info["timestamp"]
+      };
+
+      return db.doc(`public/${data.vid}`).set(data);
+    } else if (info["privacy"] === "private") {
+      db.doc(`public/${info["vid"]}`).delete();
+    }
+    return Promise.resolve();
+  });
