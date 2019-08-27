@@ -128,10 +128,6 @@ export class DatabaseService {
 
   // home page
   getPublicVideos() {
-    return this._afs
-      .collection("public")
-      .get()
-      .toPromise()
-      .then(val => val.docs.map(doc => doc.data()));
+    return this._afs.collection("public").snapshotChanges();
   }
 }

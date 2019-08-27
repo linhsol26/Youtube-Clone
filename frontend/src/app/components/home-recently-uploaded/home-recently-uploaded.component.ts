@@ -13,8 +13,11 @@ export class HomeRecentlyUploadedComponent implements OnInit {
   constructor(private _db: DatabaseService) {}
 
   ngOnInit() {
-    this._db.getPublicVideos().then(val => {
-      this.videoCards = val.reverse();
+    this._db.getPublicVideos().subscribe(val => {
+      this.videoCards = val
+        .map(doc => doc.payload.doc.data())
+        .sort((a, b) => b["timestamp"] - a["timestamp"]);
+      console.log(this.videoCards);
       this.ready = true;
     });
   }
