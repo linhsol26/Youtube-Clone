@@ -7,6 +7,6 @@
       <p>{{ card.title | truncate: 30 }}</p>
     </div>
     <p class="owner">{{ card.owner }}</p>
-    <p>{{ card.views }} views - {{ card.timestamp }}</p>
+    <p>{{ card.views }} views - {{ card.timestamp | period }}</p>
   </div>
 </button>
