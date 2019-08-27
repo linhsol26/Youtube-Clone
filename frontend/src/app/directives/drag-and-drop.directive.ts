@@ -12,9 +12,6 @@ import {
   selector: "[appDragDrop]"
 })
 export class DragAndDropDirective {
-  private backgroundColor = "#f5fcff";
-  private backgroundOnDrop = "#5fba59";
-
   @Output() onFileDropped = new EventEmitter<any>();
 
   @HostBinding("style.opacity") private opacity = "1";

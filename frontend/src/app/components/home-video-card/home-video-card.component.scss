@@ -1,0 +1,39 @@
+.card {
+  padding: 0;
+  margin: 0;
+  border: none;
+  overflow: hidden;
+
+  .img-wrapper {
+    width: 250px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+
+    img {
+      max-width: 250px;
+      max-height: 150px;
+    }
+  }
+
+  .video-info {
+    font-family: "Open Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+
+    margin: 3px 10px;
+
+    .title {
+      max-width: 100%;
+
+      p {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+}

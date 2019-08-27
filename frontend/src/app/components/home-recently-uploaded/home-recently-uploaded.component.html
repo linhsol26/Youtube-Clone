@@ -1,0 +1,10 @@
+<div class="banner">
+  <p class="title">Recently Uploaded</p>
+</div>
+
+<div class="video-wrapper">
+  <app-home-video-card
+    *ngFor="let card of videoCards"
+    [video-card]="card"
+  ></app-home-video-card>
+</div>

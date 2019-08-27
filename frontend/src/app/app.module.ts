@@ -39,6 +39,9 @@ import { UploadThumbnailSelectComponent } from "./components/upload-thumbnail-se
 import { WatchVideoComponent } from "./components/watch-video/watch-video.component";
 import { AngularFireFunctionsModule } from "@angular/fire/functions";
 import { ThemeService } from "./services/theme.service";
+import { HomeVideoCardComponent } from './components/home-video-card/home-video-card.component';
+import { HomeRecentlyUploadedComponent } from './components/home-recently-uploaded/home-recently-uploaded.component';
+import { PeriodPipe } from './pipes/period.pipe';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -65,7 +68,10 @@ const routes: Routes = [
     VideoInfoFormComponent,
     ListCommentComponent,
     UploadThumbnailSelectComponent,
-    WatchVideoComponent
+    WatchVideoComponent,
+    HomeVideoCardComponent,
+    HomeRecentlyUploadedComponent,
+    PeriodPipe
   ],
   imports: [
     BrowserModule,

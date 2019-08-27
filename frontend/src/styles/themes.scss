@@ -4,7 +4,7 @@
 @import "./upload-input.scss";
 @import "./upload-process-file.scss";
 @import "./upload-thumbnail-select.scss";
-
+@import "./home-recently-uploaded.scss";
 
 // add more custom component themes here
 @mixin custom-theme($theme) {
@@ -13,8 +13,8 @@
   @include upload-input($theme);
   @include upload-process-file($theme);
   @include upload-thumbnail-select($theme);
+  @include home-recently-uploaded($theme);
 }
-
 
 @include mat-core();
 

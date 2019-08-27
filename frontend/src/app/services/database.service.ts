@@ -127,13 +127,11 @@ export class DatabaseService {
   }
 
   // home page
-  async getPublicVideos() {
-    const snapshot = await this._afs
+  getPublicVideos() {
+    return this._afs
       .collection("public")
       .get()
-      .toPromise();
-    return snapshot.docs.map(doc => doc.data());
+      .toPromise()
+      .then(val => val.docs.map(doc => doc.data()));
   }
-
-  
 }

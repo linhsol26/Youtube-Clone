@@ -6,13 +6,11 @@
 
   mat-toolbar {
     background-color: mat-color($menu, app-bar) !important;
-  }
-
-  mat-toolbar mat-icon {
-    color: mat-color($foreground, icon);
-  }
-
-  mat-toolbar > div > button {
-    background-color: transparent !important;
+    mat-icon {
+      color: mat-color($foreground, icon);
+    }
+    > div > button {
+      background-color: transparent !important;
+    }
   }
 }

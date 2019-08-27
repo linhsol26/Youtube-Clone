@@ -21,6 +21,8 @@ export class UploadInputComponent implements OnInit {
   getFiles(files: any) {
     for (let file of files) {
       if (this.fileTypes.includes(file.type)) {
+        console.log(file.duration);
+
         this.files.push(file);
       } else {
         this.openSnackBar("Invalid files!", "OK");

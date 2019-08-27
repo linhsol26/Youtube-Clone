@@ -13,28 +13,31 @@
     background-color: mat-color($background, background);
   }
 
-  mat-sidenav-container #logo p {
-    color: mat-color($foreground, text);
-  }
-  mat-sidenav-container .function-btn {
-    color: mat-color($foreground, text);
+  mat-sidenav-container {
+    #logo p {
+      color: mat-color($foreground, text);
+    }
 
-    &:hover {
+    .function-btn {
+      color: mat-color($foreground, text);
+
+      &:hover {
+        color: mat-color($foreground, text);
+        background-color: mat-color($background, hover);
+      }
+    }
+
+    .active {
       color: mat-color($foreground, text);
       background-color: mat-color($background, hover);
+
+      mat-icon {
+        color: mat-color($primary);
+      }
     }
-  }
 
-  mat-sidenav-container .active {
-    color: mat-color($foreground, text);
-    background-color: mat-color($background, hover);
-  }
-
-  .active mat-icon {
-    color: mat-color($primary);
-  }
-
-  mat-sidenav-container .last {
-    border-top: 4px double mat-color($foreground, divider);
+    .last {
+      border-top: 4px double mat-color($foreground, divider);
+    }
   }
 }

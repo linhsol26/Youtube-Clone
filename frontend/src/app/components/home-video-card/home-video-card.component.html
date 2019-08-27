@@ -1,0 +1,12 @@
+<button mat-raised-button class="card" routerLink="/watch/{{ card.vid }}">
+  <div class="img-wrapper">
+    <img src="{{ card.thumbnailURL }}" />
+  </div>
+  <div class="video-info">
+    <div class="title">
+      <p>{{ card.title | truncate: 30 }}</p>
+    </div>
+    <p class="owner">{{ card.owner }}</p>
+    <p>{{ card.views }} views - {{ card.timestamp }}</p>
+  </div>
+</button>

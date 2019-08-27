@@ -1,0 +1,23 @@
+.banner {
+  width: 200px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  border-radius: 15px;
+}
+
+.title {
+	font-size: 17px;
+}
+
+.video-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+app-home-video-card {
+  width: 250px;
+  margin: 2px;
+}
