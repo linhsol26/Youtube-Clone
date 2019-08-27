@@ -2,7 +2,11 @@
   <p class="title">Recently Uploaded</p>
 </div>
 
-<div class="video-wrapper">
+<div *ngIf="!ready" class="load-spinner">
+  <mat-spinner [strokeWidth]="3"></mat-spinner>
+</div>
+
+<div class="video-wrapper" *ngIf="ready">
   <app-home-video-card
     *ngFor="let card of videoCards"
     [video-card]="card"

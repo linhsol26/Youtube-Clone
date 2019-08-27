@@ -9,7 +9,7 @@
 }
 
 .title {
-	font-size: 17px;
+  font-size: 17px;
 }
 
 .video-wrapper {
@@ -20,4 +20,11 @@
 app-home-video-card {
   width: 250px;
   margin: 2px;
+}
+
+.load-spinner {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
