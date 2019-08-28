@@ -1,3 +1,33 @@
+@media screen and (min-width: 304px) {
+  .container {
+    width: 254px;
+  }
+}
+
+@media screen and (min-width: 558px) {
+  .container {
+    width: 508px;
+  }
+}
+
+@media screen and (min-width: 812px) {
+  .container {
+    width: 762px;
+  }
+}
+
+@media screen and (min-width: 1066px) {
+  .container {
+    width: 1016px;
+  }
+}
+
+@media screen and (min-width: 1320px) {
+  .container {
+    width: 1270px;
+  }
+}
+
 .banner {
   width: 200px;
   height: 35px;
