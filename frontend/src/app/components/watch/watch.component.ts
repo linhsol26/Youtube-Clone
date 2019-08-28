@@ -64,6 +64,7 @@ export class WatchComponent implements OnInit {
   uid_owner = "";
   button_like = false;
   button_dislike = false;
+  find_likes = false;
   //report
   //   name : string;
   //   email: string;
@@ -133,11 +134,11 @@ export class WatchComponent implements OnInit {
   disablebutton_dislike() {
     this.button_dislike = true;
   }
-  onclick_like(){
+  onclick_like() {
     this.disablebutton_like();
     this.button_dislike = false;
   }
-  onclick_dislike(){
+  onclick_dislike() {
     this.disablebutton_dislike();
     this.button_like = false;
   }
@@ -185,10 +186,20 @@ export class WatchComponent implements OnInit {
             if (this.vid == value) {
               console.log('tìm thay');
               this.disablebutton_like();
+              this.find_likes = true;
+            }
+            if (!this.find_likes){
+              console.log('chạy dislike find');
+              data.data()['dislikes'].map(value2 => {
+                if(this.vid == value2){
+                  console.log('tim thay');
+                  this.disablebutton_dislike();
+                }
+              })
             }
           });
-
         })
+       
 
         // this.current_user.user.likes.map(value => {
         //   console.log(value);
