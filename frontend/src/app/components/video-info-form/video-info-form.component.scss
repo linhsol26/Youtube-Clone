@@ -9,21 +9,32 @@
 }
 
 #line1 {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
 #title {
-  width: 80%;
-  position: relative;
+  width: 75%;
 }
 
 #privacy {
   width: 20%;
-  margin-left: 20px;
 }
 
 .chip-list {
   width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  #line1 {
+    flex-direction: column;
+  }
+  #title {
+    width: 100%;
+  }
+  #privacy {
+    width: 100%;
+  }
 }

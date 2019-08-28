@@ -17,7 +17,6 @@ export class HomeRecentlyUploadedComponent implements OnInit {
       this.videoCards = val
         .map(doc => doc.payload.doc.data())
         .sort((a, b) => b["timestamp"] - a["timestamp"]);
-      console.log(this.videoCards);
       this.ready = true;
     });
   }

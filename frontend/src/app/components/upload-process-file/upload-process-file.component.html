@@ -13,7 +13,10 @@
     <div id="upload-bar">
       <div id="process-bar">
         <p>
-          {{ file.name | truncate }} - {{ file.size | diskSize }}
+          <span id="video-info">
+            {{ file.name | truncate }} - {{ file.size | diskSize }}
+          </span>
+
           <span *ngIf="!uploaded" id="percentage">
             {{ progress | number: "1.0-0" }}%
           </span>

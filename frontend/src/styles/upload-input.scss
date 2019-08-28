@@ -1,4 +1,4 @@
-@import "./theming";
+ @import "./theming";
 
 @mixin upload-input($theme) {
   $primary: map-get($theme, primary);
