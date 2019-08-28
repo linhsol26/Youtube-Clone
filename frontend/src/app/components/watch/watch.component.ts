@@ -1,20 +1,21 @@
-import { Component, OnInit, Input, } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-// import { ReportComponent } from '../report/report.component';
-// import { MatDialog } from '@angular/material/dialog';
-import { VideoUrlService } from '../../services/video-url.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { UserGoogleService } from 'src/app/services/user-google.service';
-import { Comments } from 'src/app/interfaces/comments';
-import { CommentsService } from 'src/app/services/comments.service';
-@Component({
-  selector: 'app-watch',
-  templateUrl: './watch.component.html',
-  styleUrls: ['./watch.component.scss']
-})
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { UserGoogleService } from "src/app/services/user-google.service";
+import { Comments } from "src/app/interfaces/comments";
+import { CommentsService } from "src/app/services/comments.service";
+import { MiniPlayerService } from "src/app/services/mini-player.service";
+import { WatchVideoComponent } from "../watch-video/watch-video.component";
 
+@Component({
+  selector: "app-watch",
+  templateUrl: "./watch.component.html",
+  styleUrls: ["./watch.component.scss"]
+})
 export class WatchComponent implements OnInit {
-  vid ;
+  @ViewChild(WatchVideoComponent, { static: false }) video: WatchVideoComponent;
+
+  vid;
   comment_interface: Comments;
   comment_id;
   data_have = false;
@@ -23,19 +24,15 @@ export class WatchComponent implements OnInit {
     //private VideoUrlService: VideoUrlService,
     public comment_service: CommentsService,
     public current_user: UserGoogleService,
-    private route: ActivatedRoute,
+    private _route: ActivatedRoute,
+    private _player: MiniPlayerService
   ) {
     //take vid from route url
-    
-
-
-
-
   }
 
   //will be take info data get of firebase
   userinfo_owner: Object;
-  //info user owner 
+  //info user owner
   owner_avatarURL;
   owner_name;
 
@@ -45,12 +42,13 @@ export class WatchComponent implements OnInit {
   //infovideo
   //src = "https://firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c";
   src;
-  view_total = '100.000';
-  owner_video_name = 'Nguyen Vo Dang Cao';
-  like_count = '100';
-  dislike_count = '20';
+  view_total = "100.000";
+  owner_video_name = "Nguyen Vo Dang Cao";
+  like_count = "100";
+  dislike_count = "20";
   title = "";
-  description = "Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata."
+  description =
+    "Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.";
   total_comment = "1090";
   button_disable = true;
   uid_owner = "";
@@ -70,14 +68,14 @@ export class WatchComponent implements OnInit {
 
   //viewmore
   off_viewmore = true;
-  title_view = 'View more';
+  title_view = "View more";
   viewmore() {
-    console.log(typeof (this.comment_id));
+    // console.log(typeof this.comment_id);
     if (this.off_viewmore) {
       this.title_view = "Compact";
       this.off_viewmore = false;
     } else {
-      this.title_view = 'View more';
+      this.title_view = "View more";
       this.off_viewmore = true;
     }
   }
@@ -105,8 +103,8 @@ export class WatchComponent implements OnInit {
       content: this.comment,
       likes: 0,
       dislikes: 0,
-      time: Date.now(),
-    }
+      time: Date.now()
+    };
     this.comment_service.createComment(this.comment_interface);
   }
   Accept() {
@@ -129,39 +127,46 @@ export class WatchComponent implements OnInit {
     //   this.src = this.videos[0]['url'];
     // })
     // this.firebase.doc(`videos/${this.vid}`).get()
-    this.vid = this.route.snapshot.params['vid'];  
-    console.log(this.vid);
-    this.firebase.collection('videos').doc(this.vid).snapshotChanges()
+    this.vid = this._route.snapshot.params["vid"];
+    // console.log(this.vid);
+    this.firebase
+      .collection("videos")
+      .doc(this.vid)
+      .snapshotChanges()
       .subscribe(data => {
-
         this.videoinfo = data.payload.data();
         //console.log(this.videoinfo);
-        this.src = this.videoinfo['url'];
+        this.src = this.videoinfo["url"];
         //console.log(this.src);
-        this.like_count = this.videoinfo['likes'];
-        this.dislike_count = this.videoinfo['dislikes'];
-        this.description = this.videoinfo['description'];
-        this.title = this.videoinfo['title'];
-        this.view_total = this.videoinfo['views'];
-        this.comment_id = this.videoinfo['cid'];
+        this.like_count = this.videoinfo["likes"];
+        this.dislike_count = this.videoinfo["dislikes"];
+        this.description = this.videoinfo["description"];
+        this.title = this.videoinfo["title"];
+        this.view_total = this.videoinfo["views"];
+        this.comment_id = this.videoinfo["cid"];
         this.comment_list = true;
+
+        this._player.video = this.video;
+        console.log(this.video);
+
         //console.log(this.comment_id);
-        //after get uid going to do take 
-        this.firebase.collection('users').doc(this.videoinfo['uid']).get()
+        //after get uid going to do take
+        this.firebase
+          .collection("users")
+          .doc(this.videoinfo["uid"])
+          .get()
           .toPromise()
           .then(data => {
             this.userinfo_owner = data.data();
             //console.log(this.userinfo_owner);
-            this.owner_avatarURL = this.userinfo_owner['avatarURL'];
-            this.owner_name = this.userinfo_owner['name'];
+            this.owner_avatarURL = this.userinfo_owner["avatarURL"];
+            this.owner_name = this.userinfo_owner["name"];
             this.data_have = true;
-          })
-      this.current_user.user.likes.map(value => {
-        console.log(value);
-        if(this.vid == value)
-        console.log("tim thay"+this.like_count);
-      })
-      })
+          });
+        this.current_user.user.likes.map(value => {
+          // if (this.vid == value) console.log("tim thay" + this.like_count);
+        });
+      });
 
     //this.firebase.collection('videos', ref =>  ref.where('vid','==',this.vid)).snapshotChanges().subscribe(data => {
     // data.forEach(test => {
@@ -173,5 +178,4 @@ export class WatchComponent implements OnInit {
     //console.log(this.comment_id +"snapshotChanges");
     //});
   }
-
 }

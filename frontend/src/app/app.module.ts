@@ -42,6 +42,7 @@ import { ThemeService } from "./services/theme.service";
 import { HomeVideoCardComponent } from './components/home-video-card/home-video-card.component';
 import { HomeRecentlyUploadedComponent } from './components/home-recently-uploaded/home-recently-uploaded.component';
 import { PeriodPipe } from './pipes/period.pipe';
+import { MiniPlayerComponent } from './components/mini-player/mini-player.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -71,7 +72,8 @@ const routes: Routes = [
     WatchVideoComponent,
     HomeVideoCardComponent,
     HomeRecentlyUploadedComponent,
-    PeriodPipe
+    PeriodPipe,
+    MiniPlayerComponent
   ],
   imports: [
     BrowserModule,

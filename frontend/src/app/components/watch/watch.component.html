@@ -1,110 +1,125 @@
-<div  *ngIf="!data_have">
-        <mat-progress-bar class = "wait-progress" mode="indeterminate"></mat-progress-bar>
+<div *ngIf="!data_have">
+  <mat-progress-bar
+    class="wait-progress"
+    mode="indeterminate"
+  ></mat-progress-bar>
 </div>
-<div *ngIf="data_have" class=content>
-    <div class="videomain">
-        <!-- <mat-video [preload]="true" [autoplay]="true" [quality]="true" [spinner] = "dot" [overlay] = "true" [keyboard]="true" [download]="true">
+<div *ngIf="data_have" class="content">
+  <div class="videomain">
+    <!-- <mat-video [preload]="true" [autoplay]="true" [quality]="true" [spinner] = "dot" [overlay] = "true" [keyboard]="true" [download]="true">
             <source src="https://firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c" type="video/mp4">
 
         </mat-video> -->
-        <!-- <video controls="true" src="{{src}}"></video> -->
-        <app-watch-video [src]="src"></app-watch-video>
-
-
-    </div>
-    <div class=main>
-        <div>
-            <div class=main-title>
-                <mat-grid-list class=title cols=10>
-                    <mat-grid-tile rowspan=1 colspan=8>
-                        <div class="tiltle-div">
-                            <h2>{{title}}</h2>
-                        </div>
-
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan=2>
-                        <div class="div-view">
-                            <h4>{{view_total}} view</h4>
-                        </div>
-                    </mat-grid-tile>
-                </mat-grid-list>
+    <!-- <video controls="true" src="{{src}}"></video> -->
+    <app-watch-video [src]="src"></app-watch-video>
+    <!-- {{ player.video }} -->
+  </div>
+  <div class="main">
+    <div>
+      <div class="main-title">
+        <mat-grid-list class="title" cols="10">
+          <mat-grid-tile rowspan="1" colspan="8">
+            <div class="tiltle-div">
+              <h2>{{ title }}</h2>
             </div>
-            <mat-grid-list cols='10'>
-                <mat-grid-tile rowspan='1' colspan=1>
-                    <div class=owner-video-div>
-                        <img src="{{owner_avatarURL}}" alt="" />
-                    </div>
-                </mat-grid-tile>
-                <mat-grid-tile rowspan=1 colspan=5>
-                    <div class=owner-video-name>
-                        <h3>{{owner_name}}</h3>
-                    </div>
-                </mat-grid-tile>
-                <mat-grid-tile rowspan='1' colspan=2>
-                    <div class="div-like-dislike">
-                        <mat-grid-list cols='2' colWidth=50% rowHeight=100%>
-                            <mat-grid-tile colspan='1'>
-                                <button class="button-like-dislike" mat-button>
-                                    <mat-icon>thumb_up</mat-icon>
-                                    <p>{{like_count}}</p>
-                                </button>
-                            </mat-grid-tile>
-                            <mat-grid-tile colspan='1'>
-                                <button class="button-like-dislike" mat-button>
-                                    <mat-icon>thumb_down</mat-icon>
-                                    <p>{{dislike_count}}</p>
-                                </button>
-                            </mat-grid-tile>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <div class="div-view">
+              <h4>{{ view_total }} view</h4>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+      <mat-grid-list cols="10">
+        <mat-grid-tile rowspan="1" colspan="1">
+          <div class="owner-video-div">
+            <img src="{{ owner_avatarURL }}" alt="" />
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="1" colspan="5">
+          <div class="owner-video-name">
+            <h3>{{ owner_name }}</h3>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="1" colspan="2">
+          <div class="div-like-dislike">
+            <mat-grid-list cols="2" colWidth="50%" rowHeight="100%">
+              <mat-grid-tile colspan="1">
+                <button class="button-like-dislike" mat-button>
+                  <mat-icon>thumb_up</mat-icon>
+                  <p>{{ like_count }}</p>
+                </button>
+              </mat-grid-tile>
+              <mat-grid-tile colspan="1">
+                <button class="button-like-dislike" mat-button>
+                  <mat-icon>thumb_down</mat-icon>
+                  <p>{{ dislike_count }}</p>
+                </button>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="1" colspan="1">
+          <button mat-raised-button color="primary">Share</button>
+        </mat-grid-tile>
 
-                        </mat-grid-list>
-                    </div>
-                </mat-grid-tile>
-                <mat-grid-tile rowspan=1 colspan=1>
-                    <button mat-raised-button color=primary>Share</button>
-                </mat-grid-tile>
+        <mat-grid-tile rowspan="1" colspan="1">
+          <button mat-raised-button color="warn">Report</button>
+        </mat-grid-tile>
 
-                <mat-grid-tile rowspan=1 colspan=1>
-                    <button mat-raised-button color=warn>Report</button>
-                </mat-grid-tile>
-
-                <!-- <mat-grid-tile rowspan='2' colspan=10>
+        <!-- <mat-grid-tile rowspan='2' colspan=10>
                     <p class="des">{{description}}
                     </p>
                 </mat-grid-tile> -->
-
-            </mat-grid-list>
-
-        </div>
-        <p [className]="off_viewmore ? 'des' : 'desfull'"> {{description}}</p>
-        <div class=div-view-more>
-            <p [className]="'view-more'" (click)=viewmore()>{{title_view}}</p>
-        </div>
-        <div class=comment-main>
-            <div class=comment-total>
-                <p>{{comment_id.length}} Comment</p>
-            </div>
-            <div class=comment-input>
-                <mat-form-field class=comment-form-field>
-                    <!-- <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"> -->
-                    <input matInput placeholder="Add Your Comment" type="text" (keyup.enter)="Accept()"
-                        [(ngModel)]="comment" (focusout)="availablebutton_focusout()" (focus)="availablebutton()">
-                </mat-form-field>
-                <div class="comment-button-cancel-accept">
-                    <button mat-raised-button [(disabled)]="button_disable" style="margin-right: 20px"
-                        (click)='Cancel()'>
-                        Cancel
-                    </button>
-                    <button mat-raised-button [(disabled)]="button_disable" color='primary' (click)=Accept()>
-                        Accept
-                    </button>
-
-                </div>
-
-            </div>
-            <div *ngIf="comment_list">
-                <app-list-comment class = comment-list-content *ngFor="let comment of comment_id" [comment]=comment ></app-list-comment>
-            </div>
-        </div>
-
+      </mat-grid-list>
     </div>
+    <p [className]="off_viewmore ? 'des' : 'desfull'">{{ description }}</p>
+    <div class="div-view-more">
+      <p [className]="'view-more'" (click)="viewmore()">{{ title_view }}</p>
+    </div>
+    <div class="comment-main">
+      <div class="comment-total">
+        <p>{{ comment_id.length }} Comment</p>
+      </div>
+      <div class="comment-input">
+        <mat-form-field class="comment-form-field">
+          <!-- <img src="https://lh3.googleusercontent.com/-YCOk87TeQlc/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfVLz0rqXokP9-NeqnO_6ThX5xfRQ/photo.jpg"> -->
+          <input
+            matInput
+            placeholder="Add Your Comment"
+            type="text"
+            (keyup.enter)="Accept()"
+            [(ngModel)]="comment"
+            (focusout)="availablebutton_focusout()"
+            (focus)="availablebutton()"
+          />
+        </mat-form-field>
+        <div class="comment-button-cancel-accept">
+          <button
+            mat-raised-button
+            [(disabled)]="button_disable"
+            style="margin-right: 20px"
+            (click)="Cancel()"
+          >
+            Cancel
+          </button>
+          <button
+            mat-raised-button
+            [(disabled)]="button_disable"
+            color="primary"
+            (click)="Accept()"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+      <div *ngIf="comment_list">
+        <app-list-comment
+          class="comment-list-content"
+          *ngFor="let comment of comment_id"
+          [comment]="comment"
+        ></app-list-comment>
+      </div>
+    </div>
+  </div>
 </div>

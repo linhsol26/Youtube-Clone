@@ -79,7 +79,7 @@ export class UploadProcessFileComponent implements OnInit {
     const info = getVideoTemplate(
       this.videoData,
       this._userGG.user,
-      this.timestamp,
+      Date.now(),
       url
     );
     this._db.setBasicVideoInfo(info);

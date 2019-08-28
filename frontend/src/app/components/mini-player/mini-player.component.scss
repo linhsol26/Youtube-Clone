@@ -1,0 +1,13 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  z-index: 1;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+}
+
+video {
+  max-width: 100%;
+}

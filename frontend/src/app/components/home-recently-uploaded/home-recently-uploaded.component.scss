@@ -2,11 +2,18 @@
   .container {
     width: 254px;
   }
+  .banner {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 558px) {
   .container {
     width: 508px;
+  }
+
+  .banner {
+    width: 200px;
   }
 }
 
@@ -29,12 +36,11 @@
 }
 
 .banner {
-  width: 200px;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5px;
+  margin-bottom: 5px;
   border-radius: 15px;
 }
 
