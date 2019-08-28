@@ -9,11 +9,10 @@ import { Comments } from 'src/app/interfaces/comments';
 import { CommentsService } from 'src/app/services/comments.service';
 
 @Component({
-  selector: 'app-watch',
-  templateUrl: './watch.component.html',
-  styleUrls: ['./watch.component.scss']
+  selector: "app-watch",
+  templateUrl: "./watch.component.html",
+  styleUrls: ["./watch.component.scss"]
 })
-
 export class WatchComponent implements OnInit {
   vid;
   comment_interface: Comments;
@@ -43,7 +42,7 @@ export class WatchComponent implements OnInit {
 
   //will be take info data get of firebase
   userinfo_owner: Object;
-  //info user owner 
+  //info user owner
   owner_avatarURL;
   owner_name;
 
@@ -58,7 +57,8 @@ export class WatchComponent implements OnInit {
   like_count = '100';
   dislike_count = '20';
   title = "";
-  description = "Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata."
+  description =
+    "Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.";
   total_comment = "1090";
   button_disable = true;
   uid_owner = "";
@@ -81,13 +81,13 @@ export class WatchComponent implements OnInit {
 
   //viewmore
   off_viewmore = true;
-  title_view = 'View more';
+  title_view = "View more";
   viewmore() {
     if (this.off_viewmore) {
       this.title_view = "Compact";
       this.off_viewmore = false;
     } else {
-      this.title_view = 'View more';
+      this.title_view = "View more";
       this.off_viewmore = true;
     }
   }
@@ -115,8 +115,8 @@ export class WatchComponent implements OnInit {
       content: this.comment,
       likes: 0,
       dislikes: 0,
-      time: Date.now(),
-    }
+      time: Date.now()
+    };
     this.comment_service.createComment(this.comment_interface);
   }
   Accept() {
@@ -157,10 +157,9 @@ export class WatchComponent implements OnInit {
     //console.log(this.vid);
     this.firebase.collection('videos').doc(this.vid).snapshotChanges()
       .subscribe(data => {
-
         this.videoinfo = data.payload.data();
         //console.log(this.videoinfo);
-        this.src = this.videoinfo['url'];
+        this.src = this.videoinfo["url"];
         //console.log(this.src);
         this.like_count = this.videoinfo['likes'].length;
         this.dislike_count = this.videoinfo['dislikes'];
@@ -169,6 +168,7 @@ export class WatchComponent implements OnInit {
         this.view_total = this.videoinfo['views'];
         this.comment_id = this.videoinfo['cid'];
         this.comment_list = true;
+
         //console.log(this.comment_id);
 
         //after get uid going to do take 
@@ -177,8 +177,8 @@ export class WatchComponent implements OnInit {
           .then(data => {
             this.userinfo_owner = data.data();
             //console.log(this.userinfo_owner);
-            this.owner_avatarURL = this.userinfo_owner['avatarURL'];
-            this.owner_name = this.userinfo_owner['name'];
+            this.owner_avatarURL = this.userinfo_owner["avatarURL"];
+            this.owner_name = this.userinfo_owner["name"];
             this.data_have = true;
           })
         this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data => {
@@ -219,5 +219,4 @@ export class WatchComponent implements OnInit {
     //console.log(this.comment_id +"snapshotChanges");
     //});
   }
-
 }

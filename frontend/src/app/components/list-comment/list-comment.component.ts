@@ -11,9 +11,7 @@ export class ListCommentComponent implements OnInit {
   @Input() comment;
   current_comment: Comments;
   user_comment: User;
-  constructor(private firestore: AngularFirestore) {
-
-  }
+  constructor(private firestore: AngularFirestore) {}
   data_have = false;
 
   ngOnInit() {
@@ -37,8 +35,6 @@ export class ListCommentComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-
-
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
     //console.log(this.comment);
@@ -53,7 +49,6 @@ export class ListCommentComponent implements OnInit {
     //       this.comment_content = data.payload.data();
     //       console.log(this.comment_content);
     //     })
-
     //}
   }
 }
