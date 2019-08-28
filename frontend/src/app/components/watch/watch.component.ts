@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { UserGoogleService } from 'src/app/services/user-google.service';
 import { Comments } from 'src/app/interfaces/comments';
 import { CommentsService } from 'src/app/services/comments.service';
+
 @Component({
   selector: 'app-watch',
   templateUrl: './watch.component.html',
@@ -14,7 +15,7 @@ import { CommentsService } from 'src/app/services/comments.service';
 })
 
 export class WatchComponent implements OnInit {
-  vid ;
+  vid;
   comment_interface: Comments;
   comment_id;
   data_have = false;
@@ -25,12 +26,19 @@ export class WatchComponent implements OnInit {
     public current_user: UserGoogleService,
     private route: ActivatedRoute,
   ) {
+    this.vid = this.route.snapshot.params['vid'];
     //take vid from route url
-    
+    //update view
+    this.firebase.collection('videos').doc(this.vid).get().subscribe(data => {
+      this.view_total = data.data()['views'];
+      console.log(this.view_total);
+      this.view_total = this.view_total + 1;
+      this.firebase.collection('videos').doc(this.vid).update({
 
+        "views": this.view_total,
 
-
-
+      }).then(() => console.log("tăng view", this.view_total));
+    })
   }
 
   //will be take info data get of firebase
@@ -45,7 +53,7 @@ export class WatchComponent implements OnInit {
   //infovideo
   //src = "https://firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c";
   src;
-  view_total = '100.000';
+  view_total: number;
   owner_video_name = 'Nguyen Vo Dang Cao';
   like_count = '100';
   dislike_count = '20';
@@ -54,6 +62,8 @@ export class WatchComponent implements OnInit {
   total_comment = "1090";
   button_disable = true;
   uid_owner = "";
+  button_like = false;
+  button_dislike = false;
   //report
   //   name : string;
   //   email: string;
@@ -72,7 +82,6 @@ export class WatchComponent implements OnInit {
   off_viewmore = true;
   title_view = 'View more';
   viewmore() {
-    console.log(typeof (this.comment_id));
     if (this.off_viewmore) {
       this.title_view = "Compact";
       this.off_viewmore = false;
@@ -117,7 +126,21 @@ export class WatchComponent implements OnInit {
     this.comment = "";
     this.button_disable = true;
   }
-
+  //like and dislike button
+  disablebutton_like() {
+    this.button_like = true;
+  }
+  disablebutton_dislike() {
+    this.button_dislike = true;
+  }
+  onclick_like(){
+    this.disablebutton_like();
+    this.button_dislike = false;
+  }
+  onclick_dislike(){
+    this.disablebutton_dislike();
+    this.button_like = false;
+  }
   comment_list = false;
   //videos : any;
 
@@ -129,8 +152,8 @@ export class WatchComponent implements OnInit {
     //   this.src = this.videos[0]['url'];
     // })
     // this.firebase.doc(`videos/${this.vid}`).get()
-    this.vid = this.route.snapshot.params['vid'];  
-    console.log(this.vid);
+
+    //console.log(this.vid);
     this.firebase.collection('videos').doc(this.vid).snapshotChanges()
       .subscribe(data => {
 
@@ -138,7 +161,7 @@ export class WatchComponent implements OnInit {
         //console.log(this.videoinfo);
         this.src = this.videoinfo['url'];
         //console.log(this.src);
-        this.like_count = this.videoinfo['likes'];
+        this.like_count = this.videoinfo['likes'].length;
         this.dislike_count = this.videoinfo['dislikes'];
         this.description = this.videoinfo['description'];
         this.title = this.videoinfo['title'];
@@ -146,6 +169,7 @@ export class WatchComponent implements OnInit {
         this.comment_id = this.videoinfo['cid'];
         this.comment_list = true;
         //console.log(this.comment_id);
+
         //after get uid going to do take 
         this.firebase.collection('users').doc(this.videoinfo['uid']).get()
           .toPromise()
@@ -156,12 +180,23 @@ export class WatchComponent implements OnInit {
             this.owner_name = this.userinfo_owner['name'];
             this.data_have = true;
           })
-      this.current_user.user.likes.map(value => {
-        console.log(value);
-        if(this.vid == value)
-        console.log("tim thay"+this.like_count);
+        this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data => {
+          data.data()['likes'].map(value => {
+            if (this.vid == value) {
+              console.log('tìm thay');
+              this.disablebutton_like();
+            }
+          });
+
+        })
+
+        // this.current_user.user.likes.map(value => {
+        //   console.log(value);
+        //   if (this.vid == value)
+        //     console.log("tim thay" + this.like_count);
+        // })
       })
-      })
+
 
     //this.firebase.collection('videos', ref =>  ref.where('vid','==',this.vid)).snapshotChanges().subscribe(data => {
     // data.forEach(test => {

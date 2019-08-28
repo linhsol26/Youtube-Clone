@@ -31,7 +31,7 @@ export class ListCommentComponent implements OnInit {
         .subscribe(value => {
           this.user_comment = value.data() as User;
           this.data_have = true;
-          console.log(this.user_comment);
+          //console.log(this.user_comment);
         });
     });
   }
