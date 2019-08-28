@@ -16,22 +16,22 @@ export class ListCommentComponent implements OnInit {
 
   ngOnInit() {
     this.firestore
-      .collection("comments")
-      .doc(this.comment)
-      .get()
-      .subscribe(value => {
-        this.current_comment = value.data() as Comments;
-        //console.log(this.current_comment);
-        this.firestore
-          .collection("users")
-          .doc(this.current_comment["uid"])
-          .get()
-          .subscribe(value => {
-            this.user_comment = value.data() as User;
-            this.data_have = true;
-            // console.log(this.user_comment);
-          });
-      });
+    .collection("comments")
+    .doc(this.comment)
+    .get()
+    .subscribe(value => {
+      this.current_comment = value.data() as Comments;
+      //console.log(this.current_comment);
+      this.firestore
+        .collection("users")
+        .doc(this.current_comment["uid"])
+        .get()
+        .subscribe(value => {
+          this.user_comment = value.data() as User;
+          this.data_have = true;
+          //console.log(this.user_comment);
+        });
+    });
   }
 
   ngOnChanges(): void {
