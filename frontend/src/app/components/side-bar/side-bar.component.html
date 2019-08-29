@@ -1,5 +1,9 @@
 <mat-sidenav-container class="container" (backdropClick)="close('backdrop')">
-  <mat-sidenav #sidenav (keydown.escape)="close('escape')">
+  <mat-sidenav
+    #sidenav
+    (keydown.escape)="close('escape')"
+    [fixedInViewport]="true"
+  >
     <div id="logo">
       <img *ngIf="!theme.dark" src="../../../assets//bamboo-black.png" alt="" />
       <img *ngIf="theme.dark" src="../../../assets/bamboo-green.png" alt="" />
