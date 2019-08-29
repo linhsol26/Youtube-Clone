@@ -126,6 +126,36 @@ export class DatabaseService {
       });
   }
 
+  addLike( vid, uid){
+    this._afs
+    .collection("videos")
+    .doc(vid)
+    .update({
+      likes : firebase.firestore.FieldValue.arrayUnion(uid)
+    })
+    this._afs
+    .collection("users")
+    .doc(uid)
+    .update({
+      likes: firebase.firestore.FieldValue.arrayUnion(vid)
+    })
+  }
+
+  addDislike( vid, uid)
+  {
+    this._afs
+    .collection("videos")
+    .doc(vid)
+    .update({
+      dislikes : firebase.firestore.FieldValue.arrayUnion(uid)
+    })
+    this._afs
+    .collection("users")
+    .doc(uid)
+    .update({
+      dislikes : firebase.firestore.FieldValue.arrayUnion(vid)
+    })
+  }
   // home page
   getPublicVideos() {
     return this._afs.collection("public").snapshotChanges();
