@@ -1,0 +1,4 @@
+# watch page is not responsive.
+
+# mobile browsers does not automatically hide the address bar and menu bar when scrolling down.
+
