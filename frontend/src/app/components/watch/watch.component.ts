@@ -38,6 +38,8 @@ export class WatchComponent implements OnInit {
 
       }).then(() => console.log("tăng view", this.view_total));
     })
+
+    
   }
 
   //will be take info data get of firebase
@@ -64,6 +66,7 @@ export class WatchComponent implements OnInit {
   uid_owner = "";
   button_like = false;
   button_dislike = false;
+  find_likes = false;
   //report
   //   name : string;
   //   email: string;
@@ -133,11 +136,12 @@ export class WatchComponent implements OnInit {
   disablebutton_dislike() {
     this.button_dislike = true;
   }
-  onclick_like(){
+  onclick_like() {
+    
     this.disablebutton_like();
     this.button_dislike = false;
   }
-  onclick_dislike(){
+  onclick_dislike() {
     this.disablebutton_dislike();
     this.button_like = false;
   }
@@ -145,6 +149,7 @@ export class WatchComponent implements OnInit {
   //videos : any;
 
   ngOnInit() {
+    
     // this.VideoUrlService.getVideos().subscribe(videos => {
     //   console.log(videos);
     //   this.videos = videos;
@@ -180,22 +185,29 @@ export class WatchComponent implements OnInit {
             this.owner_name = this.userinfo_owner["name"];
             this.data_have = true;
           })
-        this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data => {
+      })
+      console.log(this.current_user.user.uid);
+      this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data => {
           data.data()['likes'].map(value => {
             if (this.vid == value) {
               console.log('tìm thay');
               this.disablebutton_like();
+              this.find_likes = true;
             }
-          });
-
+          })
         })
-
-        // this.current_user.user.likes.map(value => {
-        //   console.log(value);
-        //   if (this.vid == value)
-        //     console.log("tim thay" + this.like_count);
-        // })
-      })
+        console.log(this.find_likes);
+        if (!this.find_likes){
+          console.log('chạy dislike find');
+          this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data=>{
+          data.data()['dislikes'].map(value2 => {
+            if(this.vid == value2){
+              console.log('tim thay');
+              this.disablebutton_dislike();
+            } 
+          })
+        })
+      }
 
 
     //this.firebase.collection('videos', ref =>  ref.where('vid','==',this.vid)).snapshotChanges().subscribe(data => {
