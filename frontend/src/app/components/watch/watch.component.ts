@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { UserGoogleService } from 'src/app/services/user-google.service';
 import { Comments } from 'src/app/interfaces/comments';
 import { CommentsService } from 'src/app/services/comments.service';
+import { LikeDislikeService } from 'src/app/services/like-dislike.service';
 
 @Component({
   selector: "app-watch",
@@ -19,7 +20,8 @@ export class WatchComponent implements OnInit {
   comment_id;
   data_have = false;
   constructor(
-    private firebase: AngularFirestore,
+    private like_dislike_service : LikeDislikeService,
+    public firebase: AngularFirestore,
     //private VideoUrlService: VideoUrlService,
     public comment_service: CommentsService,
     public current_user: UserGoogleService,
@@ -64,8 +66,8 @@ export class WatchComponent implements OnInit {
   total_comment = "1090";
   button_disable = true;
   uid_owner = "";
-  button_like = false;
-  button_dislike = false;
+  button_like = "";
+  button_dislike = "";
   find_likes = false;
   //report
   //   name : string;
@@ -93,7 +95,6 @@ export class WatchComponent implements OnInit {
       this.off_viewmore = true;
     }
   }
-
   //input comment
   comment: string = "";
 
@@ -130,20 +131,46 @@ export class WatchComponent implements OnInit {
     this.button_disable = true;
   }
   //like and dislike button
-  disablebutton_like() {
-    this.button_like = true;
+  async activebutton_like() {
+    this.button_like = "primary";
+    await this.like_dislike_service.addLike(this.vid, this.current_user.user.uid);
   }
-  disablebutton_dislike() {
-    this.button_dislike = true;
+  async activebutton_dislike() {
+    this.button_dislike = "primary";
+    await this.like_dislike_service.addDislike(this.vid, this.current_user.user.uid);
+  }
+  async disablebutton_like(){
+    this.button_like = "";
+    await this.like_dislike_service.removeLike(this.vid, this.current_user.user.uid);
+  }
+  async disablebutton_dislike(){
+    this.button_dislike = "";
+    await this.like_dislike_service.removeDislike(this.vid, this.current_user.user.uid);
   }
   onclick_like() {
-    
-    this.disablebutton_like();
-    this.button_dislike = false;
+    if (this.button_like != "")
+    {
+      this.disablebutton_like();
+    }
+    else if(this.button_dislike != ""){
+    this.activebutton_like();
+    this.disablebutton_dislike();
+    }
+    else {
+      this.activebutton_like();
+    }
   }
   onclick_dislike() {
-    this.disablebutton_dislike();
-    this.button_like = false;
+    if (this.button_dislike != "")
+    {
+      this.disablebutton_dislike();
+    }else if(this.button_like != "") {
+    this.activebutton_dislike();
+    this.disablebutton_like();
+    }
+    else {
+      this.activebutton_dislike();
+    }
   }
   comment_list = false;
   //videos : any;
@@ -166,7 +193,7 @@ export class WatchComponent implements OnInit {
         this.src = this.videoinfo["url"];
         //console.log(this.src);
         this.like_count = this.videoinfo['likes'].length;
-        this.dislike_count = this.videoinfo['dislikes'];
+        this.dislike_count = this.videoinfo['dislikes'].length;
         this.description = this.videoinfo['description'];
         this.title = this.videoinfo['title'];
         this.view_total = this.videoinfo['views'];

@@ -156,6 +156,38 @@ export class DatabaseService {
       dislikes : firebase.firestore.FieldValue.arrayUnion(vid)
     })
   }
+
+  removeLike(vid, uid)
+  {
+    this._afs
+    .collection("videos")
+    .doc(vid)
+    .update({
+      likes : firebase.firestore.FieldValue.arrayRemove(uid)
+    })
+    this._afs
+    .collection('users')
+    .doc(uid)
+    .update({
+      likes : firebase.firestore.FieldValue.arrayRemove(vid)
+    })
+  }
+
+  removeDislike(vid, uid)
+  {
+    this._afs
+    .collection("videos")
+    .doc(vid)
+    .update({
+      dislikes : firebase.firestore.FieldValue.arrayRemove(uid)
+    })
+    this._afs
+    .collection("users")
+    .doc(uid)
+    .update({
+      dislikes : firebase.firestore.FieldValue.arrayRemove(vid)
+    })
+  }
   // home page
   getPublicVideos() {
     return this._afs.collection("public").snapshotChanges();
