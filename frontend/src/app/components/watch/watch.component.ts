@@ -20,7 +20,7 @@ export class WatchComponent implements OnInit {
   comment_id;
   data_have = false;
   constructor(
-    private like_dislike_service : LikeDislikeService,
+    private like_dislike_service: LikeDislikeService,
     public firebase: AngularFirestore,
     //private VideoUrlService: VideoUrlService,
     public comment_service: CommentsService,
@@ -29,19 +29,8 @@ export class WatchComponent implements OnInit {
   ) {
     this.vid = this.route.snapshot.params['vid'];
     //take vid from route url
-    //update view
-    this.firebase.collection('videos').doc(this.vid).get().subscribe(data => {
-      this.view_total = data.data()['views'];
-      console.log(this.view_total);
-      this.view_total = this.view_total + 1;
-      this.firebase.collection('videos').doc(this.vid).update({
 
-        "views": this.view_total,
 
-      }).then(() => console.log("tăng view", this.view_total));
-    })
-
-    
   }
 
   //will be take info data get of firebase
@@ -58,8 +47,8 @@ export class WatchComponent implements OnInit {
   src;
   view_total: number;
   owner_video_name = 'Nguyen Vo Dang Cao';
-  like_count = '100';
-  dislike_count = '20';
+  like_count = "100";
+  dislike_count = "20";
   title = "";
   description =
     "Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.";
@@ -139,34 +128,32 @@ export class WatchComponent implements OnInit {
     this.button_dislike = "primary";
     await this.like_dislike_service.addDislike(this.vid, this.current_user.user.uid);
   }
-  async disablebutton_like(){
+  async disablebutton_like() {
     this.button_like = "";
     await this.like_dislike_service.removeLike(this.vid, this.current_user.user.uid);
   }
-  async disablebutton_dislike(){
+  async disablebutton_dislike() {
     this.button_dislike = "";
     await this.like_dislike_service.removeDislike(this.vid, this.current_user.user.uid);
   }
   onclick_like() {
-    if (this.button_like != "")
-    {
+    if (this.button_like != "") {
       this.disablebutton_like();
     }
-    else if(this.button_dislike != ""){
-    this.activebutton_like();
-    this.disablebutton_dislike();
+    else if (this.button_dislike != "") {
+      this.activebutton_like();
+      this.disablebutton_dislike();
     }
     else {
       this.activebutton_like();
     }
   }
   onclick_dislike() {
-    if (this.button_dislike != "")
-    {
+    if (this.button_dislike != "") {
       this.disablebutton_dislike();
-    }else if(this.button_like != "") {
-    this.activebutton_dislike();
-    this.disablebutton_like();
+    } else if (this.button_like != "") {
+      this.activebutton_dislike();
+      this.disablebutton_like();
     }
     else {
       this.activebutton_dislike();
@@ -176,7 +163,7 @@ export class WatchComponent implements OnInit {
   //videos : any;
 
   ngOnInit() {
-    
+
     // this.VideoUrlService.getVideos().subscribe(videos => {
     //   console.log(videos);
     //   this.videos = videos;
@@ -184,37 +171,50 @@ export class WatchComponent implements OnInit {
     //   this.src = this.videos[0]['url'];
     // })
     // this.firebase.doc(`videos/${this.vid}`).get()
+    this.firebase.collection('videos').doc(this.vid).get().subscribe(data => {
+      this.view_total = data.data()['views'];
+      console.log(this.view_total);
+      this.view_total = this.view_total + 1;
+      this.firebase.collection('videos').doc(this.vid).update({
 
-    //console.log(this.vid);
-    this.firebase.collection('videos').doc(this.vid).snapshotChanges()
-      .subscribe(data => {
-        this.videoinfo = data.payload.data();
-        //console.log(this.videoinfo);
-        this.src = this.videoinfo["url"];
-        //console.log(this.src);
-        this.like_count = this.videoinfo['likes'].length;
-        this.dislike_count = this.videoinfo['dislikes'].length;
-        this.description = this.videoinfo['description'];
-        this.title = this.videoinfo['title'];
-        this.view_total = this.videoinfo['views'];
-        this.comment_id = this.videoinfo['cid'];
-        this.comment_list = true;
+        "views": this.view_total
 
-        //console.log(this.comment_id);
+      }).then(() => {
+        console.log("tăng view", this.view_total);
+        //console.log(this.vid);
+        this.firebase.collection('videos').doc(this.vid).snapshotChanges()
+          .subscribe(data => {
+            this.videoinfo = data.payload.data();
+            //console.log(this.videoinfo);
+            this.src = this.videoinfo["url"];
+            //console.log(this.src);
+            this.like_count = this.videoinfo['likes'].length;
+            console.log(this.like_count + "like");
+            this.dislike_count = this.videoinfo['dislikes'].length;
+            this.description = this.videoinfo['description'];
+            this.title = this.videoinfo['title'];
+            this.view_total = this.videoinfo['views'];
+            this.comment_id = this.videoinfo['cid'];
+            this.comment_list = true;
 
-        //after get uid going to do take 
-        this.firebase.collection('users').doc(this.videoinfo['uid']).get()
-          .toPromise()
-          .then(data => {
-            this.userinfo_owner = data.data();
-            //console.log(this.userinfo_owner);
-            this.owner_avatarURL = this.userinfo_owner["avatarURL"];
-            this.owner_name = this.userinfo_owner["name"];
-            this.data_have = true;
+            //console.log(this.comment_id);
+
+            //update view
+
+
+            //after get uid going to do take 
+            this.firebase.collection('users').doc(this.videoinfo['uid']).get()
+              .toPromise()
+              .then(data => {
+                this.userinfo_owner = data.data();
+                //console.log(this.userinfo_owner);
+                this.owner_avatarURL = this.userinfo_owner["avatarURL"];
+                this.owner_name = this.userinfo_owner["name"];
+                this.data_have = true;
+              })
           })
-      })
-      console.log(this.current_user.user.uid);
-      this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data => {
+        console.log(this.current_user.user.uid);
+        this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data => {
           data.data()['likes'].map(value => {
             if (this.vid == value) {
               console.log('tìm thay');
@@ -224,27 +224,29 @@ export class WatchComponent implements OnInit {
           })
         })
         console.log(this.find_likes);
-        if (!this.find_likes){
+        if (!this.find_likes) {
           console.log('chạy dislike find');
-          this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data=>{
-          data.data()['dislikes'].map(value2 => {
-            if(this.vid == value2){
-              console.log('tim thay');
-              this.activebutton_dislike();
-            } 
+          this.firebase.collection('users').doc(this.current_user.user.uid).get().subscribe(data => {
+            data.data()['dislikes'].map(value2 => {
+              if (this.vid == value2) {
+                console.log('tim thay');
+                this.activebutton_dislike();
+              }
+            })
           })
-        })
-      }
+        }
 
 
-    //this.firebase.collection('videos', ref =>  ref.where('vid','==',this.vid)).snapshotChanges().subscribe(data => {
-    // data.forEach(test => {
-    // console.log(test);
-    //this.comment_id = test.payload.doc.data().cid;
-    //console.log(typeof(this.comment_id));
-    //})
-    //this.comment_id = data. ;
-    //console.log(this.comment_id +"snapshotChanges");
-    //});
+        //this.firebase.collection('videos', ref =>  ref.where('vid','==',this.vid)).snapshotChanges().subscribe(data => {
+        // data.forEach(test => {
+        // console.log(test);
+        //this.comment_id = test.payload.doc.data().cid;
+        //console.log(typeof(this.comment_id));
+        //})
+        //this.comment_id = data. ;
+        //console.log(this.comment_id +"snapshotChanges");
+        //});
+      })
+    })
   }
 }

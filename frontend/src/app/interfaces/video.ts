@@ -9,8 +9,8 @@ export interface IVideo {
   privacy: string;
   thumbnailURL: string;
   views: number;
-  likes: number;
-  dislikes: number;
+  likes: string[];
+  dislikes: string[];
   title: string;
   description: string;
   tags: string[];
@@ -31,8 +31,8 @@ export function getVideoTemplate(
     privacy: form.privacy,
     thumbnailURL: form.thumbnailURL,
     views: 0,
-    likes: 0,
-    dislikes: 0,
+    likes: [],
+    dislikes: [],
     title: form.title,
     description: form.description,
     tags: form.tags,
