@@ -14,7 +14,7 @@
       <div id="process-bar">
         <p>
           <span id="video-info">
-            {{ file.name | truncate }} - {{ file.size | diskSize }}
+            {{ file.name | truncate: 20 }} - {{ file.size | diskSize }}
           </span>
 
           <span *ngIf="!uploaded" id="percentage">

@@ -49,9 +49,11 @@ exports.genThumb = functions.https.onCall(data => {
         metadata: metadata
       });
     })
-    .then(() => {
+    .then((data) => {
       const thumb = bucket.file(thumbPath);
       return thumb.getSignedUrl({ action: "read", expires: "05-24-2999" });
+      // urls from getSignedURL lasts only maximum 7 days 
+      // https://stackoverflow.com/questions/42956250/get-download-url-from-file-uploaded-with-cloud-functions-for-firebase
     })
     .then(urls => {
       fs.unlinkSync(tempThumbPath);
