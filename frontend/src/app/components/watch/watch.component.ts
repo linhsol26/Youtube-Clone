@@ -218,7 +218,7 @@ export class WatchComponent implements OnInit {
           data.data()['likes'].map(value => {
             if (this.vid == value) {
               console.log('tìm thay');
-              this.disablebutton_like();
+              this.activebutton_like();
               this.find_likes = true;
             }
           })
@@ -230,7 +230,7 @@ export class WatchComponent implements OnInit {
           data.data()['dislikes'].map(value2 => {
             if(this.vid == value2){
               console.log('tim thay');
-              this.disablebutton_dislike();
+              this.activebutton_dislike();
             } 
           })
         })
