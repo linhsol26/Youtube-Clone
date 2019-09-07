@@ -1,7 +1,7 @@
-<mat-sidenav-container class="container" (backdropClick)="close('backdrop')">
+<mat-sidenav-container class="container" (backdropClick)="close()">
   <mat-sidenav
     #sidenav
-    (keydown.escape)="close('escape')"
+    (keydown.escape)="close()"
     [fixedInViewport]="true"
   >
     <div id="logo">

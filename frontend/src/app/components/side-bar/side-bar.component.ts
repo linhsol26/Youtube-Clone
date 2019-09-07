@@ -29,10 +29,12 @@ export class SideBarComponent {
     public theme: ThemeService
   ) {}
 
-  close(route: string) {
+  close(route: string = null) {
+    if (route) {
+      if (route == "/upload") this.toUpload();
+      else this._router.navigate([route]);
+    }
     this.sidenav.close();
-    if (route == "/upload") this.toUpload();
-    else this._router.navigate([route]);
   }
 
   toUpload() {
