@@ -16,15 +16,21 @@ mat-toolbar {
   font-family: "Righteous", cursive;
 }
 
+@media screen and (max-width: 768px) {
+  mat-toolbar {
+    height: 55px;
+  }
+}
+
 // left side
 #left-side {
   display: flex;
+  height: 80%;
 }
 
 button {
   min-width: 50px;
-  width: 50px;
-  height: 50px;
+  height: 100%;
   padding: 0;
   transition: 0.5s;
 }
@@ -32,6 +38,7 @@ button {
 #logo {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 450px) {
@@ -41,7 +48,10 @@ button {
 }
 
 #logo-image {
-  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
   width: 50px;
 }
 
@@ -62,6 +72,7 @@ button {
 //right side
 #right-side {
   display: flex;
+  height: 80%;
   width: 120px;
 
   justify-content: space-evenly;
