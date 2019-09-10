@@ -43,6 +43,7 @@ import { HomeVideoCardComponent } from './components/home-video-card/home-video-
 import { HomeRecentlyUploadedComponent } from './components/home-recently-uploaded/home-recently-uploaded.component';
 import { PeriodPipe } from './pipes/period.pipe';
 import { MiniPlayerComponent } from './components/mini-player/mini-player.component';
+import { ViewFormatPipe } from './pipes/view-format.pipe';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -73,7 +74,8 @@ const routes: Routes = [
     HomeVideoCardComponent,
     HomeRecentlyUploadedComponent,
     PeriodPipe,
-    MiniPlayerComponent
+    MiniPlayerComponent,
+    ViewFormatPipe
   ],
   imports: [
     BrowserModule,

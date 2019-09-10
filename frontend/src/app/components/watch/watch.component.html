@@ -27,7 +27,10 @@
           </mat-grid-tile>
           <mat-grid-tile colspan="2">
             <div class="div-view">
-              <h4>{{ view_total }} {{ view_total == 1 ? "view" : "views" }}</h4>
+              <h4>
+                {{ view_total | viewFormat }}
+                {{ view_total == 1 ? "view" : "views" }}
+              </h4>
             </div>
           </mat-grid-tile>
         </mat-grid-list>

@@ -8,7 +8,7 @@
     </div>
     <p class="owner">{{ card.owner }}</p>
     <p>
-      {{ card.views }} {{ card.views == 1 ? "view" : "views" }} -
+      {{ card.views | viewFormat }} {{ card.views == 1 ? "view" : "views" }} -
       {{ card.timestamp | period }}
     </p>
   </div>
