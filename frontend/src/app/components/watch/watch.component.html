@@ -11,7 +11,9 @@
 
         </mat-video> -->
     <!-- <video controls="true" src="{{src}}"></video> -->
+
     <app-watch-video [src]="src"></app-watch-video>
+
     <!-- {{ player.video }} -->
   </div>
   <div class="main">
@@ -25,7 +27,7 @@
           </mat-grid-tile>
           <mat-grid-tile colspan="2">
             <div class="div-view">
-              <h4>{{ view_total }} {{view_total == 1 ? "view" : "views"}}</h4>
+              <h4>{{ view_total }} {{ view_total == 1 ? "view" : "views" }}</h4>
             </div>
           </mat-grid-tile>
         </mat-grid-list>
@@ -45,13 +47,23 @@
           <div class="div-like-dislike">
             <mat-grid-list cols="2" colWidth="50%" rowHeight="100%">
               <mat-grid-tile colspan="1">
-                <button class="button-like-dislike" (click) = "onclick_like()"  color = "{{button_like}}" mat-button>
+                <button
+                  class="button-like-dislike"
+                  (click)="onclick_like()"
+                  color="{{ button_like }}"
+                  mat-button
+                >
                   <mat-icon>thumb_up</mat-icon>
                   <p>{{ like_count }}</p>
                 </button>
               </mat-grid-tile>
               <mat-grid-tile colspan="1">
-                <button class="button-like-dislike" (click) = "onclick_dislike()" color = "{{button_dislike}}" mat-button>
+                <button
+                  class="button-like-dislike"
+                  (click)="onclick_dislike()"
+                  color="{{ button_dislike }}"
+                  mat-button
+                >
                   <mat-icon>thumb_down</mat-icon>
                   <p>{{ dislike_count }}</p>
                 </button>

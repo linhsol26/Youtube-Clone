@@ -1,29 +1,43 @@
-.wait-progress{
+.wait-progress {
   margin: 10% auto auto auto;
   width: 50%;
 
- // background-color: rgba(173, 173, 173, 0.8);
+  // background-color: rgba(173, 173, 173, 0.8);
 }
-.mat-slider{
+.mat-slider {
   height: 15px !important;
 }
 .content {
-  min-width: 1021px;
-  min-height: 1200px;
-  max-width: 1021px;
-  max-height: 1200px;;
-  width: 70%;
-  height: auto;
+  max-width: 1000px;
+  width: 95%;
   margin: 0 auto;
 }
+
 .videomain {
+  background-color: black;
+  position: relative;
   width: 100%;
-  height: 70%;
+  padding-top: 56.25%; // 16:9
 }
-.videomain video{
+
+app-watch-video {
+  position: absolute;
+  top: 0;
   height: 100%;
   width: 100%;
 }
+
+@media screen and (max-width: 500px) {
+  .videomain {
+    position: static;
+    padding-top: 0;
+  }
+
+  app-watch-video {
+    position: static;
+  }
+}
+
 .main {
   margin-top: 3%;
 }
@@ -32,7 +46,7 @@
 //   border-top-color: rgba($color: #1d1d1d, $alpha: 1);
 //   padding-top: 1%;
 // }
-.main-title{
+.main-title {
   width: 100%;
   height: 70px;
   text-align: left;
@@ -40,22 +54,22 @@
   border-bottom-color: rgba(82, 82, 82, 0.8);
   border-bottom-width: 1px;
 }
-.title{
+.title {
   margin-bottom: 2%;
 }
-.owner-video-div{
+.owner-video-div {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: 25px;
 }
 
-.owner-video-div img{
+.owner-video-div img {
   width: 100%;
   height: 100%;
   border-radius: 40px;
 }
-.owner-video-name{
+.owner-video-name {
   padding-top: 30px;
   height: 100%;
   width: 100%;
@@ -67,32 +81,31 @@
 // .div-button {
 //   width: 100%;
 //   height: 100%;
-  
+
 // }
-.div-view{
+.div-view {
   height: 100%;
   width: 100%;
   margin: 15% 2% 0 40%;
 }
-.div-view h4{
+.div-view h4 {
   text-align: right;
 }
-.tiltle-div{
+.tiltle-div {
   height: 100%;
   width: 100%;
   text-align: left;
-
 }
 .tiltle-div h2 {
   min-height: 43px;
   margin: 3.5% 0 0 0;
 }
-.div-like-dislike{
+.div-like-dislike {
   width: 100%;
   height: 100%;
 }
 
-.button-like-dislike{
+.button-like-dislike {
   height: 50%;
   width: 70%;
   padding: 0;
@@ -102,36 +115,34 @@
   display: inline-block;
   padding-left: 5px;
 }
-.des{
+.des {
   max-height: 62px;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.desfull{
+.desfull {
   overflow: visible;
   width: 100%;
   height: auto;
   text-overflow: ellipsis;
 }
-  
-.div-view-more{
+
+.div-view-more {
   margin-top: 3px;
   width: 100;
   height: auto;
   display: flex;
-  justify-content: flex-end;  
+  justify-content: flex-end;
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: rgba(82, 82, 82, 0.8);
 }
-.view-more{
- 
+.view-more {
   color: rgb(124, 124, 124);
   padding-right: 15px;
-
 }
-.view-more:hover{
+.view-more:hover {
   cursor: pointer;
 }
 // .button-info-main {
@@ -139,29 +150,28 @@
 //   height: 70%;
 // }
 
-.comment-main{
+.comment-main {
   margin-top: 30px;
   width: 100%;
-
 }
-.comment-total{
-  width:100%;
+.comment-total {
+  width: 100%;
   margin-bottom: 5px;
 }
-.comment-input img{
+.comment-input img {
   width: 40px;
   height: 40px;
   border-radius: 25px;
 }
 
-.comment-form-field{
+.comment-form-field {
   width: 100%;
   height: 100%;
 }
 .comment-form-field input {
   width: 99%;
 }
-.comment-button-cancel-accept{
+.comment-button-cancel-accept {
   display: flex;
   justify-content: flex-end;
   flex-direction: row;

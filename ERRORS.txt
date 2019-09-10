@@ -1,0 +1,7 @@
+# getSignedURL() returns a URL that lasts only 7 days.
+
+# watch page is not responsive.
+
+# mobile browsers do not automatically hide the address bar and menu bar when scrolling down.
+
+
