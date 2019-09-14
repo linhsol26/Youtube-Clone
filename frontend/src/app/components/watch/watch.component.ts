@@ -1,18 +1,18 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 // import { ReportComponent } from '../report/report.component';
 // import { MatDialog } from '@angular/material/dialog';
-import { VideoUrlService } from "../../services/video-url.service";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { UserGoogleService } from "src/app/services/user-google.service";
-import { Comments } from "src/app/interfaces/comments";
-import { CommentsService } from "src/app/services/comments.service";
-import { LikeDislikeService } from "src/app/services/like-dislike.service";
+import { VideoUrlService } from '../../services/video-url.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { UserGoogleService } from 'src/app/services/user-google.service';
+import { Comments } from 'src/app/interfaces/comments';
+import { CommentsService } from 'src/app/services/comments.service';
+import { LikeDislikeService } from 'src/app/services/like-dislike.service';
 
 @Component({
-  selector: "app-watch",
-  templateUrl: "./watch.component.html",
-  styleUrls: ["./watch.component.scss"]
+  selector: 'app-watch',
+  templateUrl: './watch.component.html',
+  styleUrls: ['./watch.component.scss']
 })
 export class WatchComponent implements OnInit {
   vid;
@@ -27,7 +27,7 @@ export class WatchComponent implements OnInit {
     public current_user: UserGoogleService,
     private route: ActivatedRoute
   ) {
-    this.vid = this.route.snapshot.params["vid"];
+    this.vid = this.route.snapshot.params['vid'];
     //take vid from route url
   }
 
@@ -44,17 +44,17 @@ export class WatchComponent implements OnInit {
   //src = "https://firebasestorage.googleapis.com/v0/b/fir-demo-5413c.appspot.com/o/test%2Ftest-video.mp4?alt=media&token=14fe757e-f76b-4a5c-ab86-ebaf8f06252c";
   src;
   view_total: number;
-  owner_video_name = "Nguyen Vo Dang Cao";
-  like_count = "100";
-  dislike_count = "20";
-  title = "";
+  owner_video_name = 'Nguyen Vo Dang Cao';
+  like_count = '100';
+  dislike_count = '20';
+  title = '';
   description =
-    "Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.";
-  total_comment = "1090";
+    'Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.vIronman and his team in infinity war These docs assume that you are already familiar with HTML, CSS, JavaScript, and some of the tools from the latest standards, such as classes and modules. The code samples are written using TypeScript. Most Angular code can be written with just the latest JavaScript, using types for dependency injection, and using decorators for metadata.';
+  total_comment = '1090';
   button_disable = true;
-  uid_owner = "";
-  button_like = "";
-  button_dislike = "";
+  uid_owner = '';
+  button_like = '';
+  button_dislike = '';
   find_likes = false;
   //report
   //   name : string;
@@ -70,31 +70,38 @@ export class WatchComponent implements OnInit {
   //   })
   // }
 
+  // check user for comment or like, dislike
+  async check_user() {
+    if (!this.current_user.logged) {
+      await this.current_user.loginGoogle();
+      window.location.reload();
+    }
+  }
   //viewmore
   off_viewmore = true;
-  title_view = "View more";
+  title_view = 'View more';
   viewmore() {
     if (this.off_viewmore) {
-      this.title_view = "Compact";
+      this.title_view = 'Compact';
       this.off_viewmore = false;
     } else {
-      this.title_view = "View more";
+      this.title_view = 'View more';
       this.off_viewmore = true;
     }
   }
   //input comment
-  comment: string = "";
+  comment: string = '';
 
   //button accept and cancel
   availablebutton() {
     this.button_disable = false;
   }
   availablebutton_focusout() {
-    if (this.comment == "") this.button_disable = true;
+    if (this.comment == '') this.button_disable = true;
     else this.availablebutton();
   }
   Cancel() {
-    this.comment = "";
+    this.comment = '';
     this.button_disable = true;
   }
 
@@ -111,55 +118,59 @@ export class WatchComponent implements OnInit {
   }
   Accept() {
     //dosomething
+    this.check_user();
+
     this.addnewcomment();
 
     //console.log(window.location.search);
-    this.comment = "";
+    this.comment = '';
     this.button_disable = true;
   }
   //like and dislike button
   async activebutton_like() {
-    this.button_like = "primary";
+    this.button_like = 'primary';
     await this.like_dislike_service.addLike(
       this.vid,
       this.current_user.user.uid
     );
   }
   async activebutton_dislike() {
-    this.button_dislike = "primary";
+    this.button_dislike = 'primary';
     await this.like_dislike_service.addDislike(
       this.vid,
       this.current_user.user.uid
     );
   }
   async disablebutton_like() {
-    this.button_like = "";
+    this.button_like = '';
     await this.like_dislike_service.removeLike(
       this.vid,
       this.current_user.user.uid
     );
   }
   async disablebutton_dislike() {
-    this.button_dislike = "";
+    this.button_dislike = '';
     await this.like_dislike_service.removeDislike(
       this.vid,
       this.current_user.user.uid
     );
   }
-  onclick_like() {
-    if (this.button_like != "") {
+  async onclick_like() {
+    await this.check_user();
+    if (this.button_like != '') {
       this.disablebutton_like();
-    } else if (this.button_dislike != "") {
+    } else if (this.button_dislike != '') {
       this.activebutton_like();
       this.disablebutton_dislike();
     } else {
       this.activebutton_like();
     }
   }
-  onclick_dislike() {
-    if (this.button_dislike != "") {
+  async onclick_dislike() {
+    await this.check_user();
+    if (this.button_dislike != '') {
       this.disablebutton_dislike();
-    } else if (this.button_like != "") {
+    } else if (this.button_like != '') {
       this.activebutton_dislike();
       this.disablebutton_like();
     } else {
@@ -178,34 +189,34 @@ export class WatchComponent implements OnInit {
     // })
     // this.firebase.doc(`videos/${this.vid}`).get()
     this.firebase
-      .collection("videos")
+      .collection('videos')
       .doc(this.vid)
       .get()
       .subscribe(data => {
-        this.view_total = data.data()["views"];
+        this.view_total = data.data()['views'];
         this.view_total = this.view_total + 1;
         this.firebase
-          .collection("videos")
+          .collection('videos')
           .doc(this.vid)
           .update({
             views: this.view_total
           })
           .then(() => {
             this.firebase
-              .collection("videos")
+              .collection('videos')
               .doc(this.vid)
               .snapshotChanges()
               .subscribe(data => {
                 this.videoinfo = data.payload.data();
                 //console.log(this.videoinfo);
-                this.src = this.videoinfo["url"];
+                this.src = this.videoinfo['url'];
                 //console.log(this.src);
-                this.like_count = this.videoinfo["likes"].length;
-                this.dislike_count = this.videoinfo["dislikes"].length;
-                this.description = this.videoinfo["description"];
-                this.title = this.videoinfo["title"];
-                this.view_total = this.videoinfo["views"];
-                this.comment_id = this.videoinfo["cid"];
+                this.like_count = this.videoinfo['likes'].length;
+                this.dislike_count = this.videoinfo['dislikes'].length;
+                this.description = this.videoinfo['description'];
+                this.title = this.videoinfo['title'];
+                this.view_total = this.videoinfo['views'];
+                this.comment_id = this.videoinfo['cid'];
                 this.comment_list = true;
 
                 //console.log(this.comment_id);
@@ -214,24 +225,24 @@ export class WatchComponent implements OnInit {
 
                 //after get uid going to do take
                 this.firebase
-                  .collection("users")
-                  .doc(this.videoinfo["uid"])
+                  .collection('users')
+                  .doc(this.videoinfo['uid'])
                   .get()
                   .toPromise()
                   .then(data => {
                     this.userinfo_owner = data.data();
                     //console.log(this.userinfo_owner);
-                    this.owner_avatarURL = this.userinfo_owner["avatarURL"];
-                    this.owner_name = this.userinfo_owner["name"];
+                    this.owner_avatarURL = this.userinfo_owner['avatarURL'];
+                    this.owner_name = this.userinfo_owner['name'];
                     this.data_have = true;
                   });
               });
             this.firebase
-              .collection("users")
+              .collection('users')
               .doc(this.current_user.user.uid)
               .get()
               .subscribe(data => {
-                data.data()["likes"].map(value => {
+                data.data()['likes'].map(value => {
                   if (this.vid == value) {
                     this.activebutton_like();
                     this.find_likes = true;
@@ -240,11 +251,11 @@ export class WatchComponent implements OnInit {
               });
             if (!this.find_likes) {
               this.firebase
-                .collection("users")
+                .collection('users')
                 .doc(this.current_user.user.uid)
                 .get()
                 .subscribe(data => {
-                  data.data()["dislikes"].map(value2 => {
+                  data.data()['dislikes'].map(value2 => {
                     if (this.vid == value2) {
                       this.activebutton_dislike();
                     }
