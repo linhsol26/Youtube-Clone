@@ -55,3 +55,29 @@ div.mat-button-toggle-label-content {
   position: static;
   padding: 0 !important;
 }
+
+// mat tab profile page
+.mat-tab-labels {
+	margin-left: 10%;
+}
+
+.mat-tab-body-wrapper {
+	margin: 10px auto;
+	width: 80%;
+}
+
+@media screen and (max-width: 599px) {
+  .mat-tab-labels {
+    margin-left: 0;
+  }
+
+  .mat-tab-body-wrapper {
+    margin: 10px;
+    width: 100%;
+  }
+}
+
+.mat-tab-label-content {
+  font-weight: bold;
+}
+

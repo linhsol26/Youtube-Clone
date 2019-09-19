@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { UserGoogleService } from "src/app/services/user-google.service";
 import { ThemeService } from "src/app/services/theme.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -23,10 +24,16 @@ export class LoginComponent implements OnInit {
       matIcon: "keyboard_return"
     }
   ];
-  constructor(public userGG: UserGoogleService, private _theme: ThemeService) {}
+  constructor(
+    public userGG: UserGoogleService,
+    private _theme: ThemeService,
+    private _router: Router
+  ) {}
   ngOnInit() {}
 
-  toProfile() {}
+  toProfile() {
+    this._router.navigate(["/profile"]);
+  }
 
   changeTheme() {
     this._theme.dark = !this._theme.dark;

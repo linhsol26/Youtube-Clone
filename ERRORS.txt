@@ -4,4 +4,4 @@
 
 # mobile browsers do not automatically hide the address bar and menu bar when scrolling down.
 
-
+# we need guards, now!!!

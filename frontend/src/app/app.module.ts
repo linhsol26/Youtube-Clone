@@ -44,9 +44,11 @@ import { HomeRecentlyUploadedComponent } from './components/home-recently-upload
 import { PeriodPipe } from './pipes/period.pipe';
 import { MiniPlayerComponent } from './components/mini-player/mini-player.component';
 import { ViewFormatPipe } from './pipes/view-format.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
+  { path: "profile", component: ProfileComponent },
   { path: "upload", component: UploadComponent },
   { path: "watch/:vid", component: WatchComponent },
   { path: "**", redirectTo: "" }
@@ -75,7 +77,8 @@ const routes: Routes = [
     HomeRecentlyUploadedComponent,
     PeriodPipe,
     MiniPlayerComponent,
-    ViewFormatPipe
+    ViewFormatPipe,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
