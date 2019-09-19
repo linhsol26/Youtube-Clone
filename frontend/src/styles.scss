@@ -62,17 +62,13 @@ div.mat-button-toggle-label-content {
   margin-right: 10%;
 }
 
-.mat-tab-body-wrapper {
-	margin: 10px auto;
-	width: 80%;
+.mat-tab-body-content {
+  padding: 0 10%;
 }
 
 @media screen and (max-width: 599px) {
-  .mat-tab-labels {
-  }
-
-  .mat-tab-body-wrapper {
-    margin: 10px auto;
+  .mat-tab-body-content {
+    margin: 0 auto;
     width: 95%;
   }
 }
