@@ -59,7 +59,6 @@ div.mat-button-toggle-label-content {
 // mat tab profile page
 .mat-tab-labels {
   margin-left: 10%;
-  margin-right: 10%;
 }
 
 .mat-tab-body-content {
@@ -67,6 +66,10 @@ div.mat-button-toggle-label-content {
 }
 
 @media screen and (max-width: 599px) {
+  .mat-tab-labels {
+    margin-left: 5%;
+  }
+
   .mat-tab-body-content {
     margin: 0 auto;
     width: 95%;

@@ -24,7 +24,7 @@ export class PeriodPipe implements PipeTransform {
       unit = diff == 1 ? " day" : " days";
     } else if (diff < 31104000) {
       // year
-      diff = Math.floor(diff / 259200);
+      diff = Math.floor(diff / 2592000);
       unit = diff == 1 ? " month" : " months";
     } else {
       diff = Math.floor(diff / 31104000);
