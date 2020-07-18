@@ -5,21 +5,21 @@ import {
   transition,
   animate,
   animation
-} from "@angular/animations";
+} from '@angular/animations';
 
-export const fadeAnimation = trigger("fade", [
+export const fadeAnimation = trigger('fade', [
   state(
-    "in",
+    'in',
     style({
       opacity: 1
     })
   ),
   state(
-    "out",
+    'out',
     style({
       opacity: 0
     })
   ),
-  transition("in => out", animate("500ms ease-in")),
-  transition("out => in", animate("500ms ease-out"))
+  transition('in => out', animate('500ms ease-in')),
+  transition('out => in', animate('500ms ease-out'))
 ]);

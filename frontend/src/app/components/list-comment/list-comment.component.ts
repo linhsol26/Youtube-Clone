@@ -1,45 +1,49 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { User } from "src/app/interfaces/user";
-import { Comments } from "src/app/interfaces/comments";
+import { Component, OnInit, Input } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from 'src/app/interfaces/user';
+import { Comments } from 'src/app/interfaces/comments';
 @Component({
-  selector: "app-list-comment",
-  templateUrl: "./list-comment.component.html",
-  styleUrls: ["./list-comment.component.scss"]
+  selector: 'app-list-comment',
+  templateUrl: './list-comment.component.html',
+  styleUrls: ['./list-comment.component.scss']
 })
 export class ListCommentComponent implements OnInit {
   @Input() comment;
+  // tslint:disable-next-line:variable-name
   current_comment: Comments;
+  // tslint:disable-next-line:variable-name
   user_comment: User;
   constructor(private firestore: AngularFirestore) {}
+  // tslint:disable-next-line:variable-name
   data_have = false;
 
   ngOnInit() {
     this.firestore
-    .collection("comments")
+    .collection('comments')
     .doc(this.comment)
     .get()
     .subscribe(value => {
       this.current_comment = value.data() as Comments;
-      //console.log(this.current_comment);
+      // console.log(this.current_comment);
       this.firestore
-        .collection("users")
-        .doc(this.current_comment["uid"])
+        .collection('users')
+        .doc(this.current_comment.uid)
         .get()
-        .subscribe(value => {
-          this.user_comment = value.data() as User;
+        .subscribe(v => {
+          this.user_comment = v.data() as User;
           this.data_have = true;
-          //console.log(this.user_comment);
+          // console.log(this.user_comment);
         });
     });
   }
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnChanges(): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    //console.log(this.comment);
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
+    // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    // Add '${implements OnChanges}' to the class.
+    // console.log(this.comment);
+    // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    // Add '${implements OnChanges}' to the class.
     // console.log(typeof(this.comment));
     // console.log(this.comment);
     // for (let i = 0; i < this.comment.length; i++) {
@@ -49,6 +53,6 @@ export class ListCommentComponent implements OnInit {
     //       this.comment_content = data.payload.data();
     //       console.log(this.comment_content);
     //     })
-    //}
+    // }
   }
 }

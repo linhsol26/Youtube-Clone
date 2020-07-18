@@ -8,17 +8,17 @@ import { DatabaseService } from './database.service';
 })
 export class LikeDislikeService {
 
-  constructor(private firestore : AngularFirestore, private db : DatabaseService) { }
-  addLike(vid , uid){
+  constructor(private firestore: AngularFirestore, private db: DatabaseService) { }
+  addLike(vid , uid) {
     return this.db.addLike(vid, uid);
   }
-  addDislike(vid, uid){
+  addDislike(vid, uid) {
     return this.db.addDislike(vid, uid);
   }
-  removeLike(vid, uid){
+  removeLike(vid, uid) {
     return this.db.removeLike(vid, uid);
   }
-  removeDislike(vid, uid){
+  removeDislike(vid, uid) {
     return this.db.removeDislike(vid, uid);
   }
 }

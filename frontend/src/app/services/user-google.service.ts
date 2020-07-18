@@ -1,23 +1,28 @@
-import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { auth } from "firebase";
-import { Router } from "@angular/router";
-import { User } from "../interfaces/user";
-import { DatabaseService } from "./database.service";
-import { ThemeService } from "./theme.service";
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase';
+import { Router } from '@angular/router';
+import { User } from '../interfaces/user';
+import { DatabaseService } from './database.service';
+import { ThemeService } from './theme.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class UserGoogleService {
   user: User;
+  // tslint:disable-next-line:variable-name
   private _userGG: any;
   logged = false;
 
   constructor(
+    // tslint:disable-next-line:variable-name
     private _afAuth: AngularFireAuth,
+    // tslint:disable-next-line:variable-name
     private _router: Router,
+    // tslint:disable-next-line:variable-name
     private _db: DatabaseService,
+    // tslint:disable-next-line:variable-name
     private _theme: ThemeService
   ) {
     this._afAuth.user.subscribe(usr => {
@@ -25,7 +30,7 @@ export class UserGoogleService {
         this._userGG = usr;
         this.logged = true;
         this.setUser();
-      } else this.logged = false;
+      } else { this.logged = false; }
     });
   }
 
@@ -39,7 +44,7 @@ export class UserGoogleService {
   private setUser() {
     this.user = {
       uid: this._userGG.uid,
-      type: "google",
+      type: 'google',
       lastTime: Date.now(),
       name: this._userGG.displayName,
       email: this._userGG.email,
@@ -55,7 +60,7 @@ export class UserGoogleService {
     this._afAuth.auth.signOut().then(() => {
       this.user = null;
       this._userGG = null;
-      this._router.navigate(["/"]);
+      this._router.navigate(['/']);
       this._theme.dark = false;
     });
   }

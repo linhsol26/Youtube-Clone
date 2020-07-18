@@ -6,35 +6,36 @@ import {
   EventEmitter,
   HostBinding,
   HostListener
-} from "@angular/core";
+} from '@angular/core';
 
 @Directive({
-  selector: "[appDragDrop]"
+  selector: '[appDragDrop]'
 })
 export class DragAndDropDirective {
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onFileDropped = new EventEmitter<any>();
 
-  @HostBinding("style.opacity") public opacity = "1";
+  @HostBinding('style.opacity') public opacity = '1';
 
-  //Dragover listener
-  @HostListener("dragover", ["$event"]) onDragOver(event) {
+  // Dragover listener
+  @HostListener('dragover', ['$event']) onDragOver(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.opacity = "0.7";
+    this.opacity = '0.7';
   }
 
-  //Dragleave listener
-  @HostListener("dragleave", ["$event"]) public onDragLeave(event) {
+  // Dragleave listener
+  @HostListener('dragleave', ['$event']) public onDragLeave(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.opacity = "1";
+    this.opacity = '1';
   }
 
-  //Drop listener
-  @HostListener("drop", ["$event"]) public onDrop(event) {
+  // Drop listener
+  @HostListener('drop', ['$event']) public onDrop(event) {
     event.preventDefault();
     event.stopPropagation();
-    let files = event.dataTransfer.files;
+    const files = event.dataTransfer.files;
     if (files.length > 0) {
       this.onFileDropped.emit(files);
     }

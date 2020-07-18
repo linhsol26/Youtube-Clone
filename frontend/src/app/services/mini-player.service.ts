@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { WatchVideoComponent } from "../components/watch-video/watch-video.component";
+import { Injectable } from '@angular/core';
+import { WatchVideoComponent } from '../components/watch-video/watch-video.component';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class MiniPlayerService {
   video: WatchVideoComponent;
