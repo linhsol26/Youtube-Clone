@@ -1,4 +1,4 @@
-const functions = require("firebase-functions");
+const functions = require('firebase-functions');
 
 const mkdirp = require("mkdirp-promise");
 const { Storage } = require("@google-cloud/storage");
@@ -22,8 +22,8 @@ exports.genThumb = functions.https.onCall(data => {
   const thumbPath = videoPath + ".gen";
 
   const bucket = new Storage({
-    projectId: "fir-demo-5413c"
-  }).bucket("fir-demo-5413c.appspot.com");
+    projectId: "utu-be"
+  }).bucket("utu-be.appspot.com");
 
   const video = bucket.file(videoPath);
   const metadata = {

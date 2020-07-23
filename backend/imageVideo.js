@@ -64,7 +64,7 @@ exports.thumbnail = functions.storage
 
     // Cloud Storage files.
     const bucket = new Storage({
-      projectId: "fir-demo-5413c"
+      projectId: "utu-be"
     }).bucket(fileBucket);
     const file = bucket.file(filePathInBucket);
 
