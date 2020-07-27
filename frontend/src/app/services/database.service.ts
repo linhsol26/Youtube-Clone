@@ -194,4 +194,5 @@ export class DatabaseService {
   getPublicVideos() {
     return this._afs.collection('public').snapshotChanges();
   }
+
 }

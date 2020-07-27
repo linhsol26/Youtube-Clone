@@ -18,6 +18,13 @@
       <p>A</p>
       <p>A</p>
     </mat-tab>
-    <mat-tab label="About"> Content 4 </mat-tab>
+    <mat-tab label="About">
+      <div *ngIf='userGG.logged'>
+        <img src='{{userGG.user.avatarURL}}' style="width: 100px; height: 100px;;">
+        <span>{{userGG.user.email}}</span>
+        <span>{{userGG.user.name}}</span>
+        <span>Last time loggin: {{userGG.user.lastTime | period}}</span>
+      </div>
+    </mat-tab>
   </mat-tab-group>
 </div>

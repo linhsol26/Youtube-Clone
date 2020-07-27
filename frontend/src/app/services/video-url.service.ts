@@ -9,14 +9,14 @@ import { DatabaseService } from './database.service';
 export class VideoUrlService {
  videocollection: AngularFirestoreCollection<IVideo>;
     Videos: Observable<object>;
-  constructor(private afs : AngularFirestore, private db : DatabaseService) {
+  constructor(private afs: AngularFirestore, private db: DatabaseService) {
     this.Videos = this.afs.collection('videos').valueChanges();
-    
-   
-   } 
-   getVideos(){
+
+
+   }
+   getVideos() {
       return this.Videos;
     }
-  
-  
+
+
 }

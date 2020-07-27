@@ -46,12 +46,14 @@ import { MiniPlayerComponent } from './components/mini-player/mini-player.compon
 import { ViewFormatPipe } from './pipes/view-format.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
+import { SettingComponent } from './components/setting/setting.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'upload', component: UploadComponent, canActivate: [AuthGuard]},
   { path: 'watch/:vid', component: WatchComponent, canActivate: [AuthGuard]},
+  { path: 'setting', component: SettingComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '' }
 ];
 
@@ -79,7 +81,8 @@ const routes: Routes = [
     PeriodPipe,
     MiniPlayerComponent,
     ViewFormatPipe,
-    ProfileComponent
+    ProfileComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,
